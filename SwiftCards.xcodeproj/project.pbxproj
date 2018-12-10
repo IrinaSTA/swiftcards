@@ -627,6 +627,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.players.SwiftCardsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.4;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SwiftCards;
@@ -648,6 +649,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.players.SwiftCardsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.4;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SwiftCards;
