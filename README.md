@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/IrinaSTA/swiftcards.svg?branch=master)](https://travis-ci.org/IrinaSTA/swiftcards)
+
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/IrinaSTA/swiftcards.svg?columns=all)](https://waffle.io/IrinaSTA/swiftcards)
 
 # SwiftCards
