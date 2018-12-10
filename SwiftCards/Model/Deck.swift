@@ -20,8 +20,10 @@ class Deck {
             }
         }
     }
-    
     func shuffle() {
         self.cards.shuffle()
+    }
+    func removeTopCard() -> Card {
+        return self.cards.removeFirst()
     }
 }

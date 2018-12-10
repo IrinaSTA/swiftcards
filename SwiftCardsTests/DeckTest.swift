@@ -43,6 +43,13 @@ class DeckTest: XCTestCase {
         let newCards = deck.cards
         XCTAssert(oldCards != newCards)
     }
+    func testRemoveTopCard() {
+        let deck = Deck()
+        let card1 = deck.cards[0]
+        let removedCard = deck.removeTopCard()
+        XCTAssertEqual(removedCard, card1)
+        XCTAssertFalse(deck.cards.contains(card1))
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
