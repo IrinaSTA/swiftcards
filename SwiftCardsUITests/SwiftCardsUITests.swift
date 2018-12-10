@@ -37,6 +37,7 @@ class SwiftCardsUITests: XCTestCase {
         XCTAssert(enterHandSizeText.exists)
         
         let handSizeField = app.textFields["handSizeText"]
+        handSizeField.tap()
         handSizeField.typeText("5")
         app.buttons["Play"].tap()
     }
