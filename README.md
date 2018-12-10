@@ -1,3 +1,5 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/IrinaSTA/swiftcards.svg?columns=all)](https://waffle.io/IrinaSTA/swiftcards)
+
 # SwiftCards
 
 ## Contributing
