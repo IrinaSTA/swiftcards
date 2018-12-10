@@ -20,4 +20,8 @@ class Deck {
             }
         }
     }
+    
+    func shuffle() {
+        self.cards.shuffle()
+    }
 }

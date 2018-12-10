@@ -34,8 +34,14 @@ class DeckTest: XCTestCase {
             }
         }
         XCTAssert(containsAllCards)
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    func testShuffleDeck() {
+        // We would like to come back to this and stub the randomness, but we need to push on!
+        let deck = Deck()
+        let oldCards = deck.cards
+        deck.shuffle()
+        let newCards = deck.cards
+        XCTAssert(oldCards != newCards)
     }
 
     func testPerformanceExample() {
