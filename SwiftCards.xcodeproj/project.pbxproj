@@ -47,6 +47,7 @@
 		933F24EE21BEC16900C2162E /* SwiftCardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		933F24F221BEC16900C2162E /* SwiftCardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCardsUITests.swift; sourceTree = "<group>"; };
 		933F24F421BEC16900C2162E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		933F250021BEC30E00C2162E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		933F24C621BEC16700C2162E = {
 			isa = PBXGroup;
 			children = (
+				933F250021BEC30E00C2162E /* README.md */,
 				933F24D121BEC16700C2162E /* SwiftCards */,
 				933F24E621BEC16900C2162E /* SwiftCardsTests */,
 				933F24F121BEC16900C2162E /* SwiftCardsUITests */,
