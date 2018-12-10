@@ -3,4 +3,4 @@ osx_image: xcode10
 
 jobs:
  include:
-   - script: xcodebuild clean build test -project SwiftCards.xcodeproj -scheme SwiftCards -sdk generic/platform=iOS
+   - script: xcodebuild clean build test -project SwiftCards.xcodeproj -scheme SwiftCards -destination "generic/platform=iOS"
