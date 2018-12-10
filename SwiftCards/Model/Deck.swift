@@ -21,7 +21,14 @@ class Deck {
         }
     }
     func shuffle() {
-        self.cards.shuffle()
+        var newCards: [Card] = []
+        let numberOfCards = self.cards.count
+        for _ in 0..<numberOfCards {
+            let randomIndex = Int(arc4random_uniform(UInt32(self.cards.count)))
+            newCards.append(self.cards[randomIndex])
+            self.cards.remove(at: randomIndex)
+        }
+        self.cards = newCards
     }
     func removeTopCard() -> Card {
         return self.cards.removeFirst()
