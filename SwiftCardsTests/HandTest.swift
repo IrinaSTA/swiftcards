@@ -1,5 +1,5 @@
 //
-//  CardTest.swift
+//  HandTest.swift
 //  SwiftCardsTests
 //
 //  Created by Chris Cooksley on 11/12/2018.
@@ -9,23 +9,36 @@
 import XCTest
 @testable import SwiftCards
 
-class CardTest: XCTestCase {
+class HandTest: XCTestCase {
 
     override func setUp() {
-        super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
+
     override func tearDown() {
-        super.tearDown()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     func testAttributes() {
+        let hand = Hand()
+        XCTAssertEqual(hand.cards.count, 0)
+    }
+
+    func testAdd() {
+        let hand = Hand()
         let card = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
-        XCTAssertEqual(card.value, "1")
-        XCTAssertEqual(card.suit, "hearts")
-        XCTAssertEqual(card.location, "playarea")
-        XCTAssertEqual(card.imageURL, "image")
+        hand.add(card: card)
+        XCTAssert(hand.cards[0] === card)
+    }
+    func testRemove() {
+        let hand = Hand()
+        let card1 = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
+        let card2 = Card(value: "2", suit: "hearts", location: "playarea", imageURL: "image2")
+        hand.add(card: card1)
+        hand.add(card: card2)
+        let returnedCard = hand.remove(card: card2)
+        XCTAssert(returnedCard === card2)
+        XCTAssertEqual(hand.cards.count, 1)
     }
 
     func testPerformanceExample() {

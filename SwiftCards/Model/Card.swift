@@ -8,17 +8,21 @@
 
 import Foundation
 
-class Card {
-    var value: String?
-    var suit: String?
-    var location: String?
-    var imageURL: String?
+class Card: Equatable {
+    var value: String
+    var suit: String
+    var location: String
+    var imageURL: String
     var name: String
-    init(attributes: [String: Any]) {
-        self.value = attributes["value"] as? String
-        self.suit = attributes["suit"] as? String
-        self.location = attributes["location"] as? String
-        self.imageURL = attributes["imageURL"] as? String
-        self.name = self.value! + self.suit!.prefix(1).uppercased() as? String
+    init(value: String, suit: String, location: String, imageURL: String) {
+        self.value = value
+        self.suit = suit
+        self.location = location
+        self.imageURL = imageURL
+        self.name = self.value + self.suit.prefix(1).uppercased()
+    }
+
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.name == rhs.name
     }
 }
