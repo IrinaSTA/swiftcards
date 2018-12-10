@@ -15,6 +15,8 @@
 		933F24DD21BEC16800C2162E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933F24DB21BEC16800C2162E /* LaunchScreen.storyboard */; };
 		933F24E821BEC16900C2162E /* SwiftCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933F24E721BEC16900C2162E /* SwiftCardsTests.swift */; };
 		933F24F321BEC16900C2162E /* SwiftCardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933F24F221BEC16900C2162E /* SwiftCardsUITests.swift */; };
+		9364C2A921BFCAEB00FE4B28 /* CardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364C2A821BFCAEB00FE4B28 /* CardTest.swift */; };
+		9364C2AC21BFCB2A00FE4B28 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364C2AB21BFCB2A00FE4B28 /* Card.swift */; };
 		B340F27C27461E2DCEB52FA0 /* Pods_SwiftCardsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAC06CCEB8996C0CA37382C /* Pods_SwiftCardsTests.framework */; };
 		DECFD28D161B5DE440F80CB0 /* Pods_SwiftCardsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341627FA14E7D57B6A18182E /* Pods_SwiftCardsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,8 @@
 		933F24F221BEC16900C2162E /* SwiftCardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCardsUITests.swift; sourceTree = "<group>"; };
 		933F24F421BEC16900C2162E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		933F250121BEC40F00C2162E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9364C2A821BFCAEB00FE4B28 /* CardTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTest.swift; sourceTree = "<group>"; };
+		9364C2AB21BFCB2A00FE4B28 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		9608568DA8DDB8FEAC9B2CE0 /* Pods-SwiftCardsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsUITests/Pods-SwiftCardsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C69B45FE0855E0141BA45517 /* Pods-SwiftCardsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsTests/Pods-SwiftCardsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49BCFC94EAB4CD38FF8A1B7 /* Pods-SwiftCardsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsTests/Pods-SwiftCardsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 		933F24D121BEC16700C2162E /* SwiftCards */ = {
 			isa = PBXGroup;
 			children = (
+				9364C2AA21BFCB1800FE4B28 /* Model */,
 				933F24D221BEC16700C2162E /* AppDelegate.swift */,
 				933F24D421BEC16700C2162E /* ViewController.swift */,
 				933F24D621BEC16700C2162E /* Main.storyboard */,
@@ -154,6 +159,7 @@
 			children = (
 				933F24E721BEC16900C2162E /* SwiftCardsTests.swift */,
 				933F24E921BEC16900C2162E /* Info.plist */,
+				9364C2A821BFCAEB00FE4B28 /* CardTest.swift */,
 			);
 			path = SwiftCardsTests;
 			sourceTree = "<group>";
@@ -165,6 +171,14 @@
 				933F24F421BEC16900C2162E /* Info.plist */,
 			);
 			path = SwiftCardsUITests;
+			sourceTree = "<group>";
+		};
+		9364C2AA21BFCB1800FE4B28 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9364C2AB21BFCB2A00FE4B28 /* Card.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				933F24D521BEC16700C2162E /* ViewController.swift in Sources */,
+				9364C2AC21BFCB2A00FE4B28 /* Card.swift in Sources */,
 				933F24D321BEC16700C2162E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				933F24E821BEC16900C2162E /* SwiftCardsTests.swift in Sources */,
+				9364C2A921BFCAEB00FE4B28 /* CardTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
