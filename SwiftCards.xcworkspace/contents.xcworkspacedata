@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/chriscooksley/Google Drive/CODING/MAKERS/WEEKS/SwiftCards/SwiftCards/SwiftCards/Model/Game.swift">
+   </FileRef>
+   <FileRef
       location = "group:SwiftCards.xcodeproj">
    </FileRef>
    <FileRef
