@@ -9,7 +9,9 @@ import Foundation
 
 class Game {
     var players: [Player]
+    var handSize: Int
     init(handSize: Int, players: [Player]) {
         self.players = players
+        self.handSize = handSize
     }
 }
