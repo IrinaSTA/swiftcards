@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SwiftCards.xcscheme_^#shared#^_</key>
+		<key>Pods-SwiftCards.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Pods-SwiftCardsTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-SwiftCardsUITests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
