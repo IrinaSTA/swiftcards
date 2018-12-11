@@ -61,20 +61,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="10C" translatesAutoresizingMaskIntoConstraints="NO" id="bdD-g5-BFQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="10C" translatesAutoresizingMaskIntoConstraints="NO" id="bdD-g5-BFQ">
                                 <rect key="frame" x="46" y="482" width="90" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3C" translatesAutoresizingMaskIntoConstraints="NO" id="yYK-cf-sEG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="3C" translatesAutoresizingMaskIntoConstraints="NO" id="yYK-cf-sEG">
                                 <rect key="frame" x="96" y="482" width="87" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="QD" translatesAutoresizingMaskIntoConstraints="NO" id="vqn-6F-JJL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="QD" translatesAutoresizingMaskIntoConstraints="NO" id="vqn-6F-JJL">
                                 <rect key="frame" x="144" y="482" width="93" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vqn-6F-JJL" firstAttribute="centerX" secondItem="f7g-0N-Dqs" secondAttribute="centerX" constant="10" id="2lW-T7-ySw"/>
+                            <constraint firstItem="vqn-6F-JJL" firstAttribute="bottom" secondItem="bdD-g5-BFQ" secondAttribute="bottom" constant="5" id="6Fo-28-ClY"/>
+                            <constraint firstItem="bdD-g5-BFQ" firstAttribute="centerX" secondItem="f7g-0N-Dqs" secondAttribute="centerX" constant="10" id="BfA-Fa-bZh"/>
+                            <constraint firstItem="yYK-cf-sEG" firstAttribute="bottom" secondItem="bdD-g5-BFQ" secondAttribute="bottom" constant="5" id="Cif-zW-SZU"/>
+                            <constraint firstItem="yYK-cf-sEG" firstAttribute="bottom" secondItem="bdD-g5-BFQ" secondAttribute="bottom" id="n8g-fi-baD"/>
+                            <constraint firstItem="vqn-6F-JJL" firstAttribute="bottom" secondItem="bdD-g5-BFQ" secondAttribute="bottom" id="riW-y0-Wrz"/>
+                            <constraint firstItem="yYK-cf-sEG" firstAttribute="centerX" secondItem="f7g-0N-Dqs" secondAttribute="centerX" constant="10" id="yuT-vG-zcg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lg9-gD-gkI"/>
                     </view>
                 </viewController>
