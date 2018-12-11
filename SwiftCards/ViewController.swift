@@ -12,13 +12,20 @@ class ViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var handSizeText: UITextField!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     // MARK: Actions
     @IBAction func play(_ sender: UIButton) {
-        print(handSizeText!.text)
+        convertStringToInteger()
+    }
+    // Methods or functions
+    func convertStringToInteger() {
+        guard let total = Int(handSizeText.text!) else {
+            print("Not a number: \(handSizeText.text!)")
+            return
+        }
+        print("The total number of cards is \(total)")
     }
 }
