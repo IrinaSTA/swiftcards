@@ -96,9 +96,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1825A5C39EE3960FCBA72BC8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
 		2013AC37A6045E484D10C20D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
