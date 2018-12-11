@@ -1,0 +1,6 @@
+framework module Pods_SwiftCards {
+  umbrella header "Pods-SwiftCards-umbrella.h"
+
+  export *
+  module * { export * }
+}
