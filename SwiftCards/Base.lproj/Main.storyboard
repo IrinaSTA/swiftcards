@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -17,26 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter the number of cards per hand:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-J1-yQB">
-                                <rect key="frame" x="21" y="267" width="332" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buN-sc-6wU">
-                                <rect key="frame" x="139" y="306" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="handSizeText">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85Y-la-wLY">
-                                <rect key="frame" x="167" y="350" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85Y-la-wLY">
+                                <rect key="frame" x="192" y="476.66666666666669" width="30" height="30"/>
                                 <state key="normal" title="Play">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -45,13 +27,42 @@
                                     <segue destination="zIf-sn-4P2" kind="show" id="9hl-PB-iBt"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buN-sc-6wU">
+                                <rect key="frame" x="150" y="433" width="114" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="handSizeText">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="X9P-lc-c1D"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the number of cards per hand:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-J1-yQB">
+                                <rect key="frame" x="16" y="392" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="85Y-la-wLY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0QK-Fg-0Sq"/>
+                            <constraint firstItem="buN-sc-6wU" firstAttribute="top" secondItem="NCu-J1-yQB" secondAttribute="bottom" constant="20" id="66h-lb-peu"/>
+                            <constraint firstItem="buN-sc-6wU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Da7-Nu-Nxh"/>
+                            <constraint firstItem="buN-sc-6wU" firstAttribute="top" secondItem="NCu-J1-yQB" secondAttribute="bottom" constant="20" id="LgS-ES-odD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NCu-J1-yQB" secondAttribute="trailing" constant="16" id="TLE-dH-zqT"/>
+                            <constraint firstItem="85Y-la-wLY" firstAttribute="top" secondItem="buN-sc-6wU" secondAttribute="bottom" constant="13.5" id="Zel-wp-KWZ"/>
+                            <constraint firstItem="NCu-J1-yQB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="hyA-ks-V7L"/>
+                            <constraint firstItem="buN-sc-6wU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zCY-bu-9JC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="668" y="26.53673163418291"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0cG-SR-n2n">
@@ -69,6 +80,9 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="QD" translatesAutoresizingMaskIntoConstraints="NO" id="vqn-6F-JJL">
                                 <rect key="frame" x="144" y="482" width="93" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vqn-6F-JJL" secondAttribute="height" multiplier="93:130" id="MOr-8C-1Cf"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
