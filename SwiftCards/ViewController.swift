@@ -14,7 +14,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    @IBOutlet weak var handSizeText: UITextField!
     // MARK: Actions
     @IBAction func play(_ sender: UIButton) {
+    }
+    @IBAction func ButtonPressed(_ sender: UIButton) {
+        print(handSizeText.text)
     }
 }
