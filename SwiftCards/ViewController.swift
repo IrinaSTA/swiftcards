@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Properties
     @IBOutlet weak var handSizeText: UITextField!
@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     }
     // MARK: Actions
     @IBAction func play(_ sender: UIButton) {
+        convertStringToInteger()
+    }
+    @IBAction func returnKeyPressed(_ sender: Any) {
         convertStringToInteger()
     }
     // Methods or functions
