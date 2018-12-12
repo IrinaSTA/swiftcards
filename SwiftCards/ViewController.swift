@@ -10,7 +10,7 @@ import UIKit
 
 var handSize: Int = 5
 let deck = Deck()
-let hand = Hand()
+let player = Player()
 
 class ViewController: UIViewController {
 
@@ -24,14 +24,12 @@ class ViewController: UIViewController {
     }
     // MARK: Actions
     @IBAction func deckTapped(_ sender: Any) {
-        let newCard = deck.removeTopCard()
-        hand.add(card: newCard)
+        player.draw(deck: deck)
     }
     @IBAction func play(_ sender: UIButton) {
         handSize = convertStringToInteger()
     }
     @IBAction func load(_ sender: UIButton) {
-        let player = Player()
         let game = Game(handSize: handSize, players: [player])
         let image = UIImage(named: game.deck.cards[0].name + ".png")
         let imageView = UIImageView(image: image!)
