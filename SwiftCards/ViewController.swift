@@ -9,6 +9,8 @@
 import UIKit
 
 var handSize: Int = 5
+let deck = Deck()
+let hand = Hand()
 
 class ViewController: UIViewController {
 
@@ -22,9 +24,6 @@ class ViewController: UIViewController {
     }
     // MARK: Actions
     @IBAction func deckTapped(_ sender: Any) {
-        print("deck tapped")
-        let deck = Deck()
-        let hand = Hand()
         let newCard = deck.removeTopCard()
         hand.add(card: newCard)
     }
@@ -47,4 +46,3 @@ class ViewController: UIViewController {
         return total
     }
 }
-
