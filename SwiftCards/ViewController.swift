@@ -23,6 +23,10 @@ class ViewController: UIViewController {
     // MARK: Actions
     @IBAction func deckTapped(_ sender: Any) {
         print("deck tapped")
+        let deck = Deck()
+        let hand = Hand()
+        let newCard = deck.removeTopCard()
+        hand.add(card: newCard)
     }
     @IBAction func play(_ sender: UIButton) {
         handSize = convertStringToInteger()
