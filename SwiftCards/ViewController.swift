@@ -21,16 +21,20 @@ class ViewController: UIViewController {
         print("deck tapped")
     }
     @IBAction func play(_ sender: UIButton) {
-        convertStringToInteger()
+        let handSize = convertStringToInteger()
+        let player = Player()
+        let game = Game(handSize: handSize, players: [player])
+        let image = UIImage(named: game.deck.cards[0].name + ".png")
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 50, y: 50, width: 100, height: 200)
+        self.view.addSubview(imageView)
     }
     @IBAction func returnKeyPressed(_ sender: Any) {
     }
     // Methods or functions
-    func convertStringToInteger() {
-        guard let total = Int(handSizeText.text!) else {
-            print("Not a number: \(handSizeText.text!)")
-            return
-        }
-        print("The total number of cards is \(total)")
+    func convertStringToInteger() -> Int {
+        let total = Int(handSizeText.text!) ?? 5
+        return total
     }
 }
+
