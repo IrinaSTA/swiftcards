@@ -32,11 +32,17 @@ class SwiftCardsUITests: XCTestCase {
         app.launch()
         let enterHandSizeText = app.staticTexts["Please enter the number of cards per hand:"]
         XCTAssert(enterHandSizeText.exists)
-
         let handSizeField = app.textFields["handSizeText"]
         handSizeField.tap()
         handSizeField.typeText("5")
         app.buttons["Play"].tap()
+
+        let collection = app.collectionViews.cells.count
+        let collectionView = app.collectionViews["HandView"]
+        let collectionViewDud = app.collectionViews["dud"]
+        let images = collectionView.descendants(matching: .image).count
     }
+    
+   
 
 }
