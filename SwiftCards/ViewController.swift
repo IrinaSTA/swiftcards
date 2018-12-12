@@ -8,9 +8,9 @@
 
 import UIKit
 
-var handSize: Int = 5
-let deck = Deck()
+//var handSize: Int = 5
 let player = Player()
+var game = Game(handSize: 5, players: [player])
 
 class ViewController: UIViewController {
 
@@ -18,23 +18,41 @@ class ViewController: UIViewController {
     @IBOutlet weak var handSizeText: UITextField!
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet var gamePage: UIView!
-    @IBOutlet weak var handView: UICollectionView!
+    @IBOutlet weak var handView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     // MARK: Actions
     @IBAction func deckTapped(_ sender: Any) {
-        player.draw(deck: deck)
+        if player.hand.cards.count < 10 {
+            player.draw(deck: game.deck)
+        }
+        if let card = player.hand.cards.last {
+            let image = UIImage(named: card.name + ".png")
+            let imageView = UIImageView(image: image!)
+            let leftPosition = (player.hand.cards.count - 1) * 30
+            imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
+            handView.addSubview(imageView)
+        }
     }
     @IBAction func play(_ sender: UIButton) {
-        handSize = convertStringToInteger()
+        game.handSize = convertStringToInteger()
     }
     @IBAction func load(_ sender: UIButton) {
-        let game = Game(handSize: handSize, players: [player])
+        game.deck.shuffle()
+        game.deal()
         let image = UIImage(named: game.deck.cards[0].name + ".png")
         let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: 50, y: 50, width: 100, height: 200)
-        handView.addSubview(imageView)
+        var leftPosition = 0
+        print(player.hand.cards)
+        for card in player.hand.cards {
+            let image = UIImage(named: card.name + ".png")
+            let imageView = UIImageView(image: image!)
+            imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
+            handView.addSubview(imageView)
+            leftPosition += 30
+        }
+
     }
     @IBAction func returnKeyPressed(_ sender: Any) {
     }
