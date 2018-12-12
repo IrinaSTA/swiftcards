@@ -80,7 +80,7 @@
         <!--View Controller-->
         <scene sceneID="0cG-SR-n2n">
             <objects>
-                <viewController id="zIf-sn-4P2" sceneMemberID="viewController">
+                <viewController id="zIf-sn-4P2" customClass="ViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f7g-0N-Dqs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,13 +148,17 @@
                                     <constraint firstAttribute="height" constant="130" id="OFd-Gw-CBs"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
                                 <rect key="frame" x="304" y="64" width="90" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="07n-dn-D1E"/>
                                     <constraint firstAttribute="width" constant="90" id="jR8-Gn-x4g"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Ug9-MP-Sis" appends="YES" id="Rmi-5o-Y8b"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -176,8 +180,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lg9-gD-gkI"/>
                     </view>
+                    <connections>
+                        <outlet property="deckImage" destination="XJt-Tz-83C" id="81p-6Z-wxf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZvM-gO-b1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Ug9-MP-Sis">
+                    <connections>
+                        <action selector="deckTapped:" destination="zIf-sn-4P2" id="iBf-NJ-3sC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1418.4000000000001" y="25.862068965517242"/>
         </scene>
