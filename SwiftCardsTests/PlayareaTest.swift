@@ -29,16 +29,6 @@ class PlayareaTest: XCTestCase {
         playarea.add(card: card)
         XCTAssertEqual(playarea.cards.count, 1)
     }
-    func testShowLastCard() {
-        let playarea = Playarea()
-        let card1 = Card(value: "2", suit: "hearts", location: "hand", imageURL: "image")
-        let card2 = Card(value: "5", suit: "hearts", location: "hand", imageURL: "image")
-        playarea.add(card: card1)
-        playarea.add(card: card2)
-        XCTAssertEqual(playarea.cards.count, 2)
-        let lastCard = playarea.cards.last
-        XCTAssert(lastCard === card2)
-    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
