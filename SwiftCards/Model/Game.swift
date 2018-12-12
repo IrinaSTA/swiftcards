@@ -1,6 +1,6 @@
 //
 //  Game.swift
-//  
+//
 //
 //  Created by Chris Cooksley on 11/12/2018.
 //
@@ -15,7 +15,6 @@ class Game {
         self.players = players
         self.handSize = handSize
     }
-    
     func deal() {
         for player in self.players {
             for _ in 0..<self.handSize {

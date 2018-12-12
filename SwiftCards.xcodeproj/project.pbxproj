@@ -23,7 +23,7 @@
 		93BC2FB921BFFA3600938FF4 /* DeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC2FB821BFFA3600938FF4 /* DeckTest.swift */; };
 		93BC2FBD21C0019F00938FF4 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC2FBC21C0019F00938FF4 /* Deck.swift */; };
 		93BC2FBF21C02CE400938FF4 /* GameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC2FBE21C02CE400938FF4 /* GameTest.swift */; };
-		93BC2FC121C02E6400938FF4 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC2FC021C02E6300938FF4 /* Game.swift */; };
+		93BC2FC321C10ED400938FF4 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC2FC221C10ED400938FF4 /* Game.swift */; };
 		B1506E6A21C0238B00384A14 /* PlayerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1506E6921C0238B00384A14 /* PlayerTest.swift */; };
 		B1506E6C21C0264100384A14 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1506E6B21C0264100384A14 /* Player.swift */; };
 		B340F27C27461E2DCEB52FA0 /* Pods_SwiftCardsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAC06CCEB8996C0CA37382C /* Pods_SwiftCardsTests.framework */; };
@@ -76,7 +76,7 @@
 		93BC2FB821BFFA3600938FF4 /* DeckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTest.swift; sourceTree = "<group>"; };
 		93BC2FBC21C0019F00938FF4 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		93BC2FBE21C02CE400938FF4 /* GameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTest.swift; sourceTree = "<group>"; };
-		93BC2FC021C02E6300938FF4 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Game.swift; path = "/Users/chriscooksley/Google Drive/CODING/MAKERS/WEEKS/SwiftCards/SwiftCards/SwiftCards/Model/Game.swift"; sourceTree = "<absolute>"; };
+		93BC2FC221C10ED400938FF4 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		9608568DA8DDB8FEAC9B2CE0 /* Pods-SwiftCardsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsUITests/Pods-SwiftCardsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1506E6921C0238B00384A14 /* PlayerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTest.swift; sourceTree = "<group>"; };
 		B1506E6B21C0264100384A14 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -199,11 +199,11 @@
 		9364C2AA21BFCB1800FE4B28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93BC2FC021C02E6300938FF4 /* Game.swift */,
 				9364C2AB21BFCB2A00FE4B28 /* Card.swift */,
 				93BC2FB621BFE34000938FF4 /* Hand.swift */,
 				93BC2FBC21C0019F00938FF4 /* Deck.swift */,
 				B1506E6B21C0264100384A14 /* Player.swift */,
+				93BC2FC221C10ED400938FF4 /* Game.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 			files = (
 				93BC2FB721BFE34000938FF4 /* Hand.swift in Sources */,
 				933F24D521BEC16700C2162E /* ViewController.swift in Sources */,
-				93BC2FC121C02E6400938FF4 /* Game.swift in Sources */,
+				93BC2FC321C10ED400938FF4 /* Game.swift in Sources */,
 				93BC2FBD21C0019F00938FF4 /* Deck.swift in Sources */,
 				9364C2AC21BFCB2A00FE4B28 /* Card.swift in Sources */,
 				B1506E6C21C0264100384A14 /* Player.swift in Sources */,
