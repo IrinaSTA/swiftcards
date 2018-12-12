@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28976283DD37C0A4D7FAB131 /* Pods_SwiftCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0319C467AE96D411B16709C3 /* Pods_SwiftCards.framework */; };
+		63318C3D21C11CA3001ADE2F /* PlayareaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63318C3C21C11CA3001ADE2F /* PlayareaTest.swift */; };
+		63318C3F21C11D66001ADE2F /* Playarea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63318C3E21C11D66001ADE2F /* Playarea.swift */; };
 		63C605F121BFCDEC00350F42 /* Cards.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C605F021BFCDEC00350F42 /* Cards.xcassets */; };
 		933F24D321BEC16700C2162E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933F24D221BEC16700C2162E /* AppDelegate.swift */; };
 		933F24D521BEC16700C2162E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933F24D421BEC16700C2162E /* ViewController.swift */; };
@@ -53,6 +55,8 @@
 		341627FA14E7D57B6A18182E /* Pods_SwiftCardsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCardsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		388F55C3B6611F987AB60365 /* Pods-SwiftCardsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsUITests/Pods-SwiftCardsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3FAC06CCEB8996C0CA37382C /* Pods_SwiftCardsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCardsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63318C3C21C11CA3001ADE2F /* PlayareaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayareaTest.swift; sourceTree = "<group>"; };
+		63318C3E21C11D66001ADE2F /* Playarea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Playarea.swift; path = Model/Playarea.swift; sourceTree = "<group>"; };
 		63C605F021BFCDEC00350F42 /* Cards.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Cards.xcassets; sourceTree = "<group>"; };
 		733E5A50BFBBEE8D7086C243 /* Pods-SwiftCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCards/Pods-SwiftCards.debug.xcconfig"; sourceTree = "<group>"; };
 		933F24CF21BEC16700C2162E /* SwiftCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +168,7 @@
 			children = (
 				9364C2AA21BFCB1800FE4B28 /* Model */,
 				933F24D221BEC16700C2162E /* AppDelegate.swift */,
+				63318C3E21C11D66001ADE2F /* Playarea.swift */,
 				933F24D421BEC16700C2162E /* ViewController.swift */,
 				933F24D621BEC16700C2162E /* Main.storyboard */,
 				933F24D921BEC16800C2162E /* Assets.xcassets */,
@@ -179,6 +184,7 @@
 				933F24E721BEC16900C2162E /* SwiftCardsTests.swift */,
 				933F24E921BEC16900C2162E /* Info.plist */,
 				9364C2A821BFCAEB00FE4B28 /* CardTest.swift */,
+				63318C3C21C11CA3001ADE2F /* PlayareaTest.swift */,
 				93BC2FB421BFE1EE00938FF4 /* HandTest.swift */,
 				93BC2FB821BFFA3600938FF4 /* DeckTest.swift */,
 				B1506E6921C0238B00384A14 /* PlayerTest.swift */,
@@ -414,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63318C3F21C11D66001ADE2F /* Playarea.swift in Sources */,
 				93BC2FB721BFE34000938FF4 /* Hand.swift in Sources */,
 				933F24D521BEC16700C2162E /* ViewController.swift in Sources */,
 				93BC2FC321C10ED400938FF4 /* Game.swift in Sources */,
@@ -430,6 +437,7 @@
 			files = (
 				93BC2FB921BFFA3600938FF4 /* DeckTest.swift in Sources */,
 				93BC2FB521BFE1EE00938FF4 /* HandTest.swift in Sources */,
+				63318C3D21C11CA3001ADE2F /* PlayareaTest.swift in Sources */,
 				B1506E6A21C0238B00384A14 /* PlayerTest.swift in Sources */,
 				933F24E821BEC16900C2162E /* SwiftCardsTests.swift in Sources */,
 				9364C2A921BFCAEB00FE4B28 /* CardTest.swift in Sources */,
