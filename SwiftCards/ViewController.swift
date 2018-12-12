@@ -8,15 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var handSizeText: UITextField!
+    @IBOutlet weak var deckImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        handSizeText.delegate = self
     }
     // MARK: Actions
+    @IBAction func deckTapped(_ sender: Any) {
+        print("deck tapped")
+    }
     @IBAction func play(_ sender: UIButton) {
         convertStringToInteger()
     }
@@ -29,11 +32,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         print("The total number of cards is \(total)")
-    }
-    
-    // UITextFieldDelegate methods
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        handSizeText.resignFirstResponder()
-        return true
     }
 }
