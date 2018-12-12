@@ -8,29 +8,46 @@
 
 import UIKit
 
+let player = Player()
+var game = Game(handSize: 5, players: [player])
+
 class ViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var handSizeText: UITextField!
     @IBOutlet weak var deckImage: UIImageView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet weak var handView: UIView!
     // MARK: Actions
-    @IBAction func deckTapped(_ sender: Any) {
-        print("deck tapped")
-    }
     @IBAction func play(_ sender: UIButton) {
-        convertStringToInteger()
+        game.handSize = enteredHandSize()
     }
-    @IBAction func returnKeyPressed(_ sender: Any) {
+    @IBAction func deckTapped(_ sender: Any) {
+        if player.hand.cards.count < 10 {
+            player.draw(deck: game.deck)
+        }
+        if let card = player.hand.cards.last {
+            render(player: player, card: card, location: handView)
+        }
+    }
+    @IBAction func load(_ sender: UIButton) {
+        game.deck.shuffle()
+        game.deal()
+        for card in player.hand.cards {
+            render(player: player, card: card, location: handView)
+        }
     }
     // Methods or functions
-    func convertStringToInteger() {
-        guard let total = Int(handSizeText.text!) else {
-            print("Not a number: \(handSizeText.text!)")
-            return
+    func enteredHandSize() -> Int {
+        let total = Int(handSizeText.text!) ?? 7
+        return total
+    }
+    func render(player: Player, card: Card, location: UIView) {
+        if let index = player.hand.cards.index(of: card) {
+            let leftPosition = index * 30
+            let image = UIImage(named: card.name + ".png")
+            let imageView = UIImageView(image: image!)
+            imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
+            location.addSubview(imageView)
         }
-        print("The total number of cards is \(total)")
     }
 }
