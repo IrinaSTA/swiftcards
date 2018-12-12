@@ -29,7 +29,6 @@ class GameTest: XCTestCase {
         XCTAssertEqual(game.handSize, 5)
         XCTAssert(game.deck is Deck)
     }
-    
     func testGameCanDeal() {
         let player1 = Player()
         let player2 = Player()
