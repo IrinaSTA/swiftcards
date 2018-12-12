@@ -8,11 +8,15 @@
 
 import UIKit
 
+var handSize: Int = 5
+
 class ViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var handSizeText: UITextField!
     @IBOutlet weak var deckImage: UIImageView!
+    @IBOutlet var gamePage: UIView!
+    @IBOutlet weak var handView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,19 +25,21 @@ class ViewController: UIViewController {
         print("deck tapped")
     }
     @IBAction func play(_ sender: UIButton) {
-        let handSize = convertStringToInteger()
+        handSize = convertStringToInteger()
+    }
+    @IBAction func load(_ sender: UIButton) {
         let player = Player()
         let game = Game(handSize: handSize, players: [player])
         let image = UIImage(named: game.deck.cards[0].name + ".png")
         let imageView = UIImageView(image: image!)
         imageView.frame = CGRect(x: 50, y: 50, width: 100, height: 200)
-        self.view.addSubview(imageView)
+        handView.addSubview(imageView)
     }
     @IBAction func returnKeyPressed(_ sender: Any) {
     }
     // Methods or functions
     func convertStringToInteger() -> Int {
-        let total = Int(handSizeText.text!) ?? 5
+        let total = Int(handSizeText.text!) ?? 7
         return total
     }
 }
