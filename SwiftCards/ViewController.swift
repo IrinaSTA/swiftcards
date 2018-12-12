@@ -14,14 +14,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var handSizeText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        handSizeText.delegate = self
     }
     // MARK: Actions
     @IBAction func play(_ sender: UIButton) {
         convertStringToInteger()
     }
     @IBAction func returnKeyPressed(_ sender: Any) {
-        convertStringToInteger()
     }
     // Methods or functions
     func convertStringToInteger() {
@@ -30,5 +29,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         print("The total number of cards is \(total)")
+    }
+    
+    // UITextFieldDelegate methods
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        handSizeText.resignFirstResponder()
+        return true
     }
 }
