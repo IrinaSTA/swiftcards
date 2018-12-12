@@ -35,7 +35,8 @@ class PlayareaTest: XCTestCase {
         let card2 = Card(value: "5", suit: "hearts", location: "hand", imageURL: "image")
         playarea.add(card: card1)
         playarea.add(card: card2)
-        let lastCard = playarea.showLastCard
+        XCTAssertEqual(playarea.cards.count, 2)
+        let lastCard = playarea.cards.last
         XCTAssert(lastCard === card2)
     }
 

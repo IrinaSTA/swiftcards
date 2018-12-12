@@ -13,9 +13,4 @@ class Playarea {
     func add(card: Card) {
         self.cards.append(card)
     }
-    func showLastCard() -> Card {
-        if let card = self.cards.last {
-            print(card)
-        }
-    }
 }
