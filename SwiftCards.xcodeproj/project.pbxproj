@@ -28,6 +28,7 @@
 		B1506E6C21C0264100384A14 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1506E6B21C0264100384A14 /* Player.swift */; };
 		B340F27C27461E2DCEB52FA0 /* Pods_SwiftCardsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAC06CCEB8996C0CA37382C /* Pods_SwiftCardsTests.framework */; };
 		DECFD28D161B5DE440F80CB0 /* Pods_SwiftCardsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341627FA14E7D57B6A18182E /* Pods_SwiftCardsUITests.framework */; };
+		E868CD6F21C175A600B43976 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E868CD6E21C175A600B43976 /* GameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		B1506E6921C0238B00384A14 /* PlayerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTest.swift; sourceTree = "<group>"; };
 		B1506E6B21C0264100384A14 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C69B45FE0855E0141BA45517 /* Pods-SwiftCardsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsTests/Pods-SwiftCardsTests.release.xcconfig"; sourceTree = "<group>"; };
+		E868CD6E21C175A600B43976 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F49BCFC94EAB4CD38FF8A1B7 /* Pods-SwiftCardsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsTests/Pods-SwiftCardsTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 				933F24D221BEC16700C2162E /* AppDelegate.swift */,
 				933F24D421BEC16700C2162E /* ViewController.swift */,
 				933F24D621BEC16700C2162E /* Main.storyboard */,
+				E868CD6E21C175A600B43976 /* GameViewController.swift */,
 				933F24D921BEC16800C2162E /* Assets.xcassets */,
 				933F24DB21BEC16800C2162E /* LaunchScreen.storyboard */,
 				933F24DE21BEC16800C2162E /* Info.plist */,
@@ -418,6 +421,7 @@
 				933F24D521BEC16700C2162E /* ViewController.swift in Sources */,
 				93BC2FC321C10ED400938FF4 /* Game.swift in Sources */,
 				93BC2FBD21C0019F00938FF4 /* Deck.swift in Sources */,
+				E868CD6F21C175A600B43976 /* GameViewController.swift in Sources */,
 				9364C2AC21BFCB2A00FE4B28 /* Card.swift in Sources */,
 				B1506E6C21C0264100384A14 /* Player.swift in Sources */,
 				933F24D321BEC16700C2162E /* AppDelegate.swift in Sources */,
