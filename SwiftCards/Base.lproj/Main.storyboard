@@ -29,7 +29,6 @@
                                 </state>
                                 <connections>
                                     <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZCj-ig-2wJ"/>
-                                    <segue destination="zIf-sn-4P2" kind="show" id="9hl-PB-iBt"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buN-sc-6wU">
@@ -80,7 +79,7 @@
         <!--Game View Controller-->
         <scene sceneID="0cG-SR-n2n">
             <objects>
-                <viewController id="zIf-sn-4P2" customClass="GameViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" id="zIf-sn-4P2" customClass="GameViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f7g-0N-Dqs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

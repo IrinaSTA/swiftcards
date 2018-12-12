@@ -8,9 +8,6 @@
 
 import UIKit
 
-let player = Player()
-var game = Game(handSize: 5, players: [player])
-
 class ViewController: UIViewController {
 
     // MARK: Properties
@@ -18,14 +15,14 @@ class ViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func play(_ sender: UIButton) {
-        game.handSize = enteredHandSize()
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
+        gameViewController.handSize = enteredHandSize()
+        self.present(gameViewController, animated: true, completion: nil)
     }
-   
-    
     // Methods or functions
     func enteredHandSize() -> Int {
         let total = Int(handSizeText.text!) ?? 7
         return total
     }
-    
 }
