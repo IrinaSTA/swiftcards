@@ -24,6 +24,7 @@
 		93BC2FBD21C0019F00938FF4 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC2FBC21C0019F00938FF4 /* Deck.swift */; };
 		93BC2FBF21C02CE400938FF4 /* GameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC2FBE21C02CE400938FF4 /* GameTest.swift */; };
 		93BC2FC321C10ED400938FF4 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC2FC221C10ED400938FF4 /* Game.swift */; };
+		93C0238621C18312005C3F00 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C0238521C18312005C3F00 /* GameViewController.swift */; };
 		B1506E6A21C0238B00384A14 /* PlayerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1506E6921C0238B00384A14 /* PlayerTest.swift */; };
 		B1506E6C21C0264100384A14 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1506E6B21C0264100384A14 /* Player.swift */; };
 		B340F27C27461E2DCEB52FA0 /* Pods_SwiftCardsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAC06CCEB8996C0CA37382C /* Pods_SwiftCardsTests.framework */; };
@@ -77,6 +78,7 @@
 		93BC2FBC21C0019F00938FF4 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		93BC2FBE21C02CE400938FF4 /* GameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTest.swift; sourceTree = "<group>"; };
 		93BC2FC221C10ED400938FF4 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		93C0238521C18312005C3F00 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		9608568DA8DDB8FEAC9B2CE0 /* Pods-SwiftCardsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsUITests/Pods-SwiftCardsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1506E6921C0238B00384A14 /* PlayerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTest.swift; sourceTree = "<group>"; };
 		B1506E6B21C0264100384A14 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				933F24D221BEC16700C2162E /* AppDelegate.swift */,
 				933F24D421BEC16700C2162E /* ViewController.swift */,
 				933F24D621BEC16700C2162E /* Main.storyboard */,
+				93C0238521C18312005C3F00 /* GameViewController.swift */,
 				933F24D921BEC16800C2162E /* Assets.xcassets */,
 				933F24DB21BEC16800C2162E /* LaunchScreen.storyboard */,
 				933F24DE21BEC16800C2162E /* Info.plist */,
@@ -418,6 +421,7 @@
 				933F24D521BEC16700C2162E /* ViewController.swift in Sources */,
 				93BC2FC321C10ED400938FF4 /* Game.swift in Sources */,
 				93BC2FBD21C0019F00938FF4 /* Deck.swift in Sources */,
+				93C0238621C18312005C3F00 /* GameViewController.swift in Sources */,
 				9364C2AC21BFCB2A00FE4B28 /* Card.swift in Sources */,
 				B1506E6C21C0264100384A14 /* Player.swift in Sources */,
 				933F24D321BEC16700C2162E /* AppDelegate.swift in Sources */,
