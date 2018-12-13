@@ -10,6 +10,7 @@ import UIKit
 
 let player = Player()
 var game = Game(handSize: 5, players: [player])
+let playarea = Playarea()
 
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
@@ -38,9 +39,12 @@ class GameViewController: UIViewController {
             let leftPosition = index * 30
             let image = UIImage(named: card.name + ".png")
             let imageView = UIImageView(image: image!)
+            imageView.isAccessibilityElement = true
+            imageView.accessibilityIdentifier = card.name
             imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
             location.addSubview(imageView)
             clickCards(imageView: imageView)
+            print(imageView.accessibilityIdentifier)
         }
     }
     func clickCards(imageView: UIImageView) {
@@ -51,5 +55,11 @@ class GameViewController: UIViewController {
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
         print("image tapped")
+    }
+    func moveCardToPlayArea(card: Card) {
+        let removedCard = player.hand.remove(card: card)
+        playarea.add(card: removedCard)
+    }
+    func getCardObject(imageView: UIImageView) {
     }
 }
