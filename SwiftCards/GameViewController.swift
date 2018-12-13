@@ -15,6 +15,7 @@ let playarea = Playarea()
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
+    @IBOutlet weak var playareaView: UIView!
     var handSize: Int = 5
 
     override func viewDidLoad() {
@@ -53,12 +54,22 @@ class GameViewController: UIViewController {
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
-        print(tappedImage.accessibilityIdentifier)
+        getCardObject(image: tappedImage)
+    }
+    func getCardObject(image: UIImageView) {
+        player.hand.cards.forEach { card in
+            if image.accessibilityIdentifier == card.name {
+                moveCardToPlayArea(card: card)
+            }
+        }
     }
     func moveCardToPlayArea(card: Card) {
         let removedCard = player.hand.remove(card: card)
         playarea.add(card: removedCard)
+        print("\(card.name) moved to play area")
     }
-    func getCardObject(imageView: UIImageView) {
+    func renderCardInPlayarea() {
+        let lastCard = playarea.cards.last
+        render(player: player, card: lastCard!, location: playareaView)
     }
 }

@@ -118,6 +118,7 @@
                     <connections>
                         <outlet property="deckImage" destination="XJt-Tz-83C" id="81p-6Z-wxf"/>
                         <outlet property="handView" destination="lMe-8X-oN2" id="7U0-1E-MPd"/>
+                        <outlet property="playareaView" destination="XrD-3a-tLv" id="lj1-S8-rKV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZvM-gO-b1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
