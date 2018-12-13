@@ -59,16 +59,20 @@ class GameViewController: UIViewController {
     func getCardObject(image: UIImageView) {
         player.hand.cards.forEach { card in
             if image.accessibilityIdentifier == card.name {
-                moveCardToPlayArea(card: card)
+                moveCardToPlayArea(card: card, image: image)
             }
         }
     }
-    func moveCardToPlayArea(card: Card) {
+    func moveCardToPlayArea(card: Card, image: UIImageView) {
         renderCardInPlayarea(card: card)
+        removeCardFromHand(image: image)
         let removedCard = player.hand.remove(card: card)
         playarea.add(card: removedCard)
     }
-    func renderCardInPlayarea(card : Card) {
+    func renderCardInPlayarea(card: Card) {
         render(player: player, card: card, location: playareaView)
+    }
+    func removeCardFromHand(image: UIImageView) {
+        image.removeFromSuperview()
     }
 }
