@@ -40,7 +40,16 @@ class GameViewController: UIViewController {
             let imageView = UIImageView(image: image!)
             imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
             location.addSubview(imageView)
+            clickCards(imageView: imageView)
         }
     }
-
+    func clickCards(imageView: UIImageView) {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
+            imageView.addGestureRecognizer(tap)
+            imageView.isUserInteractionEnabled = true
+    }
+    @objc func imageTapped(tap: UITapGestureRecognizer) {
+        let tappedImage = tap.view as! UIImageView
+        print("image tapped")
+    }
 }
