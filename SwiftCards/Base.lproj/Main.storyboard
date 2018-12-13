@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85Y-la-wLY">
-                                <rect key="frame" x="192" y="398" width="30" height="30"/>
+                                <rect key="frame" x="192" y="478" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="CkK-Uq-5TT"/>
                                     <constraint firstAttribute="height" constant="30" id="oOI-bs-GV9"/>
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buN-sc-6wU">
-                                <rect key="frame" x="150" y="353" width="114" height="30"/>
+                                <rect key="frame" x="150" y="433" width="114" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="handSizeText">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -48,7 +48,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the number of cards per hand:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-J1-yQB">
-                                <rect key="frame" x="12" y="317" width="390" height="21"/>
+                                <rect key="frame" x="12" y="397" width="390" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -81,14 +81,14 @@
             <objects>
                 <viewController storyboardIdentifier="GameViewController" id="zIf-sn-4P2" customClass="GameViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f7g-0N-Dqs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
-                                <rect key="frame" x="304" y="40" width="90" height="130"/>
+                                <rect key="frame" x="224" y="64" width="90" height="132"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="07n-dn-D1E"/>
+                                    <constraint firstAttribute="height" constant="132" id="DXx-GM-mdA"/>
                                     <constraint firstAttribute="width" constant="90" id="jR8-Gn-x4g"/>
                                 </constraints>
                                 <connections>
@@ -99,27 +99,33 @@
                                 <rect key="frame" x="20" y="691" width="374" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XrD-3a-tLv">
-                                <rect key="frame" x="34" y="42" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XrD-3a-tLv">
+                                <rect key="frame" x="100" y="64" width="90" height="130"/>
+                                <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="playArea">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="QMW-eH-N0D"/>
+                                    <constraint firstAttribute="width" constant="90" id="lSj-ED-bNF"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="20" id="9zs-Nl-Dh8"/>
+                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="SKm-RG-rzA"/>
+                            <constraint firstItem="XrD-3a-tLv" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" constant="100" id="XY3-XG-J0K"/>
+                            <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="100" id="c2y-Su-hwZ"/>
                             <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="peR-MZ-SlU"/>
+                            <constraint firstItem="XrD-3a-tLv" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="r33-cy-w9u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lg9-gD-gkI"/>
                     </view>
                     <connections>
                         <outlet property="deckImage" destination="XJt-Tz-83C" id="81p-6Z-wxf"/>
                         <outlet property="handView" destination="lMe-8X-oN2" id="7U0-1E-MPd"/>
-                        <outlet property="playareaView" destination="XrD-3a-tLv" id="lj1-S8-rKV"/>
+                        <outlet property="playareaView" destination="XrD-3a-tLv" id="fkF-T5-4AP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZvM-gO-b1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -129,7 +135,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1417.3913043478262" y="25.446428571428569"/>
+            <point key="canvasLocation" x="1417.3913043478262" y="24.776785714285712"/>
         </scene>
     </scenes>
     <resources>
