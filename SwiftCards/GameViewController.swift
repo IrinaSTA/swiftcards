@@ -44,7 +44,6 @@ class GameViewController: UIViewController {
             imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
             location.addSubview(imageView)
             clickCards(imageView: imageView)
-            print(imageView.accessibilityIdentifier)
         }
     }
     func clickCards(imageView: UIImageView) {
@@ -54,7 +53,7 @@ class GameViewController: UIViewController {
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
-        print("image tapped")
+        print(tappedImage.accessibilityIdentifier)
     }
     func moveCardToPlayArea(card: Card) {
         let removedCard = player.hand.remove(card: card)
