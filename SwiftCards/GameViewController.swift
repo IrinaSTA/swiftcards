@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
+    @IBOutlet weak var playingFieldView: UIView!
     var handSize: Int = 5
 
     override func viewDidLoad() {
@@ -68,6 +69,7 @@ class GameViewController: UIViewController {
         removeCardFromHand(image: image)
         let removedCard = player.hand.remove(card: card)
         playarea.add(card: removedCard)
+        dragCard(imageView: image)
     }
     func renderCardInPlayarea(player: Player, card: Card, location: UIView) {
         let image = UIImage(named: card.name + ".png")
@@ -76,9 +78,20 @@ class GameViewController: UIViewController {
         imageView.accessibilityIdentifier = card.name
         imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
         location.addSubview(imageView)
-        clickCards(imageView: imageView)
     }
     func removeCardFromHand(image: UIImageView) {
         image.removeFromSuperview()
+    }
+    func dragCard(imageView: UIImageView) {
+        print(playarea.cards.last!.name)
+        let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
+        imageView.addGestureRecognizer(drag)
+        imageView.isUserInteractionEnabled = true
+    }
+    @objc func pan(drag: UIPanGestureRecognizer) {
+        let translation = drag.translation(in: playingFieldView)
+        playingFieldView.center.x += translation.x
+        playingFieldView.center.y += translation.y
+        drag.setTranslation(.zero, in: playingFieldView)
     }
 }
