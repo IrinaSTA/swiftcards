@@ -35,8 +35,9 @@ class SwiftCardsUITests: XCTestCase {
 
         let handSizeField = app.textFields["handSizeText"]
         handSizeField.tap()
-        handSizeField.typeText("5")
+        handSizeField.typeText("6")
         app.buttons["Play"].tap()
+        XCTAssertEqual(app.images.count, 7)
     }
 
 }
