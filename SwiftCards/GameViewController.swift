@@ -70,15 +70,13 @@ class GameViewController: UIViewController {
         playarea.add(card: removedCard)
     }
     func renderCardInPlayarea(player: Player, card: Card, location: UIView) {
-//        if let index = player.hand.cards.index(of: card) {
-            let image = UIImage(named: card.name + ".png")
-            let imageView = UIImageView(image: image!)
-            imageView.isAccessibilityElement = true
-            imageView.accessibilityIdentifier = card.name
-            imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
-            location.addSubview(imageView)
-            clickCards(imageView: imageView)
-//        }
+        let image = UIImage(named: card.name + ".png")
+        let imageView = UIImageView(image: image!)
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityIdentifier = card.name
+        imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
+        location.addSubview(imageView)
+        clickCards(imageView: imageView)
     }
     func removeCardFromHand(image: UIImageView) {
         image.removeFromSuperview()
