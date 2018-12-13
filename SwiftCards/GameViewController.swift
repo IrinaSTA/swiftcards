@@ -64,12 +64,11 @@ class GameViewController: UIViewController {
         }
     }
     func moveCardToPlayArea(card: Card) {
+        renderCardInPlayarea(card: card)
         let removedCard = player.hand.remove(card: card)
         playarea.add(card: removedCard)
-        print("\(card.name) moved to play area")
     }
-    func renderCardInPlayarea() {
-        let lastCard = playarea.cards.last
-        render(player: player, card: lastCard!, location: playareaView)
+    func renderCardInPlayarea(card : Card) {
+        render(player: player, card: card, location: playareaView)
     }
 }
