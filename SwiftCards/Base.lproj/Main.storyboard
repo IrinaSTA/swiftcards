@@ -5,7 +5,8 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -91,28 +92,40 @@
                                 </accessibility>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="07n-dn-D1E"/>
+                                    <constraint firstAttribute="height" constant="132" id="DXx-GM-mdA"/>
                                     <constraint firstAttribute="width" constant="90" id="jR8-Gn-x4g"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Ug9-MP-Sis" appends="YES" id="Rmi-5o-Y8b"/>
                                 </connections>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lMe-8X-oN2">
-                                <rect key="frame" x="20" y="691" width="374" height="154"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMe-8X-oN2">
+                                <rect key="frame" x="16" y="551" width="343" height="85"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
+                                <rect key="frame" x="0.0" y="173" width="375" height="378"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="20" id="9zs-Nl-Dh8"/>
+                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="SKm-RG-rzA"/>
+                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="Grj-lq-kvx" secondAttribute="bottom" id="VLI-Xd-as0"/>
+                            <constraint firstItem="lMe-8X-oN2" firstAttribute="trailing" secondItem="f7g-0N-Dqs" secondAttribute="trailingMargin" id="XWu-85-Kzg"/>
+                            <constraint firstItem="Grj-lq-kvx" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" id="bGZ-yY-eMD"/>
+                            <constraint firstItem="lMe-8X-oN2" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leadingMargin" id="e2i-ea-Wvb"/>
+                            <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="70" id="gtN-dg-x3h"/>
+                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="551" id="lrE-yT-Q1f"/>
+                            <constraint firstItem="lg9-gD-gkI" firstAttribute="bottom" secondItem="lMe-8X-oN2" secondAttribute="bottom" constant="31" id="ncw-hu-irG"/>
                             <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="peR-MZ-SlU"/>
+                            <constraint firstItem="Grj-lq-kvx" firstAttribute="trailing" secondItem="lg9-gD-gkI" secondAttribute="trailing" id="tlc-QD-1Lv"/>
+                            <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="XJt-Tz-83C" secondAttribute="bottom" constant="1" id="vVC-ye-0hf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lg9-gD-gkI"/>
                     </view>
                     <connections>
                         <outlet property="deckImage" destination="XJt-Tz-83C" id="81p-6Z-wxf"/>
                         <outlet property="handView" destination="lMe-8X-oN2" id="7U0-1E-MPd"/>
+                        <outlet property="playareaView" destination="Grj-lq-kvx" id="Tle-R5-qyG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZvM-gO-b1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,10 +135,10 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1417.3913043478262" y="25.446428571428569"/>
+            <point key="canvasLocation" x="1413.5999999999999" y="23.838080959520241"/>
         </scene>
     </scenes>
     <resources>
-        <image name="backOfCard" width="165.83999633789062" height="253.44000244140625"/>
+        <image name="backOfCard" width="345" height="528"/>
     </resources>
 </document>

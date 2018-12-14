@@ -10,10 +10,12 @@ import UIKit
 
 let player = Player()
 var game = Game(handSize: 5, players: [player])
+let playarea = Playarea()
 
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
+    @IBOutlet weak var playareaView: UIView!
     var handSize: Int = 5
 
     override func viewDidLoad() {
@@ -38,9 +40,42 @@ class GameViewController: UIViewController {
             let leftPosition = index * 30
             let image = UIImage(named: card.name + ".png")
             let imageView = UIImageView(image: image!)
+            imageView.isAccessibilityElement = true
+            imageView.accessibilityIdentifier = card.name
             imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
             location.addSubview(imageView)
+            dragCard(imageView: imageView)
         }
+    }
+    func dragCard(imageView: UIImageView) {
+        let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(drag)
+    }
+    @objc func pan(drag: UIPanGestureRecognizer) {
+        let touchedImage = drag.view as! UIImageView
+        let translation = drag.translation(in: touchedImage)
+        touchedImage.center.x += translation.x
+        touchedImage.center.y += translation.y
+        drag.setTranslation(.zero, in: touchedImage)
+        playareaView.addSubview(touchedImage)
+        getCardObject(image: touchedImage)
+    }
+    func getCardObject(image: UIImageView) {
+        player.hand.cards.forEach { card in
+            if image.accessibilityIdentifier == card.name {
+                updateModel(card: card, imageView: image)
+            }
+        }
+    }
+    func updateModel(card: Card, imageView: UIImageView) {
+        print(player.hand.cards.count)
+        print(playarea.cards.count)
+        let removedCard = player.hand.remove(card: card)
+        playarea.add(card: removedCard)
+        print("=======")
+        print(player.hand.cards.count)
+        print(playarea.cards.count)
     }
 
 }
