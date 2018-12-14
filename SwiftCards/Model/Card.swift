@@ -33,8 +33,11 @@ class Card: Equatable {
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.name == rhs.name
     }
-    
     static func all() -> [Card] {
         return instances
+    }
+    static func find(name: String) -> Card {
+        // TODO: prevent fatal error
+        return Card.all().first(where: {$0.name == name})!
     }
 }
