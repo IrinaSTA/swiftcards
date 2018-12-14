@@ -34,7 +34,6 @@ class GameViewController: UIViewController {
         if let card = player.hand.cards.last {
             render(player: player, card: card, location: handView)
         }
-        print("deck tapped")
     }
     func render(player: Player, card: Card, location: UIView) {
         if let index = player.hand.cards.index(of: card) {
@@ -54,12 +53,12 @@ class GameViewController: UIViewController {
         imageView.addGestureRecognizer(drag)
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
-        print("pan")
         let touchedImage = drag.view as! UIImageView
         let translation = drag.translation(in: touchedImage)
         touchedImage.center.x += translation.x
         touchedImage.center.y += translation.y
         drag.setTranslation(.zero, in: touchedImage)
+        playareaView.addSubview(touchedImage)
         getCardObject(image: touchedImage)
     }
     func getCardObject(image: UIImageView) {
