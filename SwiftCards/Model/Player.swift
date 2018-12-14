@@ -15,6 +15,10 @@ class Player: Equatable {
         let card = deck.removeTopCard()
         self.hand.add(card: card)
     }
+    func play(card: Card, location: Playarea) {
+        let card = self.hand.remove(card: card)
+        location.add(card: card)
+    }
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs === rhs
     }

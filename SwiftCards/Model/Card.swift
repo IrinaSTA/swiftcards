@@ -14,6 +14,8 @@ class Card: Equatable {
     var location: String
     var imageURL: String
     var name: String
+    var xPosition: Int?
+    var yPosition: Int?
     init(value: String, suit: String, location: String, imageURL: String) {
         self.value = value
         self.suit = suit
