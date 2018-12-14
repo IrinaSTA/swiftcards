@@ -27,6 +27,9 @@ class GameViewController: UIViewController {
             render(player: player, card: card, location: handView)
         }
     }
+    @IBAction func newGame(_ sender: Any) {
+        game.reset()
+    }
     @IBAction func deckTapped(_ sender: Any) {
         if player.hand.cards.count < 10 {
             player.draw(deck: game.deck)
