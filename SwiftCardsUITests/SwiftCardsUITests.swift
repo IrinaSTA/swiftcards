@@ -35,8 +35,18 @@ class SwiftCardsUITests: XCTestCase {
 
         let handSizeField = app.textFields["handSizeText"]
         handSizeField.tap()
-        handSizeField.typeText("5")
+        handSizeField.typeText("6")
         app.buttons["Play"].tap()
+        XCTAssertEqual(app.images.count, 7)
+    }
+    func testDeckDraw() {
+        app.launch()
+        let handSizeField = app.textFields["handSizeText"]
+        handSizeField.tap()
+        handSizeField.typeText("6")
+        app.buttons["Play"].tap()
+        app.images["Deck"].tap()
+        XCTAssertEqual(app.images.count, 8)
     }
 
 }
