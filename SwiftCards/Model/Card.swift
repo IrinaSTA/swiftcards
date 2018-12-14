@@ -9,6 +9,7 @@
 import Foundation
 
 class Card: Equatable {
+    static var instances: [Card] = []
     var value: String
     var suit: String
     var location: String
@@ -22,6 +23,7 @@ class Card: Equatable {
         self.location = location
         self.imageURL = imageURL
         self.name = self.value + self.suit.prefix(1).uppercased()
+        Card.instances.append(self)
     }
     func setCoords(x: Int, y: Int) {
         self.xPosition = x
@@ -30,5 +32,9 @@ class Card: Equatable {
 
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.name == rhs.name
+    }
+    
+    static func all() -> [Card] {
+        return instances
     }
 }

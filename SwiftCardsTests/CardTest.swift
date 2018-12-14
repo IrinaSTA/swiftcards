@@ -35,6 +35,13 @@ class CardTest: XCTestCase {
         XCTAssertEqual(card.xPosition, 20)
         XCTAssertEqual(card.yPosition, 50)
     }
+    
+    func testAll() {
+        XCTAssertEqual(Card.all(), [])
+        let card1 = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
+        let card2 = Card(value: "3", suit: "spades", location: "playarea", imageURL: "image")
+        XCTAssertEqual(Card.all(), [card1, card2])
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

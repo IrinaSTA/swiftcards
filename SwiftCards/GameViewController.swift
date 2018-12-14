@@ -44,10 +44,10 @@ class GameViewController: UIViewController {
             imageView.accessibilityIdentifier = card.name
             imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
             location.addSubview(imageView)
-            dragCard(imageView: imageView)
+            makeDraggable(imageView: imageView)
         }
     }
-    func dragCard(imageView: UIImageView) {
+    func makeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(drag)
@@ -59,23 +59,13 @@ class GameViewController: UIViewController {
         touchedImage.center.y += translation.y
         drag.setTranslation(.zero, in: touchedImage)
         playareaView.addSubview(touchedImage)
-        getCardObject(image: touchedImage)
+        playCardInModel(image: touchedImage)
     }
-    func getCardObject(image: UIImageView) {
+    func playCardInModel(image: UIImageView) {
         player.hand.cards.forEach { card in
             if image.accessibilityIdentifier == card.name {
-                updateModel(card: card, imageView: image)
+                player.play(card: card, location: playarea)
             }
         }
     }
-    func updateModel(card: Card, imageView: UIImageView) {
-        print(player.hand.cards.count)
-        print(playarea.cards.count)
-        let removedCard = player.hand.remove(card: card)
-        playarea.add(card: removedCard)
-        print("=======")
-        print(player.hand.cards.count)
-        print(playarea.cards.count)
-    }
-
 }
