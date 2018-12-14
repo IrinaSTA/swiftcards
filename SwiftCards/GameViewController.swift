@@ -72,13 +72,8 @@ class GameViewController: UIViewController {
         }
     }
     func updateModel(card: Card, imageView: UIImageView) {
-        print(player.hand.cards.count)
-        print(playarea.cards.count)
         let removedCard = player.hand.remove(card: card)
         playarea.add(card: removedCard)
-        print("=======")
-        print(player.hand.cards.count)
-        print(playarea.cards.count)
     }
 
 }
