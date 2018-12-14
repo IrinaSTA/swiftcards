@@ -29,6 +29,12 @@ class CardTest: XCTestCase {
         XCTAssertEqual(card.xPosition, nil)
         XCTAssertEqual(card.yPosition, nil)
     }
+    func testSetCoords() {
+        let card = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
+        card.setCoords(x: 20, y: 50)
+        XCTAssertEqual(card.xPosition, 20)
+        XCTAssertEqual(card.yPosition, 50)
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

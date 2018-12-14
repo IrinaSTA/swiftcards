@@ -23,6 +23,10 @@ class Card: Equatable {
         self.imageURL = imageURL
         self.name = self.value + self.suit.prefix(1).uppercased()
     }
+    func setCoords(x: Int, y: Int) {
+        self.xPosition = x
+        self.yPosition = y
+    }
 
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.name == rhs.name
