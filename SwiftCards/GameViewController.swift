@@ -54,18 +54,20 @@ class GameViewController: UIViewController {
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
+        let touchedCard = getCardObject(image: touchedImage)
         let translation = drag.translation(in: touchedImage)
-        touchedImage.center.x += translation.x
-        touchedImage.center.y += translation.y
+        let newX = touchedImage.center.x + translation.x
+        let newY = touchedImage.center.y + translation.y
+        touchedCard.setCoords(x: Float(newX), y: Float(newY))
+        touchedImage.center.x = newX
+        touchedImage.center.y = newY
         drag.setTranslation(.zero, in: touchedImage)
         playareaView.addSubview(touchedImage)
-        playCardInModel(image: touchedImage)
-    }
-    func playCardInModel(image: UIImageView) {
-        player.hand.cards.forEach { card in
-            if image.accessibilityIdentifier == card.name {
-                player.play(card: card, location: playarea)
-            }
+        if player.hand.cards.contains(touchedCard) {
+            player.play(card: touchedCard, location: playarea)
         }
+    }
+    func getCardObject(image: UIImageView) -> Card {
+        return Card.find(name: image.accessibilityIdentifier!)
     }
 }

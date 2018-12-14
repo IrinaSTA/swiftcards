@@ -15,8 +15,8 @@ class Card: Equatable {
     var location: String
     var imageURL: String
     var name: String
-    var xPosition: Int?
-    var yPosition: Int?
+    var xPosition: Float?
+    var yPosition: Float?
     init(value: String, suit: String, location: String, imageURL: String) {
         self.value = value
         self.suit = suit
@@ -25,7 +25,7 @@ class Card: Equatable {
         self.name = self.value + self.suit.prefix(1).uppercased()
         Card.instances.append(self)
     }
-    func setCoords(x: Int, y: Int) {
+    func setCoords(x: Float, y: Float) {
         self.xPosition = x
         self.yPosition = y
     }
