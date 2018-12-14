@@ -110,11 +110,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMe-8X-oN2">
                                 <rect key="frame" x="16" y="551" width="343" height="85"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HVn-Dg-zis">
-                                <rect key="frame" x="16" y="210" width="343" height="198"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -134,7 +129,6 @@
                         <outlet property="deckImage" destination="XJt-Tz-83C" id="81p-6Z-wxf"/>
                         <outlet property="handView" destination="lMe-8X-oN2" id="7U0-1E-MPd"/>
                         <outlet property="playareaView" destination="XrD-3a-tLv" id="fkF-T5-4AP"/>
-                        <outlet property="playingFieldView" destination="HVn-Dg-zis" id="6T0-8K-DdJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZvM-gO-b1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
