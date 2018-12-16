@@ -31,24 +31,6 @@ class GameViewController: UIViewController {
         }
         renderHand(player.hand, location: handView)
     }
-
-    func makeTappable(imageView: UIImageView) {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tap)
-    }
-
-    func makeDraggable(imageView: UIImageView) {
-        let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(drag)
-    }
-    
-    func removeDraggable(imageView: UIImageView) {
-        let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
-        imageView.removeGestureRecognizer(drag)
-    }
-
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
         let tappedCard = getCardObject(image: tappedImage)
@@ -62,15 +44,14 @@ class GameViewController: UIViewController {
         renderHand(player.hand, location: handView)
         renderPlayarea(playarea, location: playareaView)
     }
-
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
-
+        
         // get new origin
         let translation = drag.translation(in: touchedImage)
         let newX = touchedImage.frame.origin.x + translation.x
         let newY = touchedImage.frame.origin.y + translation.y
-
+        
         // update model if new position is valid
         let newOrigin = CGPoint(x: newX, y: newY)
         if validPosition(newOrigin, image: touchedImage) {
@@ -80,7 +61,7 @@ class GameViewController: UIViewController {
 
         // update the view from the model
         renderPlayarea(playarea, location: playareaView)
-        
+
         // bring card to front
         playareaView.bringSubview(toFront: touchedImage)
 
@@ -92,6 +73,24 @@ class GameViewController: UIViewController {
             // TODO: send data
         }
     }
+
+    func makeTappable(imageView: UIImageView) {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
+    }
+
+    func makeDraggable(imageView: UIImageView) {
+        let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(drag)
+    }
+
+    func removeDraggable(imageView: UIImageView) {
+        let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
+        imageView.removeGestureRecognizer(drag)
+    }
+
     func validPosition(_ position: CGPoint, image: UIImageView) -> Bool {
         var newFrame = image.frame
         let absolutePosition = playareaView.convert(position, to: nil)
@@ -100,28 +99,6 @@ class GameViewController: UIViewController {
             return true
         } else {
             return false
-        }
-    }
-    
-    func getCardObject(image: UIImageView) -> Card {
-        return Card.find(name: image.accessibilityIdentifier!)
-    }
-    func move(_ element: UIView, from startingView: UIView, to destinationView: UIView) {
-        destinationView.addSubview(element)
-        element.frame.origin = startingView.convert(element.frame.origin, to: destinationView)
-    }
-    func imageView(_ card: Card) -> UIImageView {
-        let allViews = playareaView.subviews + handView.subviews
-        if let existingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
-            return existingView as! UIImageView
-        } else {
-            let image = UIImage(named: card.name + ".png")
-            let imageView = UIImageView(image: image!)
-            imageView.isAccessibilityElement = true
-            imageView.accessibilityIdentifier = card.name
-            imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
-            makeTappable(imageView: imageView)
-            return imageView
         }
     }
     func renderHand(_ hand: Hand, location: UIView) {
@@ -143,6 +120,21 @@ class GameViewController: UIViewController {
         let yPosition = CGFloat(card.yPosition)
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
     }
-    
-
+    func imageView(_ card: Card) -> UIImageView {
+        let allViews = playareaView.subviews + handView.subviews
+        if let existingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
+            return existingView as! UIImageView
+        } else {
+            let image = UIImage(named: card.name + ".png")
+            let imageView = UIImageView(image: image!)
+            imageView.isAccessibilityElement = true
+            imageView.accessibilityIdentifier = card.name
+            imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
+            makeTappable(imageView: imageView)
+            return imageView
+        }
+    }
+    func getCardObject(image: UIImageView) -> Card {
+        return Card.find(name: image.accessibilityIdentifier!)
+    }
 }
