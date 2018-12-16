@@ -9,7 +9,8 @@
 import UIKit
 import MultipeerConnectivity
 
-let player = Player()
+let peerID = MCPeerID(displayName: "TEST")
+let player = Player(peerID: peerID)
 var game = Game(handSize: 5, players: [player])
 let playarea = game.playarea
 
