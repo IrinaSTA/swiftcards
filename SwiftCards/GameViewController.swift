@@ -13,6 +13,9 @@ class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
+    //delete this
+    
+    @IBOutlet weak var textField: UITextField!
     
     var handSize: Int = 5
     var session: MCSession!
@@ -62,6 +65,19 @@ class GameViewController: UIViewController {
             player.draw(deck: game.deck)
         }
         renderHand(player.hand, location: handView)
+        
+        // TODO: delete this code
+        
+        let string = "HELLO"
+        let data = string.data(using: .utf8)
+        if session.connectedPeers.count > 0 {
+            do {
+                try session.send(data!, toPeers: session.connectedPeers, with: .reliable)
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
@@ -186,6 +202,10 @@ extension GameViewController: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        let string = String(decoding: data, as: UTF8.self)
+        DispatchQueue.main.async {
+            self.textField.text = string
+        }
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
     }
