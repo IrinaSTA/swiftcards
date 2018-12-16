@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import MultipeerConnectivity
 @testable import SwiftCards
 
 class PlayerTest: XCTestCase {
@@ -21,6 +22,11 @@ class PlayerTest: XCTestCase {
     func testPlayerHasHandOfCertainSize() {
         let player = Player()
         XCTAssertEqual(player.hand.cards.count, 0)
+    }
+    func testPlayerHasPeerID() {
+        let peerID = MCPeerID(displayName: "Test")
+        let player = Player(peerID: peerID)
+        XCTAssertEqual(player.peerID, peerID)
     }
     func testPlayerCanDraw() {
         let player = Player()

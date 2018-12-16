@@ -11,7 +11,7 @@ import MultipeerConnectivity
 
 let player = Player()
 var game = Game(handSize: 5, players: [player])
-let playarea = Playarea()
+let playarea = game.playarea
 
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!

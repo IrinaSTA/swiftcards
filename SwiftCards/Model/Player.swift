@@ -7,9 +7,15 @@
 //
 
 import Foundation
+import MultipeerConnectivity
 
 class Player: Equatable {
     var hand = Hand()
+    var peerID: MCPeerID
+    
+    init(peerID: MCPeerID) {
+        self.peerID = peerID
+    }
 
     func draw(deck: Deck) {
         let card = deck.removeTopCard()
