@@ -55,19 +55,29 @@ class GameViewController: UIViewController {
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
         let touchedCard = getCardObject(image: touchedImage)
-        let translation = drag.translation(in: touchedImage)
-        let newX = touchedImage.center.x + translation.x
-        let newY = touchedImage.center.y + translation.y
-        touchedCard.setCoords(x: Float(newX), y: Float(newY))
-        touchedImage.center.x = newX
-        touchedImage.center.y = newY
-        drag.setTranslation(.zero, in: touchedImage)
-        playareaView.addSubview(touchedImage)
+
+        // move the card to the playarea if it isn't already there
         if player.hand.cards.contains(touchedCard) {
             player.play(card: touchedCard, location: playarea)
+            move(touchedImage, from: handView, to: playareaView)
+        }
+        // update the co-ordinates of the card image
+        let translation = drag.translation(in: touchedImage)
+        touchedImage.center.x += translation.x
+        touchedImage.center.y += translation.y
+        drag.setTranslation(.zero, in: touchedImage) // resets translation to zero (otherwise it's cumulative)
+
+        // update the model if the gesture has finished
+        if drag.state == UIGestureRecognizerState.ended {
+            touchedCard.setCoords(x: Float(touchedImage.center.x), y: Float(touchedImage.center.y))
+            // TODO: send data
         }
     }
     func getCardObject(image: UIImageView) -> Card {
         return Card.find(name: image.accessibilityIdentifier!)
+    }
+    func move(_ element: UIView, from origin: UIView, to destination: UIView) {
+        destination.addSubview(element)
+        element.center = origin.convert(element.center, to: destination)
     }
 }
