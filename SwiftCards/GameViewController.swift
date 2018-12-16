@@ -23,17 +23,16 @@ class GameViewController: UIViewController {
         game.handSize = handSize
         game.deck.shuffle()
         game.deal()
-        for card in player.hand.cards {
-            render(player: player, card: card, location: handView)
-        }
+        renderHand(player.hand, location: handView)
+//        for card in player.hand.cards {
+//            render(player: player, card: card, location: handView)
+//        }
     }
     @IBAction func deckTapped(_ sender: Any) {
         if player.hand.cards.count < 10 {
             player.draw(deck: game.deck)
         }
-        if let card = player.hand.cards.last {
-            render(player: player, card: card, location: handView)
-        }
+        renderHand(player.hand, location: handView)
     }
     func render(player: Player, card: Card, location: UIView) {
         if let index = player.hand.cards.index(of: card) {
@@ -67,6 +66,11 @@ class GameViewController: UIViewController {
             player.play(card: tappedCard, location: playarea)
             move(tappedImage, from: handView, to: playareaView)
             tappedImage.frame.origin = CGPoint(x: 0, y: 0)
+        } else {
+            player.reclaim(card: tappedCard, from: playarea)
+            move(tappedImage, from: playareaView, to: handView)
+            let leftPosition = player.hand.cards.index(of: tappedCard)! * 30
+            tappedImage.frame.origin = CGPoint(x: leftPosition, y: 0)
         }
         makeDraggable(imageView: tappedImage)
     }
@@ -110,4 +114,22 @@ class GameViewController: UIViewController {
         destinationView.addSubview(element)
         element.frame.origin = startingView.convert(element.frame.origin, to: destinationView)
     }
+    func imageView(_ card: Card) -> UIImageView {
+        let image = UIImage(named: card.name + ".png")
+        let imageView = UIImageView(image: image!)
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityIdentifier = card.name
+        imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
+        return imageView
+    }
+    func renderHand(_ hand: Hand, location: UIView) {
+        for card in hand.cards {
+            let cardView = imageView(card)
+            let leftPosition = hand.cards.index(of: card)! * 30
+            handView.addSubview(cardView)
+            cardView.frame.origin.x = CGFloat(leftPosition)
+            makeTappable(imageView: cardView)
+        }
+    }
+
 }
