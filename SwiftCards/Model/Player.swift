@@ -19,6 +19,10 @@ class Player: Equatable {
         let card = self.hand.remove(card: card)
         location.add(card: card)
     }
+    func reclaim(card: Card, from playarea: Playarea) {
+        let card = playarea.remove(card: card)
+        self.hand.add(card: card)
+    }
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs === rhs
     }

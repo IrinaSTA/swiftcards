@@ -38,4 +38,15 @@ class PlayerTest: XCTestCase {
         XCTAssertEqual(playarea.cards[0], card)
         XCTAssertEqual(player.hand.cards.count, 0)
     }
+    func testPlayerCanReclaim() {
+        let player = Player()
+        let deck = Deck()
+        player.draw(deck: deck)
+        let card = player.hand.cards[0]
+        let playarea = Playarea()
+        player.play(card: card, location: playarea)
+        player.reclaim(card: card, from: playarea)
+        XCTAssertEqual(player.hand.cards[0], card)
+        XCTAssertEqual(playarea.cards.count, 0)
+    }
 }

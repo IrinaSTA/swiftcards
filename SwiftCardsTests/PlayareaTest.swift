@@ -29,6 +29,14 @@ class PlayareaTest: XCTestCase {
         playarea.add(card: card)
         XCTAssertEqual(playarea.cards.count, 1)
     }
+    func testRemoveCard() {
+        let playarea = Playarea()
+        let card = Card(value: "2", suit: "hearts", location: "hand", imageURL: "image")
+        playarea.add(card: card)
+        let removedCard = playarea.remove(card: card)
+        XCTAssertEqual(playarea.cards.count, 0)
+        XCTAssertEqual(removedCard, card)
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
