@@ -61,6 +61,10 @@ class GameViewController: UIViewController {
             player.play(card: touchedCard, location: playarea)
             move(touchedImage, from: handView, to: playareaView)
         }
+        
+        // bring the card to the front
+        playareaView.bringSubview(toFront: touchedImage)
+
         // update the co-ordinates of the card image
         let translation = drag.translation(in: touchedImage)
         touchedImage.center.x += translation.x
