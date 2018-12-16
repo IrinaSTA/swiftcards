@@ -67,21 +67,21 @@ class GameViewController: UIViewController {
 
         // update the co-ordinates of the card image
         let translation = drag.translation(in: touchedImage)
-        touchedImage.center.x += translation.x
-        touchedImage.center.y += translation.y
+        touchedImage.frame.origin.x += translation.x
+        touchedImage.frame.origin.y += translation.y
         drag.setTranslation(.zero, in: touchedImage) // resets translation to zero (otherwise it's cumulative)
 
         // update the model if the gesture has finished
         if drag.state == UIGestureRecognizerState.ended {
-            touchedCard.setCoords(x: Float(touchedImage.center.x), y: Float(touchedImage.center.y))
+            touchedCard.setCoords(x: Float(touchedImage.frame.origin.x), y: Float(touchedImage.frame.origin.y))
             // TODO: send data
         }
     }
     func getCardObject(image: UIImageView) -> Card {
         return Card.find(name: image.accessibilityIdentifier!)
     }
-    func move(_ element: UIView, from origin: UIView, to destination: UIView) {
-        destination.addSubview(element)
-        element.center = origin.convert(element.center, to: destination)
+    func move(_ element: UIView, from startingView: UIView, to destinationView: UIView) {
+        destinationView.addSubview(element)
+        element.frame.origin = startingView.convert(element.frame.origin, to: destinationView)
     }
 }
