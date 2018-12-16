@@ -44,14 +44,33 @@ class GameViewController: UIViewController {
             imageView.accessibilityIdentifier = card.name
             imageView.frame = CGRect(x: leftPosition, y: 0, width: 90, height: 130)
             location.addSubview(imageView)
-            makeDraggable(imageView: imageView)
+            makeTappable(imageView: imageView)
         }
     }
+    
+    func makeTappable(imageView: UIImageView) {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
+    }
+    
     func makeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(drag)
     }
+    
+    @objc func imageTapped(tap: UITapGestureRecognizer) {
+        let tappedImage = tap.view as! UIImageView
+        let tappedCard = getCardObject(image: tappedImage)
+        if player.hand.cards.contains(tappedCard) {
+            player.play(card: tappedCard, location: playarea)
+            move(tappedImage, from: handView, to: playareaView)
+            tappedImage.frame.origin = CGPoint(x: 0, y: 0)
+        }
+        makeDraggable(imageView: tappedImage)
+    }
+
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
         let touchedCard = getCardObject(image: touchedImage)
@@ -61,14 +80,21 @@ class GameViewController: UIViewController {
             player.play(card: touchedCard, location: playarea)
             move(touchedImage, from: handView, to: playareaView)
         }
-        
+
         // bring the card to the front
         playareaView.bringSubview(toFront: touchedImage)
 
         // update the co-ordinates of the card image
         let translation = drag.translation(in: touchedImage)
-        touchedImage.frame.origin.x += translation.x
-        touchedImage.frame.origin.y += translation.y
+        let newX = touchedImage.frame.origin.x + translation.x
+        let newY = touchedImage.frame.origin.y + translation.y
+        let newOrigin = CGPoint(x: newX, y: newY)
+        var newFrame = touchedImage.frame
+        let newOriginAbsolute = playareaView.convert(newOrigin, to: nil)
+        newFrame.origin = newOriginAbsolute
+        if playareaView.frame.contains(newFrame) {
+            touchedImage.frame.origin = newOrigin
+        }
         drag.setTranslation(.zero, in: touchedImage) // resets translation to zero (otherwise it's cumulative)
 
         // update the model if the gesture has finished
