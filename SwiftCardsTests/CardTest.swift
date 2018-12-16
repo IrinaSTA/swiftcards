@@ -26,8 +26,8 @@ class CardTest: XCTestCase {
         XCTAssertEqual(card.suit, "hearts")
         XCTAssertEqual(card.location, "playarea")
         XCTAssertEqual(card.imageURL, "image")
-        XCTAssertEqual(card.xPosition, nil)
-        XCTAssertEqual(card.yPosition, nil)
+        XCTAssertEqual(card.xPosition, 0.0)
+        XCTAssertEqual(card.yPosition, 0.0)
     }
     func testSetCoords() {
         let card = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")

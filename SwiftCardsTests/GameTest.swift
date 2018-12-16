@@ -19,7 +19,7 @@ class GameTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testGameHasPlayersAndHandSizeAndDeck() {
+    func testGameProperties() {
         let player1 = Player()
         let player2 = Player()
         let playerArray = [player1, player2]
@@ -28,6 +28,7 @@ class GameTest: XCTestCase {
         XCTAssert(game.players.contains(player2))
         XCTAssertEqual(game.handSize, 5)
         XCTAssert(game.deck is Deck)
+        XCTAssert(game.playarea is Playarea)
     }
     func testGameCanDeal() {
         let player1 = Player()

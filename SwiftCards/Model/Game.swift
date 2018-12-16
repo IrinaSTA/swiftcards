@@ -9,8 +9,9 @@ import Foundation
 
 class Game {
     var players: [Player]
-    var handSize: Int
     var deck: Deck = Deck()
+    var playarea: Playarea = Playarea()
+    var handSize: Int
     init(handSize: Int, players: [Player]) {
         self.players = players
         self.handSize = handSize

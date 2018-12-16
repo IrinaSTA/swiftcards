@@ -57,7 +57,7 @@
 		388F55C3B6611F987AB60365 /* Pods-SwiftCardsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsUITests/Pods-SwiftCardsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3FAC06CCEB8996C0CA37382C /* Pods_SwiftCardsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftCardsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63318C3C21C11CA3001ADE2F /* PlayareaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayareaTest.swift; sourceTree = "<group>"; };
-		63318C3E21C11D66001ADE2F /* Playarea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Playarea.swift; path = Model/Playarea.swift; sourceTree = "<group>"; };
+		63318C3E21C11D66001ADE2F /* Playarea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playarea.swift; sourceTree = "<group>"; };
 		63C605F021BFCDEC00350F42 /* Cards.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Cards.xcassets; sourceTree = "<group>"; };
 		733E5A50BFBBEE8D7086C243 /* Pods-SwiftCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCards/Pods-SwiftCards.debug.xcconfig"; sourceTree = "<group>"; };
 		933F24CF21BEC16700C2162E /* SwiftCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,7 +170,6 @@
 			children = (
 				9364C2AA21BFCB1800FE4B28 /* Model */,
 				933F24D221BEC16700C2162E /* AppDelegate.swift */,
-				63318C3E21C11D66001ADE2F /* Playarea.swift */,
 				933F24D421BEC16700C2162E /* ViewController.swift */,
 				933F24D621BEC16700C2162E /* Main.storyboard */,
 				93C0238521C18312005C3F00 /* GameViewController.swift */,
@@ -208,6 +207,7 @@
 		9364C2AA21BFCB1800FE4B28 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63318C3E21C11D66001ADE2F /* Playarea.swift */,
 				9364C2AB21BFCB2A00FE4B28 /* Card.swift */,
 				93BC2FB621BFE34000938FF4 /* Hand.swift */,
 				93BC2FBC21C0019F00938FF4 /* Deck.swift */,
