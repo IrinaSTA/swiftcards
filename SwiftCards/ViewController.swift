@@ -23,7 +23,9 @@ class ViewController: UIViewController {
         gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController
 
         peerID = MCPeerID(displayName: UIDevice.current.name)
-        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
+        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
+        gameViewController.session = self.session
+        gameViewController.peerID = self.peerID
         session.delegate = gameViewController
     }
 

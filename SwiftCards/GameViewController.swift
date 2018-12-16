@@ -9,24 +9,54 @@
 import UIKit
 import MultipeerConnectivity
 
-let peerID = MCPeerID(displayName: "TEST")
-let player = Player(peerID: peerID)
-var game = Game(handSize: 5, players: [player])
-let playarea = game.playarea
-
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
+    
     var handSize: Int = 5
+    var session: MCSession!
+    var peerID: MCPeerID!
+    var localPlayer: Player!
+    var player: Player!
+    var game: Game!
+    var playarea: Playarea!
+    var players: [Player] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        game = Game(handSize: 5, players: getPlayers(session: self.session))
+        if game.players.count > 0 {
+            player = game.players[0]
+        } else {
+            player = Player(peerID: MCPeerID(displayName: "Player"))
+            game.players.append(player)
+        }
+        print("-----")
+        print(game.players)
+        print(session.connectedPeers)
+        print("-----")
+        playarea = game.playarea
         game.handSize = handSize
         game.deck.shuffle()
         game.deal()
         renderHand(player.hand, location: handView)
     }
+    
+    func getPlayers(session: MCSession) -> [Player] {
+        var players: [Player] = []
+        for peerID in session.connectedPeers {
+            players.append(Player(peerID: peerID))
+            print(peerID)
+        }
+        localPlayer = Player(peerID: self.peerID)
+        players.append(localPlayer)
+        return players
+    }
+    
+    
+    
+    
     @IBAction func deckTapped(_ sender: Any) {
         if player.hand.cards.count < 10 {
             player.draw(deck: game.deck)
@@ -163,4 +193,7 @@ extension GameViewController: MCSessionDelegate {
     }
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
     }
+//    func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Void) {
+//        certificateHandler(true)
+//    }
 }
