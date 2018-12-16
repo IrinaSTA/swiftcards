@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftCards/ViewController.swift"
-            timestampString = "566668765.66767"
+            timestampString = "566669299.142025"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftCards/ViewController.swift"
-            timestampString = "566668765.668695"
+            timestampString = "566669299.1423661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "ViewController"
             landmarkType = "3">
             <Locations>

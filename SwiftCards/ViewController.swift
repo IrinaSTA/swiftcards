@@ -11,15 +11,20 @@ import MultipeerConnectivity
 
 class ViewController: UIViewController {
 
+    var gameViewController: GameViewController!
     var peerID: MCPeerID!
     var session: MCSession!
     var advertiserAssistant: MCAdvertiserAssistant!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+  
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController
+
         peerID = MCPeerID(displayName: UIDevice.current.name)
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
-        session.delegate = self
+        session.delegate = gameViewController
     }
 
     // MARK: Properties
@@ -43,8 +48,6 @@ class ViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     @IBAction func play(_ sender: UIButton) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
         gameViewController.handSize = enteredHandSize()
         self.present(gameViewController, animated: true, completion: nil)
     }
@@ -52,30 +55,6 @@ class ViewController: UIViewController {
     func enteredHandSize() -> Int {
         let total = Int(handSizeText.text!) ?? 7
         return total
-    }
-}
-
-extension ViewController: MCSessionDelegate {
-    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        switch state {
-        case MCSessionState.connected:
-            print("Connected: \(peerID.displayName)")
-
-        case MCSessionState.connecting:
-            print("Connecting: \(peerID.displayName)")
-
-        case MCSessionState.notConnected:
-            print("Not Connected: \(peerID.displayName)")
-        }
-    }
-
-    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-    }
-    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-    }
-    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-    }
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
     }
 }
 
