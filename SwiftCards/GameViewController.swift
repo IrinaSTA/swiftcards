@@ -25,31 +25,12 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // game setup - make this conditional on being the host
-        setupGame()
         // convenience variables
         playarea = game.playarea
         deck = game.deck
         players = game.players
-        localPlayer = players.first(where: { $0.peerID == self.peerID })
         // render hand
         renderHand(localPlayer.hand, location: handView)
-    }
-
-    func setupGame() {
-        game = Game(handSize: 5, players: getPlayers(session: self.session))
-        game.handSize = handSize
-        game.deck.shuffle()
-        game.deal()
-    }
-    func getPlayers(session: MCSession) -> [Player] {
-        var players: [Player] = []
-        for peerID in session.connectedPeers {
-            players.append(Player(peerID: peerID))
-        }
-        localPlayer = Player(peerID: self.peerID)
-        players.append(localPlayer)
-        return players
     }
     @IBAction func newGame(_ sender: Any) {
         game.reset()

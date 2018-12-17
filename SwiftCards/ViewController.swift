@@ -50,13 +50,28 @@ class ViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     @IBAction func play(_ sender: UIButton) {
-        gameViewController.handSize = enteredHandSize()
+        setupGame()
         self.present(gameViewController, animated: true, completion: nil)
     }
     // Methods or functions
     func enteredHandSize() -> Int {
         let total = Int(handSizeText.text!) ?? 7
         return total
+    }
+    func setupGame() {
+        gameViewController.game = Game(handSize: 5, players: getPlayers(session: self.session))
+        gameViewController.game.handSize = enteredHandSize()
+        gameViewController.game.deck.shuffle()
+        gameViewController.game.deal()
+    }
+    func getPlayers(session: MCSession) -> [Player] {
+        var players: [Player] = []
+        for peerID in session.connectedPeers {
+            players.append(Player(peerID: peerID))
+        }
+        gameViewController.localPlayer = Player(peerID: self.peerID)
+        players.append(gameViewController.localPlayer)
+        return players
     }
 }
 
