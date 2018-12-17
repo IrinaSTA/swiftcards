@@ -51,6 +51,10 @@ class ViewController: UIViewController {
     }
     @IBAction func play(_ sender: UIButton) {
         setupGame()
+//        var gameDictionary = setupGameDictionary()
+        var gameDictionary = Message(action: "setupGame", object: gameViewController.game)
+        var data = encodeObject(gameDictionary)
+        sendMessage(data: data)
         self.present(gameViewController, animated: true, completion: nil)
     }
     // Methods or functions
@@ -73,6 +77,33 @@ class ViewController: UIViewController {
         players.append(gameViewController.localPlayer)
         return players
     }
+    func encodeObject<T : Encodable>(_ object: T) -> Data {
+        var data: Data!
+        do {
+            data = try JSONEncoder().encode(object)
+        } catch {
+            print("Object could not be encoded!")
+        }
+        return data
+    }
+//    func setupGameDictionary<T : Encodable>() -> Dictionary<String, T> {
+//        return ["action": "setupGame",
+//                "game": self.gameViewController.game]
+//    }
+    func sendMessage(data: Data) {
+        if session.connectedPeers.count > 0 {
+            do {
+                try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+    }
+}
+
+struct Message: Codable {
+    var action: String
+    var object: Encodable & Decodable
 }
 
 extension ViewController: MCBrowserViewControllerDelegate {
