@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -97,16 +96,19 @@
                                 <rect key="frame" x="20" y="551" width="374" height="154"/>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
-                                <rect key="frame" x="0.0" y="253" width="414" height="298"/>
+                                <rect key="frame" x="0.0" y="252" width="414" height="298"/>
                             </view>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
-                                <rect key="frame" x="304" y="120" width="90" height="132"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLC-4U-31b">
+                                <rect key="frame" x="0.0" y="-42" width="414" height="122"/>
+                            </view>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
+                                <rect key="frame" x="304" y="116" width="90" height="132"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Deck">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="132" id="DXx-GM-mdA"/>
+                                    <constraint firstAttribute="height" constant="132" id="86X-VG-oUB"/>
                                     <constraint firstAttribute="width" constant="90" id="jR8-Gn-x4g"/>
                                 </constraints>
                                 <connections>
@@ -134,16 +136,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="lLC-4U-31b" secondAttribute="bottom" constant="656" id="2aV-7s-WCr"/>
+                            <constraint firstItem="lLC-4U-31b" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="topMargin" constant="-62" id="4P4-nV-rbM"/>
+                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lLC-4U-31b" secondAttribute="bottom" constant="36" id="E57-JJ-bNh"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="trailing" secondItem="lg9-gD-gkI" secondAttribute="trailing" id="EZ0-t0-iZM"/>
-                            <constraint firstItem="lLC-4U-31b" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" id="F1x-KY-6od"/>
-                            <constraint firstItem="lLC-4U-31b" firstAttribute="trailing" secondItem="lg9-gD-gkI" secondAttribute="trailing" id="RCD-6W-lv5"/>
                             <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="20" id="Rlw-u5-Y3p"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="Grj-lq-kvx" secondAttribute="bottom" id="VLI-Xd-as0"/>
                             <constraint firstItem="lMe-8X-oN2" firstAttribute="trailing" secondItem="f7g-0N-Dqs" secondAttribute="trailingMargin" id="XWu-85-Kzg"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" id="bGZ-yY-eMD"/>
-                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lLC-4U-31b" secondAttribute="bottom" constant="20" id="bSJ-hP-f42"/>
                             <constraint firstItem="lMe-8X-oN2" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leadingMargin" id="e2i-ea-Wvb"/>
                             <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="551" id="lrE-yT-Q1f"/>
+                            <constraint firstItem="lLC-4U-31b" firstAttribute="trailing" secondItem="Grj-lq-kvx" secondAttribute="trailing" id="mO0-8k-DsH"/>
+                            <constraint firstItem="lLC-4U-31b" firstAttribute="leading" secondItem="Grj-lq-kvx" secondAttribute="leading" id="mO9-Da-JHx"/>
                             <constraint firstItem="lg9-gD-gkI" firstAttribute="bottom" secondItem="lMe-8X-oN2" secondAttribute="bottom" constant="31" id="ncw-hu-irG"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="XJt-Tz-83C" secondAttribute="bottom" constant="1" id="vVC-ye-0hf"/>
                         </constraints>
@@ -168,6 +171,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backOfCard" width="345" height="528"/>
+        <image name="backOfCard" width="165.83999633789062" height="253.44000244140625"/>
     </resources>
 </document>
