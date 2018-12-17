@@ -42,9 +42,8 @@ class CardTest: XCTestCase {
         XCTAssertEqual(Card.all(), [card1, card2])
     }
     func testFind() {
-        let card1 = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
-        let card2 = Card(value: "3", suit: "spades", location: "playarea", imageURL: "image")
+        let card = Card(value: "3", suit: "spades", location: "playarea", imageURL: "image")
         let foundCard = Card.find(name: "3S")
-        XCTAssertEqual(foundCard, card2)
+        XCTAssertEqual(foundCard, card)
     }
 }
