@@ -51,9 +51,8 @@ class ViewController: UIViewController {
     }
     @IBAction func play(_ sender: UIButton) {
         setupGame()
-//        var gameDictionary = setupGameDictionary()
-        var gameDictionary = Message(action: "setupGame", object: gameViewController.game)
-        var data = encodeObject(gameDictionary)
+        var gameMessage = Message<Game>(action: "setupGame", object: gameViewController.game)
+        var data = encodeObject(gameMessage)
         sendMessage(data: data)
         self.present(gameViewController, animated: true, completion: nil)
     }
@@ -101,9 +100,9 @@ class ViewController: UIViewController {
     }
 }
 
-struct Message: Codable {
+struct Message<T: Codable>: Codable {
     var action: String
-    var object: Encodable & Decodable
+    var object: T
 }
 
 extension ViewController: MCBrowserViewControllerDelegate {
