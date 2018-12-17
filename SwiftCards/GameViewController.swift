@@ -24,33 +24,35 @@ class GameViewController: UIViewController {
     var player: Player!
     var game: Game!
     var playarea: Playarea!
+    var deck: Deck!
     var players: [Player] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        game = Game(handSize: 5, players: getPlayers(session: self.session))
-        if game.players.count > 0 {
-            player = game.players[0]
-        } else {
-            player = Player(peerID: MCPeerID(displayName: "Player"))
-            game.players.append(player)
-        }
-        print("-----")
-        print(game.players)
-        print(session.connectedPeers)
-        print("-----")
+        
+        // game setup
+        setupGame()
+        
+        // convenience variables
         playarea = game.playarea
+        deck = game.deck
+        players = game.players
+        localPlayer = players.first(where: { $0.peerID == self.peerID })!
+        print(localPlayer)
+        // render hand
+        renderHand(localPlayer.hand, location: handView)
+    }
+    
+    func setupGame() {
+        game = Game(handSize: 5, players: getPlayers(session: self.session))
         game.handSize = handSize
         game.deck.shuffle()
         game.deal()
-        renderHand(player.hand, location: handView)
     }
-    
     func getPlayers(session: MCSession) -> [Player] {
         var players: [Player] = []
         for peerID in session.connectedPeers {
             players.append(Player(peerID: peerID))
-            print(peerID)
         }
         localPlayer = Player(peerID: self.peerID)
         players.append(localPlayer)
@@ -192,15 +194,12 @@ extension GameViewController: MCSessionDelegate {
         switch state {
         case MCSessionState.connected:
             print("Connected: \(peerID.displayName)")
-            
         case MCSessionState.connecting:
             print("Connecting: \(peerID.displayName)")
-            
         case MCSessionState.notConnected:
             print("Not Connected: \(peerID.displayName)")
         }
     }
-    
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         let string = String(decoding: data, as: UTF8.self)
         DispatchQueue.main.async {
