@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
+    @IBOutlet weak var opponentHandView: UIView!
     var handSize: Int = 5
 
     override func viewDidLoad() {
@@ -24,10 +25,11 @@ class GameViewController: UIViewController {
         game.deck.shuffle()
         game.deal()
         renderHand(player.hand, location: handView)
+        renderHand(player.hand, location: opponentHandView)
     }
-    @IBAction func newGame(_ sender: Any) {
-        game.reset()
-    }
+//    @IBAction func newGame(_ sender: Any) {
+//        game.reset()
+//    }
     @IBAction func deckTapped(_ sender: Any) {
         if player.hand.cards.count < 10 {
             player.draw(deck: game.deck)
