@@ -199,21 +199,23 @@ extension GameViewController: MCSessionDelegate {
         }
     }
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        do {
-            let decodedMessage = try JSONDecoder().decode(Message<Game>.self, from: data)
-            let decodedGame = decodedMessage.object
-            self.game = decodedGame
-            self.playarea = game.playarea
-            self.deck = game.deck
-            self.players = game.players
-            self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
-            if decodedMessage.action == "setupGame" {
-                homeViewController.present(self, animated: true, completion: nil)
-            } else if decodedMessage.action == "updateGame" {
-                renderAll()
+        DispatchQueue.main.async {
+            do {
+                let decodedMessage = try JSONDecoder().decode(Message<Game>.self, from: data)
+                let decodedGame = decodedMessage.object
+                self.game = decodedGame
+                self.playarea = self.game.playarea
+                self.deck = self.game.deck
+                self.players = self.game.players
+                self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
+                if decodedMessage.action == "setupGame" {
+                    self.homeViewController.present(self, animated: true, completion: nil)
+                } else if decodedMessage.action == "updateGame" {
+                    self.renderAll()
+                }
+            } catch {
+                print("Failed to decode message!")
             }
-        } catch {
-            print("Failed to decode message!")
         }
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
