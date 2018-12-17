@@ -10,42 +10,27 @@ import XCTest
 @testable import SwiftCards
 
 class HandTest: XCTestCase {
-
+    var card1: Card!
+    var card2: Card!
+    var hand: Hand!
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        card1 = Card(value: "1", suit: "hearts")
+        card2 = Card(value: "2", suit: "hearts")
+        hand = Hand()
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testAttributes() {
-        let hand = Hand()
         XCTAssertEqual(hand.cards.count, 0)
     }
 
     func testAdd() {
-        let hand = Hand()
-        let card = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
-        hand.add(card: card)
-        XCTAssert(hand.cards[0] === card)
+        hand.add(card: card1)
+        XCTAssert(hand.cards[0] === card1)
     }
     func testRemove() {
-        let hand = Hand()
-        let card1 = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
-        let card2 = Card(value: "2", suit: "hearts", location: "playarea", imageURL: "image2")
         hand.add(card: card1)
         hand.add(card: card2)
         let returnedCard = hand.remove(card: card2)
         XCTAssert(returnedCard === card2)
         XCTAssertEqual(hand.cards.count, 1)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

@@ -15,7 +15,7 @@ class Deck {
     init() {
         for suit in suits {
             for value in values {
-                let card = Card(value: value, suit: suit, location: "location", imageURL: "imageURL")
+                let card = Card(value: value, suit: suit)
                 self.cards.append(card)
             }
         }

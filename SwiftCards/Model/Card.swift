@@ -8,20 +8,16 @@
 
 import Foundation
 
-class Card: Equatable {
+class Card: Equatable, Codable {
     static var instances: [Card] = []
     var value: String
     var suit: String
-    var location: String
-    var imageURL: String
     var name: String
     var xPosition: Float = 0.0
     var yPosition: Float = 0.0
-    init(value: String, suit: String, location: String, imageURL: String) {
+    init(value: String, suit: String) {
         self.value = value
         self.suit = suit
-        self.location = location
-        self.imageURL = imageURL
         self.name = self.value + self.suit.prefix(1).uppercased()
         Card.instances.append(self)
     }
