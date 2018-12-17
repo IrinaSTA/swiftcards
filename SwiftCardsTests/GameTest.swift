@@ -57,5 +57,19 @@ class GameTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    func testCodable() {
+        var data: Data!
+        var decodedGame: Game!
+        do {
+            data = try JSONEncoder().encode(game)
+        } catch {
+            print("Oops!")
+        }
+        do {
+            decodedGame = try JSONDecoder().decode(Game.self, from: data)
+        } catch {
+            print("Oops!")
+        }
+        XCTAssertEqual(game, decodedGame)
+    }
 }

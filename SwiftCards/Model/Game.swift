@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Game: Equatable {
+class Game: Equatable, Codable {
     var players: [Player]
     var deck: Deck = Deck()
     var playarea: Playarea = Playarea()
