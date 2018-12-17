@@ -1,6 +1,0 @@
-app_identifier("com.IrinaBaldwin.SwiftCards") # The bundle identifier of your app
-apple_id("irina.baldwin@gmail.com") # Your Apple email address
-
-
-# For more information about the Appfile, see:
-#     https://docs.fastlane.tools/advanced/#appfile
