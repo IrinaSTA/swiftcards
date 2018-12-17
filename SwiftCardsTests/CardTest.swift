@@ -26,13 +26,25 @@ class CardTest: XCTestCase {
         XCTAssertEqual(card.suit, "hearts")
         XCTAssertEqual(card.location, "playarea")
         XCTAssertEqual(card.imageURL, "image")
+        XCTAssertEqual(card.xPosition, nil)
+        XCTAssertEqual(card.yPosition, nil)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testSetCoords() {
+        let card = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
+        card.setCoords(x: 20, y: 50)
+        XCTAssertEqual(card.xPosition, 20)
+        XCTAssertEqual(card.yPosition, 50)
     }
-
+    func testAll() {
+        XCTAssertEqual(Card.all(), [])
+        let card1 = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
+        let card2 = Card(value: "3", suit: "spades", location: "playarea", imageURL: "image")
+        XCTAssertEqual(Card.all(), [card1, card2])
+    }
+    func testFind() {
+        let card1 = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
+        let card2 = Card(value: "3", suit: "spades", location: "playarea", imageURL: "image")
+        let foundCard = Card.find(name: "3S")
+        XCTAssertEqual(foundCard, card2)
+    }
 }
