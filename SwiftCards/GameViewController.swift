@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
             player.draw(deck: game.deck)
         }
         renderHand(player.hand, location: handView)
+        renderHand(player.hand, location: opponentHandView)
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
@@ -47,6 +48,7 @@ class GameViewController: UIViewController {
             removeDraggable(imageView: tappedImage)
         }
         renderHand(player.hand, location: handView)
+        renderHand(player.hand, location: opponentHandView)
         renderPlayarea(playarea, location: playareaView)
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
@@ -110,7 +112,7 @@ class GameViewController: UIViewController {
         for card in hand.cards {
             let leftPosition = Float(hand.cards.index(of: card)! * 30)
             card.setCoords(x: leftPosition, y: 0.0)
-            render(card, location: handView)
+            render(card, location: location)
         }
     }
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
@@ -119,13 +121,18 @@ class GameViewController: UIViewController {
         }
     }
     func render(_ card: Card, location: UIView) {
-        let cardView = imageView(card)
+        var cardView = UIImageView()
+        if location == opponentHandView {
+           cardView = makeOpponentView(card)
+        } else {
+            cardView = makeImageView(card)
+        }
         location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
     }
-    func imageView(_ card: Card) -> UIImageView {
+    func makeImageView(_ card: Card) -> UIImageView {
         let allViews = playareaView.subviews + handView.subviews
         if let existingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
             return existingView as! UIImageView
@@ -138,6 +145,12 @@ class GameViewController: UIViewController {
             makeTappable(imageView: imageView)
             return imageView
         }
+    }
+    func makeOpponentView(_ card: Card) -> UIImageView {
+        let image = UIImage(named: "backOfCard.png")
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
+        return imageView
     }
     func getCardObject(image: UIImageView) -> Card {
         return Card.find(name: image.accessibilityIdentifier!)
