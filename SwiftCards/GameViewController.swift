@@ -7,44 +7,83 @@
 //
 
 import UIKit
-
-let player = Player()
-var game = Game(handSize: 5, players: [player])
-let playarea = Playarea()
+import MultipeerConnectivity
 
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
+    @IBOutlet weak var textField: UITextField!
     var handSize: Int = 5
+    var session: MCSession!
+    var peerID: MCPeerID!
+    var localPlayer: Player!
+    var game: Game!
+    var playarea: Playarea!
+    var deck: Deck!
+    var players: [Player] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // game setup - make this conditional on being the host
+        setupGame()
+        // convenience variables
+        playarea = game.playarea
+        deck = game.deck
+        players = game.players
+        localPlayer = players.first(where: { $0.peerID == self.peerID })
+        // render hand
+        renderHand(localPlayer.hand, location: handView)
+    }
+
+    func setupGame() {
+        game = Game(handSize: 5, players: getPlayers(session: self.session))
         game.handSize = handSize
         game.deck.shuffle()
         game.deal()
-        renderHand(player.hand, location: handView)
+    }
+    func getPlayers(session: MCSession) -> [Player] {
+        var players: [Player] = []
+        for peerID in session.connectedPeers {
+            players.append(Player(peerID: peerID))
+        }
+        localPlayer = Player(peerID: self.peerID)
+        players.append(localPlayer)
+        return players
     }
     @IBAction func newGame(_ sender: Any) {
         game.reset()
     }
     @IBAction func deckTapped(_ sender: Any) {
-        if player.hand.cards.count < 10 {
-            player.draw(deck: game.deck)
+        if localPlayer.hand.cards.count < 10 {
+            localPlayer.draw(deck: game.deck)
         }
-        renderHand(player.hand, location: handView)
+        renderHand(localPlayer.hand, location: handView)
+
+        // TODO: delete this code
+
+        let string = "HELLO"
+        let data = string.data(using: .utf8)
+        if session.connectedPeers.count > 0 {
+            do {
+                try session.send(data!, toPeers: session.connectedPeers, with: .reliable)
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
         let tappedCard = getCardObject(image: tappedImage)
-        if player.hand.cards.contains(tappedCard) {
-            player.play(card: tappedCard, location: playarea)
+        if localPlayer.hand.cards.contains(tappedCard) {
+            localPlayer.play(card: tappedCard, location: playarea)
             makeDraggable(imageView: tappedImage)
         } else {
-            player.reclaim(card: tappedCard, from: playarea)
+            localPlayer.reclaim(card: tappedCard, from: playarea)
             removeDraggable(imageView: tappedImage)
         }
-        renderHand(player.hand, location: handView)
+        renderHand(localPlayer.hand, location: handView)
         renderPlayarea(playarea, location: playareaView)
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
@@ -139,5 +178,30 @@ class GameViewController: UIViewController {
     }
     func getCardObject(image: UIImageView) -> Card {
         return Card.find(name: image.accessibilityIdentifier!)
+    }
+}
+
+extension GameViewController: MCSessionDelegate {
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        switch state {
+        case MCSessionState.connected:
+            print("Connected: \(peerID.displayName)")
+        case MCSessionState.connecting:
+            print("Connecting: \(peerID.displayName)")
+        case MCSessionState.notConnected:
+            print("Not Connected: \(peerID.displayName)")
+        }
+    }
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        let string = String(decoding: data, as: UTF8.self)
+        DispatchQueue.main.async {
+            self.textField.text = string
+        }
+    }
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+    }
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+    }
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
     }
 }

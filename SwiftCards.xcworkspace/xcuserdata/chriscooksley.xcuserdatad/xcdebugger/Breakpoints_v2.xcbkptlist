@@ -9,124 +9,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftCards/Model/Deck.swift"
-            timestampString = "566663729.428632"
+            filePath = "SwiftCards/GameViewController.swift"
+            timestampString = "566736513.357235"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "shuffle()"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "setupGame()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwiftCardsTests/DeckTest.swift"
-            timestampString = "566657672.541454"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "testShuffleDeck()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwiftCards/ViewController.swift"
-            timestampString = "566658524.126503"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "ViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwiftCards/ViewController.swift"
-            timestampString = "566658524.126838"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "ViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftCards.ViewController.handSizeText.getter : weak Swift.Optional&lt;__C.UITextField&gt;"
-                  moduleName = "SwiftCards"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chriscooksley/Google%20Drive/CODING/MAKERS/WEEKS/SwiftCards/SwiftCards/SwiftCards/ViewController.swift"
-                  timestampString = "566330449.435626"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "86">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftCards.ViewController.handSizeText.setter : weak Swift.Optional&lt;__C.UITextField&gt;"
-                  moduleName = "SwiftCards"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chriscooksley/Google%20Drive/CODING/MAKERS/WEEKS/SwiftCards/SwiftCards/SwiftCards/ViewController.swift"
-                  timestampString = "566330449.462308"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "106">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftCards.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SwiftCards.ViewController"
-                  moduleName = "SwiftCards"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chriscooksley/Google%20Drive/CODING/MAKERS/WEEKS/SwiftCards/SwiftCards/SwiftCards/ViewController.swift"
-                  timestampString = "566330449.466192"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "57">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftCards.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SwiftCards.ViewController&gt;"
-                  moduleName = "SwiftCards"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chriscooksley/Google%20Drive/CODING/MAKERS/WEEKS/SwiftCards/SwiftCards/SwiftCards/ViewController.swift"
-                  timestampString = "566330449.470986"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "50">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
