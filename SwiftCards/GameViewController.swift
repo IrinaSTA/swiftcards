@@ -29,6 +29,12 @@ class GameViewController: UIViewController {
         playarea = game.playarea
         deck = game.deck
         players = game.players
+        
+        // TODO: delete this
+        for player in players {
+            print(player.peerID)
+        }
+        
         // render hand
         renderHand(localPlayer.hand, location: handView)
     }
