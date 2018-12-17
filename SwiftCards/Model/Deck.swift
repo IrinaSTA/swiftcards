@@ -8,14 +8,14 @@
 
 import Foundation
 
-class Deck {
+class Deck: Equatable, Codable {
     let suits = ["hearts", "spades", "clubs", "diamonds"]
     let values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
     var cards: [Card] = []
     init() {
         for suit in suits {
             for value in values {
-                let card = Card(value: value, suit: suit, location: "location", imageURL: "imageURL")
+                let card = Card(value: value, suit: suit)
                 self.cards.append(card)
             }
         }
@@ -32,5 +32,8 @@ class Deck {
     }
     func removeTopCard() -> Card {
         return self.cards.removeFirst()
+    }
+    static func == (lhs: Deck, rhs: Deck) -> Bool {
+        return lhs.cards == rhs.cards
     }
 }

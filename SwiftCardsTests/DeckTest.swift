@@ -11,19 +11,17 @@ import XCTest
 
 class DeckTest: XCTestCase {
 
+    var deck: Deck!
+    var suits: [String]!
+    var values: [String]!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        deck = Deck()
+        suits = ["hearts", "spades", "clubs", "diamonds"]
+        values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testAttributes() {
-        let deck = Deck()
         XCTAssertEqual(deck.cards.count, 52)
-        let suits = ["hearts", "spades", "clubs", "diamonds"]
-        let values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
         var containsAllCards = true
         for suit in suits {
             for value in values {
@@ -37,25 +35,31 @@ class DeckTest: XCTestCase {
     }
     func testShuffleDeck() {
         // We would like to come back to this and stub the randomness, but we need to push on!
-        let deck = Deck()
         let oldCards = deck.cards
         deck.shuffle()
         let newCards = deck.cards
         XCTAssert(oldCards != newCards)
     }
     func testRemoveTopCard() {
-        let deck = Deck()
         let card1 = deck.cards[0]
         let removedCard = deck.removeTopCard()
         XCTAssertEqual(removedCard, card1)
         XCTAssertFalse(deck.cards.contains(card1))
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testCodable() {
+        var data: Data!
+        var decodedDeck: Deck!
+        do {
+            data = try JSONEncoder().encode(deck)
+        } catch {
+            print("Oops!")
         }
+        do {
+            decodedDeck = try JSONDecoder().decode(Deck.self, from: data)
+        } catch {
+            print("Oops!")
+        }
+        XCTAssertEqual(deck, decodedDeck)
     }
 
 }

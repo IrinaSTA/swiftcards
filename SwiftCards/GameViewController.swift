@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var playareaView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var opponentHandView: UIView!
+    var homeViewController: ViewController!
     var handSize: Int = 5
     var session: MCSession!
     var peerID: MCPeerID!
@@ -26,13 +27,16 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // game setup - make this conditional on being the host
-        setupGame()
         // convenience variables
         playarea = game.playarea
         deck = game.deck
         players = game.players
-        localPlayer = players.first(where: { $0.peerID == self.peerID })
+        
+        // TODO: delete this
+        for player in players {
+            print(player.displayName)
+        }
+        
         // render hand
         displayHands()
     }
@@ -42,22 +46,6 @@ class GameViewController: UIViewController {
             renderHand(localPlayer.hand, location: opponentHandView)
         }
         renderHand(localPlayer.hand, location: handView)
-    }
-
-    func setupGame() {
-        game = Game(handSize: 5, players: getPlayers(session: self.session))
-        game.handSize = handSize
-        game.deck.shuffle()
-        game.deal()
-    }
-    func getPlayers(session: MCSession) -> [Player] {
-        var players: [Player] = []
-        for peerID in session.connectedPeers {
-            players.append(Player(peerID: peerID))
-        }
-        localPlayer = Player(peerID: self.peerID)
-        players.append(localPlayer)
-        return players
     }
     @IBAction func newGame(_ sender: Any) {
         game.reset()
@@ -210,10 +198,21 @@ extension GameViewController: MCSessionDelegate {
         }
     }
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        let string = String(decoding: data, as: UTF8.self)
-        DispatchQueue.main.async {
-            self.textField.text = string
+        print("OOOOOOOO")
+        do {
+            let decodedMessage = try JSONDecoder().decode(Message<Game>.self, from: data)
+            let decodedGame = decodedMessage.object
+            self.game = decodedGame
+            self.localPlayer = game.players.first(where: {$0.displayName == self.peerID.displayName})!
+            homeViewController.present(self, animated: true, completion: nil)
+        } catch {
+            print("Failed to decode message!")
         }
+        print("OOOOOOOO")
+//        let string = String(decoding: data, as: UTF8.self)
+//        DispatchQueue.main.async {
+//            self.textField.text = string
+//        }
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
     }

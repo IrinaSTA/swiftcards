@@ -10,8 +10,11 @@ import XCTest
 @testable import SwiftCards
 
 class CardTest: XCTestCase {
-
+    var card: Card!
+    var card2: Card!
     override func setUp() {
+        card = Card(value: "1", suit: "hearts")
+        card2 = Card(value: "3", suit: "spades")
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -21,29 +24,36 @@ class CardTest: XCTestCase {
     }
 
     func testAttributes() {
-        let card = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
         XCTAssertEqual(card.value, "1")
         XCTAssertEqual(card.suit, "hearts")
-        XCTAssertEqual(card.location, "playarea")
-        XCTAssertEqual(card.imageURL, "image")
         XCTAssertEqual(card.xPosition, 0.0)
         XCTAssertEqual(card.yPosition, 0.0)
     }
     func testSetCoords() {
-        let card = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
         card.setCoords(x: 20, y: 50)
         XCTAssertEqual(card.xPosition, 20)
         XCTAssertEqual(card.yPosition, 50)
     }
     func testAll() {
-        XCTAssertEqual(Card.all(), [])
-        let card1 = Card(value: "1", suit: "hearts", location: "playarea", imageURL: "image")
-        let card2 = Card(value: "3", suit: "spades", location: "playarea", imageURL: "image")
-        XCTAssertEqual(Card.all(), [card1, card2])
+        XCTAssertEqual(Card.all(), [card, card2])
     }
     func testFind() {
-        let card = Card(value: "3", suit: "spades", location: "playarea", imageURL: "image")
-        let foundCard = Card.find(name: "3S")
+        let foundCard = Card.find(name: "1H")
         XCTAssertEqual(foundCard, card)
+    }
+    func testCodable() {
+        var data: Data!
+        var decodedCard: Card!
+        do {
+            data = try JSONEncoder().encode(card)
+        } catch {
+            print("Oops!")
+        }
+        do {
+            decodedCard = try JSONDecoder().decode(Card.self, from: data)
+        } catch {
+            print("Oops!")
+        }
+        XCTAssertEqual(card, decodedCard)
     }
 }

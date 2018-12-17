@@ -43,12 +43,11 @@ class GameTest: XCTestCase {
         XCTAssertEqual(game.deck.cards.count, 42)
     }
     func testGameReset() {
-        let player = Player()
-        let playerArray = [player]
+        let playerArray = [player1!]
         let game = Game(handSize: 2, players: playerArray)
         game.deal()
         game.reset()
-        XCTAssertEqual(player.hand.cards.count, 0)
+        XCTAssertEqual(player1.hand.cards.count, 0)
         XCTAssertEqual(game.deck.cards.count, 52)
     }
 
@@ -58,5 +57,19 @@ class GameTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    func testCodable() {
+        var data: Data!
+        var decodedGame: Game!
+        do {
+            data = try JSONEncoder().encode(game)
+        } catch {
+            print("Oops!")
+        }
+        do {
+            decodedGame = try JSONDecoder().decode(Game.self, from: data)
+        } catch {
+            print("Oops!")
+        }
+        XCTAssertEqual(game, decodedGame)
+    }
 }

@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         gameViewController.session = self.session
         gameViewController.peerID = self.peerID
+        gameViewController.homeViewController = self
         session.delegate = gameViewController
     }
 
@@ -50,7 +51,10 @@ class ViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     @IBAction func play(_ sender: UIButton) {
-        gameViewController.handSize = enteredHandSize()
+        setupGame()
+        var gameMessage = Message<Game>(action: "setupGame", object: gameViewController.game)
+        var data = encodeObject(gameMessage)
+        sendMessage(data: data)
         self.present(gameViewController, animated: true, completion: nil)
     }
     // Methods or functions
@@ -58,6 +62,48 @@ class ViewController: UIViewController {
         let total = Int(handSizeText.text!) ?? 7
         return total
     }
+    func setupGame() {
+        gameViewController.game = Game(handSize: 5, players: getPlayers(session: self.session))
+        gameViewController.game.handSize = enteredHandSize()
+//        gameViewController.game.deck.shuffle()
+        gameViewController.game.deal()
+    }
+    func getPlayers(session: MCSession) -> [Player] {
+        var players: [Player] = []
+        for peerID in session.connectedPeers {
+            players.append(Player(peerID: peerID))
+        }
+        gameViewController.localPlayer = Player(peerID: self.peerID)
+        players.append(gameViewController.localPlayer)
+        return players
+    }
+    func encodeObject<T : Encodable>(_ object: T) -> Data {
+        var data: Data!
+        do {
+            data = try JSONEncoder().encode(object)
+        } catch {
+            print("Object could not be encoded!")
+        }
+        return data
+    }
+//    func setupGameDictionary<T : Encodable>() -> Dictionary<String, T> {
+//        return ["action": "setupGame",
+//                "game": self.gameViewController.game]
+//    }
+    func sendMessage(data: Data) {
+        if session.connectedPeers.count > 0 {
+            do {
+                try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+    }
+}
+
+struct Message<T: Codable>: Codable {
+    var action: String
+    var object: T
 }
 
 extension ViewController: MCBrowserViewControllerDelegate {

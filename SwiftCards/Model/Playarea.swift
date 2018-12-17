@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Playarea {
+class Playarea: Equatable, Codable {
     var cards: [Card] = []
     func add(card: Card) {
         self.cards.append(card)
@@ -18,5 +18,8 @@ class Playarea {
             self.cards.remove(at: index)
         }
         return card
+    }
+    static func == (lhs: Playarea, rhs: Playarea) -> Bool {
+        return lhs.cards == rhs.cards
     }
 }
