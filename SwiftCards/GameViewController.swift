@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
         localPlayer = players.first(where: { $0.peerID == self.peerID })
         // render hand
         renderHand(localPlayer.hand, location: handView)
-        renderHand(player.hand, location: opponentHandView)
+        renderHand(localPlayer.hand, location: opponentHandView)
     }
 
     func setupGame() {
@@ -61,6 +61,7 @@ class GameViewController: UIViewController {
             localPlayer.draw(deck: game.deck)
         }
         renderHand(localPlayer.hand, location: handView)
+        renderHand(localPlayer.hand, location: opponentHandView)
 
         // TODO: delete this code
 
@@ -73,8 +74,6 @@ class GameViewController: UIViewController {
                 print(error)
             }
         }
-        renderHand(player.hand, location: handView)
-        renderHand(player.hand, location: opponentHandView)
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
