@@ -34,8 +34,14 @@ class GameViewController: UIViewController {
         players = game.players
         localPlayer = players.first(where: { $0.peerID == self.peerID })
         // render hand
+        displayOpponenetHand()
+    }
+    
+    func displayOpponenetHand() {
+        if players.count != 1 {
+            renderHand(localPlayer.hand, location: opponentHandView)
+        }
         renderHand(localPlayer.hand, location: handView)
-        renderHand(localPlayer.hand, location: opponentHandView)
     }
 
     func setupGame() {
@@ -60,9 +66,7 @@ class GameViewController: UIViewController {
         if localPlayer.hand.cards.count < 10 {
             localPlayer.draw(deck: game.deck)
         }
-        renderHand(localPlayer.hand, location: handView)
-        renderHand(localPlayer.hand, location: opponentHandView)
-
+        displayOpponenetHand()
         // TODO: delete this code
 
         let string = "HELLO"
