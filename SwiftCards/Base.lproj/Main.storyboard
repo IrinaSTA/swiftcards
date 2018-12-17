@@ -155,7 +155,7 @@
                     <connections>
                         <outlet property="deckImage" destination="XJt-Tz-83C" id="81p-6Z-wxf"/>
                         <outlet property="handView" destination="lMe-8X-oN2" id="7U0-1E-MPd"/>
-                        <outlet property="opponentHandView" destination="lLC-4U-31b" id="reH-1T-oCO"/>
+                        <outlet property="opponentHandView" destination="vPv-d2-LIq" id="o6H-WK-3zG"/>
                         <outlet property="playareaView" destination="Grj-lq-kvx" id="Tle-R5-qyG"/>
                         <outlet property="textField" destination="7xR-Cq-ETS" id="SRy-QG-uPa"/>
                     </connections>
