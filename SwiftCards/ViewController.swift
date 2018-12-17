@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         gameViewController.session = self.session
         gameViewController.peerID = self.peerID
+        gameViewController.homeViewController = self
         session.delegate = gameViewController
     }
 
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
     func setupGame() {
         gameViewController.game = Game(handSize: 5, players: getPlayers(session: self.session))
         gameViewController.game.handSize = enteredHandSize()
-        gameViewController.game.deck.shuffle()
+//        gameViewController.game.deck.shuffle()
         gameViewController.game.deal()
     }
     func getPlayers(session: MCSession) -> [Player] {

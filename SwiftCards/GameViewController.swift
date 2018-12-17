@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
     @IBOutlet weak var textField: UITextField!
+    var homeViewController: ViewController!
     var handSize: Int = 5
     var session: MCSession!
     var peerID: MCPeerID!
@@ -183,7 +184,10 @@ extension GameViewController: MCSessionDelegate {
         print("OOOOOOOO")
         do {
             let decodedMessage = try JSONDecoder().decode(Message<Game>.self, from: data)
-            print(decodedMessage)
+            let decodedGame = decodedMessage.object
+            self.game = decodedGame
+            self.localPlayer = game.players.first(where: {$0.displayName == self.peerID.displayName})!
+            homeViewController.present(self, animated: true, completion: nil)
         } catch {
             print("Failed to decode message!")
         }
