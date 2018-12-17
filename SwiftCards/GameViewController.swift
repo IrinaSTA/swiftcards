@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var opponentHandView: UIView!
     var handSize: Int = 5
     var session: MCSession!
     var peerID: MCPeerID!
@@ -33,6 +34,13 @@ class GameViewController: UIViewController {
         players = game.players
         localPlayer = players.first(where: { $0.peerID == self.peerID })
         // render hand
+        displayHands()
+    }
+    
+    func displayHands() {
+        if players.count != 1 {
+            renderHand(localPlayer.hand, location: opponentHandView)
+        }
         renderHand(localPlayer.hand, location: handView)
     }
 
@@ -58,8 +66,7 @@ class GameViewController: UIViewController {
         if localPlayer.hand.cards.count < 10 {
             localPlayer.draw(deck: game.deck)
         }
-        renderHand(localPlayer.hand, location: handView)
-
+        displayHands()
         // TODO: delete this code
 
         let string = "HELLO"
@@ -71,7 +78,6 @@ class GameViewController: UIViewController {
                 print(error)
             }
         }
-
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
@@ -147,7 +153,7 @@ class GameViewController: UIViewController {
         for card in hand.cards {
             let leftPosition = Float(hand.cards.index(of: card)! * 30)
             card.setCoords(x: leftPosition, y: 0.0)
-            render(card, location: handView)
+            render(card, location: location)
         }
     }
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
@@ -156,13 +162,18 @@ class GameViewController: UIViewController {
         }
     }
     func render(_ card: Card, location: UIView) {
-        let cardView = imageView(card)
+        var cardView = UIImageView()
+        if location == opponentHandView {
+            cardView = makeOpponentView(card)
+        } else {
+            cardView = makeImageView(card)
+        }
         location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
     }
-    func imageView(_ card: Card) -> UIImageView {
+    func makeImageView(_ card: Card) -> UIImageView {
         let allViews = playareaView.subviews + handView.subviews
         if let existingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
             return existingView as! UIImageView
@@ -175,6 +186,12 @@ class GameViewController: UIViewController {
             makeTappable(imageView: imageView)
             return imageView
         }
+    }
+    func makeOpponentView(_ card: Card) -> UIImageView {
+        let image = UIImage(named: "backOfCard.png")
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
+        return imageView
     }
     func getCardObject(image: UIImageView) -> Card {
         return Card.find(name: image.accessibilityIdentifier!)
