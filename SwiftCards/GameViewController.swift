@@ -65,10 +65,10 @@ class GameViewController: UIViewController {
         let tappedCard = getCardObject(image: tappedImage)
         if localPlayer.hand.cards.contains(tappedCard) {
             localPlayer.play(card: tappedCard, location: playarea)
-            makeDraggable(imageView: tappedImage)
+//            makeDraggable(imageView: tappedImage)
         } else {
             localPlayer.reclaim(card: tappedCard, from: playarea)
-            removeDraggable(imageView: tappedImage)
+//            removeDraggable(imageView: tappedImage)
         }
         renderHand(localPlayer.hand, location: handView)
         renderPlayarea(playarea, location: playareaView)
@@ -86,7 +86,11 @@ class GameViewController: UIViewController {
         let newOrigin = CGPoint(x: newX, y: newY)
         if validPosition(newOrigin, image: touchedImage) {
             let touchedCard = getCardObject(image: touchedImage)
+            print("000000")
+            print(touchedCard.xPosition)
             touchedCard.setCoords(x: Float(newX), y: Float(newY))
+            print(touchedCard.xPosition)
+            print("000000")
         }
 
         // update the view from the model
@@ -113,12 +117,16 @@ class GameViewController: UIViewController {
     func makeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(drag)
+        if imageView.gestureRecognizers!.contains(drag) == false {
+            imageView.addGestureRecognizer(drag)
+        }
     }
 
     func removeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
-        imageView.removeGestureRecognizer(drag)
+        if imageView.gestureRecognizers!.contains(drag) {
+            imageView.removeGestureRecognizer(drag)
+        }
     }
 
     func validPosition(_ position: CGPoint, image: UIImageView) -> Bool {
@@ -145,15 +153,16 @@ class GameViewController: UIViewController {
     }
     func render(_ card: Card, location: UIView) {
         var cardView = UIImageView()
-//        if location == opponentHandView {
-//            cardView = makeOpponentView(card)
-//        } else {
         cardView = makeImageView(card)
-//        }
         location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
+        if location == playareaView {
+            makeDraggable(imageView: cardView)
+        } else {
+            removeDraggable(imageView: cardView)
+        }
     }
     func makeImageView(_ card: Card) -> UIImageView {
         let allViews = playareaView.subviews + handView.subviews + opponentHandView.subviews
