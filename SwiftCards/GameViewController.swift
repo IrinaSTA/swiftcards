@@ -27,6 +27,9 @@ class GameViewController: UIViewController {
             render(player: player, card: card, location: handView)
         }
     }
+    @IBAction func newGame(_ sender: Any) {
+        game.reset()
+    }
     @IBAction func deckTapped(_ sender: Any) {
         if player.hand.cards.count < 10 {
             player.draw(deck: game.deck)
@@ -69,13 +72,8 @@ class GameViewController: UIViewController {
         }
     }
     func updateModel(card: Card, imageView: UIImageView) {
-        print(player.hand.cards.count)
-        print(playarea.cards.count)
         let removedCard = player.hand.remove(card: card)
         playarea.add(card: removedCard)
-        print("=======")
-        print(player.hand.cards.count)
-        print(playarea.cards.count)
     }
 
 }
