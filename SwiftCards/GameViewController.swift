@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
         // render hand
         renderHand(localPlayer.hand, location: handView)
     }
-    
+
     func setupGame() {
         game = Game(handSize: 5, players: getPlayers(session: self.session))
         game.handSize = handSize
@@ -51,14 +51,17 @@ class GameViewController: UIViewController {
         players.append(localPlayer)
         return players
     }
+    @IBAction func newGame(_ sender: Any) {
+        game.reset()
+    }
     @IBAction func deckTapped(_ sender: Any) {
         if localPlayer.hand.cards.count < 10 {
             localPlayer.draw(deck: game.deck)
         }
         renderHand(localPlayer.hand, location: handView)
-        
+
         // TODO: delete this code
-        
+
         let string = "HELLO"
         let data = string.data(using: .utf8)
         if session.connectedPeers.count > 0 {
@@ -68,7 +71,7 @@ class GameViewController: UIViewController {
                 print(error)
             }
         }
-        
+
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
@@ -85,12 +88,12 @@ class GameViewController: UIViewController {
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
-        
+
         // get new origin
         let translation = drag.translation(in: touchedImage)
         let newX = touchedImage.frame.origin.x + translation.x
         let newY = touchedImage.frame.origin.y + translation.y
-        
+
         // update model if new position is valid
         let newOrigin = CGPoint(x: newX, y: newY)
         if validPosition(newOrigin, image: touchedImage) {

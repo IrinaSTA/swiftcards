@@ -23,4 +23,10 @@ class Game {
             }
         }
     }
+    func reset() {
+        deck = Deck()
+        for player in self.players {
+          player.hand = Hand()
+        }
+    }
 }
