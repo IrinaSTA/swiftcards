@@ -56,16 +56,7 @@ class GameViewController: UIViewController {
         }
         displayHands()
         // TODO: delete this code
-
-        let string = "HELLO"
-        let data = string.data(using: .utf8)
-        if session.connectedPeers.count > 0 {
-            do {
-                try session.send(data!, toPeers: session.connectedPeers, with: .reliable)
-            } catch let error as NSError {
-                print(error)
-            }
-        }
+        sendUpdateMessage()
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
@@ -79,6 +70,7 @@ class GameViewController: UIViewController {
         }
         renderHand(localPlayer.hand, location: handView)
         renderPlayarea(playarea, location: playareaView)
+        sendUpdateMessage()
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
@@ -106,7 +98,7 @@ class GameViewController: UIViewController {
 
         // send data when the gesture has finished
         if drag.state == UIGestureRecognizerState.ended {
-            // TODO: send data
+            sendUpdateMessage()
         }
     }
 
@@ -184,6 +176,15 @@ class GameViewController: UIViewController {
     func getCardObject(image: UIImageView) -> Card {
         return Card.find(name: image.accessibilityIdentifier!)
     }
+    func renderAll() {
+        displayHands()
+        renderPlayarea(playarea, location: playareaView)
+    }
+    func sendUpdateMessage() {
+        var gameMessage = Message<Game>(action: "updateGame", object: self.game)
+        var data = homeViewController.encodeObject(gameMessage)
+        homeViewController.sendMessage(data: data)
+    }
 }
 
 extension GameViewController: MCSessionDelegate {
@@ -198,21 +199,22 @@ extension GameViewController: MCSessionDelegate {
         }
     }
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("OOOOOOOO")
         do {
             let decodedMessage = try JSONDecoder().decode(Message<Game>.self, from: data)
             let decodedGame = decodedMessage.object
             self.game = decodedGame
-            self.localPlayer = game.players.first(where: {$0.displayName == self.peerID.displayName})!
-            homeViewController.present(self, animated: true, completion: nil)
+            self.playarea = game.playarea
+            self.deck = game.deck
+            self.players = game.players
+            self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
+            if decodedMessage.action == "setupGame" {
+                homeViewController.present(self, animated: true, completion: nil)
+            } else if decodedMessage.action == "updateGame" {
+                renderAll()
+            }
         } catch {
             print("Failed to decode message!")
         }
-        print("OOOOOOOO")
-//        let string = String(decoding: data, as: UTF8.self)
-//        DispatchQueue.main.async {
-//            self.textField.text = string
-//        }
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
     }
