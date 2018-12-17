@@ -27,9 +27,9 @@ class GameViewController: UIViewController {
         renderHand(player.hand, location: handView)
         renderHand(player.hand, location: opponentHandView)
     }
-    @IBAction func newGame(_ sender: Any) {
-        game.reset()
-    }
+//    @IBAction func newGame(_ sender: Any) {
+//        game.reset()
+//    }
     @IBAction func deckTapped(_ sender: Any) {
         if player.hand.cards.count < 10 {
             player.draw(deck: game.deck)
@@ -48,6 +48,7 @@ class GameViewController: UIViewController {
             removeDraggable(imageView: tappedImage)
         }
         renderHand(player.hand, location: handView)
+        renderHand(player.hand, location: opponentHandView)
         renderPlayarea(playarea, location: playareaView)
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
@@ -122,7 +123,7 @@ class GameViewController: UIViewController {
     func render(_ card: Card, location: UIView) {
         var cardView = UIImageView()
         if location == opponentHandView {
-            cardView = makeOpponentView(card)
+           cardView = makeOpponentView(card)
         } else {
             cardView = makeImageView(card)
         }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85Y-la-wLY">
-                                <rect key="frame" x="172.5" y="363.5" width="30" height="30"/>
+                                <rect key="frame" x="192" y="398" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="CkK-Uq-5TT"/>
                                     <constraint firstAttribute="height" constant="30" id="oOI-bs-GV9"/>
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buN-sc-6wU">
-                                <rect key="frame" x="130.5" y="318.5" width="114" height="30"/>
+                                <rect key="frame" x="150" y="353" width="114" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="handSizeText">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -48,7 +48,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the number of cards per hand:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-J1-yQB">
-                                <rect key="frame" x="12" y="282.5" width="351" height="21"/>
+                                <rect key="frame" x="12" y="317" width="390" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -81,23 +81,26 @@
             <objects>
                 <viewController storyboardIdentifier="GameViewController" id="zIf-sn-4P2" customClass="GameViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f7g-0N-Dqs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMe-8X-oN2">
-                                <rect key="frame" x="16" y="551" width="343" height="85"/>
+                                <rect key="frame" x="20" y="551" width="374" height="154"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
-                                <rect key="frame" x="0.0" y="160" width="375" height="383"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
+                                <rect key="frame" x="0.0" y="252" width="414" height="298"/>
                             </view>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
-                                <rect key="frame" x="256" y="20" width="90" height="132"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLC-4U-31b">
+                                <rect key="frame" x="0.0" y="-42" width="414" height="122"/>
+                            </view>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
+                                <rect key="frame" x="304" y="116" width="90" height="132"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Deck">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="132" id="DXx-GM-mdA"/>
+                                    <constraint firstAttribute="height" constant="132" id="86X-VG-oUB"/>
                                     <constraint firstAttribute="width" constant="90" id="jR8-Gn-x4g"/>
                                 </constraints>
                                 <connections>
@@ -111,16 +114,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="SKm-RG-rzA"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="Grj-lq-kvx" secondAttribute="bottom" id="VLI-Xd-as0"/>
+                            <constraint firstAttribute="bottom" secondItem="lLC-4U-31b" secondAttribute="bottom" constant="656" id="2aV-7s-WCr"/>
+                            <constraint firstItem="lLC-4U-31b" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="topMargin" constant="-62" id="4P4-nV-rbM"/>
+                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lLC-4U-31b" secondAttribute="bottom" constant="36" id="E57-JJ-bNh"/>
+                            <constraint firstItem="Grj-lq-kvx" firstAttribute="trailing" secondItem="lg9-gD-gkI" secondAttribute="trailing" id="EZ0-t0-iZM"/>
+                            <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="20" id="Rlw-u5-Y3p"/>
                             <constraint firstItem="lMe-8X-oN2" firstAttribute="trailing" secondItem="f7g-0N-Dqs" secondAttribute="trailingMargin" id="XWu-85-Kzg"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" id="bGZ-yY-eMD"/>
                             <constraint firstItem="lMe-8X-oN2" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leadingMargin" id="e2i-ea-Wvb"/>
-                            <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="70" id="gtN-dg-x3h"/>
                             <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="551" id="lrE-yT-Q1f"/>
+                            <constraint firstItem="lLC-4U-31b" firstAttribute="trailing" secondItem="Grj-lq-kvx" secondAttribute="trailing" id="mO0-8k-DsH"/>
+                            <constraint firstItem="lLC-4U-31b" firstAttribute="leading" secondItem="Grj-lq-kvx" secondAttribute="leading" id="mO9-Da-JHx"/>
                             <constraint firstItem="lg9-gD-gkI" firstAttribute="bottom" secondItem="lMe-8X-oN2" secondAttribute="bottom" constant="31" id="ncw-hu-irG"/>
-                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="peR-MZ-SlU"/>
-                            <constraint firstItem="Grj-lq-kvx" firstAttribute="trailing" secondItem="lg9-gD-gkI" secondAttribute="trailing" id="tlc-QD-1Lv"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="XJt-Tz-83C" secondAttribute="bottom" constant="1" id="vVC-ye-0hf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lg9-gD-gkI"/>
@@ -128,7 +133,7 @@
                     <connections>
                         <outlet property="deckImage" destination="XJt-Tz-83C" id="81p-6Z-wxf"/>
                         <outlet property="handView" destination="lMe-8X-oN2" id="7U0-1E-MPd"/>
-                        <outlet property="opponentHandView" destination="vPv-d2-LIq" id="o6H-WK-3zG"/>
+                        <outlet property="opponentHandView" destination="lLC-4U-31b" id="reH-1T-oCO"/>
                         <outlet property="playareaView" destination="Grj-lq-kvx" id="Tle-R5-qyG"/>
                     </connections>
                 </viewController>
@@ -139,7 +144,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1413.5999999999999" y="23.838080959520241"/>
+            <point key="canvasLocation" x="1413.0434782608697" y="23.64130434782609"/>
         </scene>
     </scenes>
     <resources>
