@@ -63,7 +63,7 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
         game.reset()
     }
     @IBAction func deckTapped(_ sender: Any) {
-        if localPlayer.hand.cards.count < 10 {
+        if localPlayer.hand.cards.count < 50 {
             localPlayer.draw(deck: game.deck)
         }
         displayHands()

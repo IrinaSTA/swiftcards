@@ -94,10 +94,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMe-8X-oN2">
-                                <rect key="frame" x="16" y="551" width="343" height="101"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
                                 <rect key="frame" x="0.0" y="177" width="375" height="374"/>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPv-d2-LIq">
@@ -174,17 +171,12 @@
                         <constraints>
                             <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="20" id="42a-lA-NAA"/>
                             <constraint firstAttribute="trailing" secondItem="Grj-lq-kvx" secondAttribute="trailing" id="ATe-bk-8wo"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="Grj-lq-kvx" secondAttribute="bottom" id="C6T-w6-Zt1"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="177" id="WZ7-vi-eYi"/>
-                            <constraint firstItem="Grj-lq-kvx" firstAttribute="centerX" secondItem="lMe-8X-oN2" secondAttribute="centerX" id="aOq-3l-Xyj"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leading" id="aeb-mb-aeB"/>
                             <constraint firstItem="vPv-d2-LIq" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" constant="10" id="gdu-gA-VQT"/>
-                            <constraint firstItem="lg9-gD-gkI" firstAttribute="bottom" secondItem="lMe-8X-oN2" secondAttribute="bottom" constant="15" id="iLZ-D3-FtZ"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="XJt-Tz-83C" secondAttribute="bottom" constant="14" id="od2-at-pC0"/>
                             <constraint firstItem="XJt-Tz-83C" firstAttribute="leading" secondItem="vPv-d2-LIq" secondAttribute="trailing" constant="15" id="xGW-Nb-pcN"/>
                             <constraint firstItem="vPv-d2-LIq" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="topMargin" constant="-69" id="ykh-Lj-4Tp"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="551" id="zec-o5-bel"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leadingMargin" id="zxA-F7-mGg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lg9-gD-gkI"/>
                     </view>
