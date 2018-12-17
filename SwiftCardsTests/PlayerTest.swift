@@ -31,8 +31,8 @@ class PlayerTest: XCTestCase {
     func testPlayerHasHandOfCertainSize() {
         XCTAssertEqual(player.hand.cards.count, 0)
     }
-    func testPlayerHasPeerID() {
-        XCTAssertEqual(player.peerID, peerID)
+    func testPlayerHasDisplayName() {
+        XCTAssertEqual(player.displayName, peerID.displayName)
     }
     func testPlayerCanDraw() {
         player.draw(deck: deck)
@@ -62,7 +62,7 @@ class PlayerTest: XCTestCase {
             print("Oops!")
         }
         do {
-            decodedPlayarea = try JSONDecoder().decode(Player.self, from: data)
+            decodedPlayer = try JSONDecoder().decode(Player.self, from: data)
         } catch {
             print("Oops!")
         }

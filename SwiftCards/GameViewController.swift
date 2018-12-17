@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
         
         // TODO: delete this
         for player in players {
-            print(player.peerID)
+            print(player.displayName)
         }
         
         // render hand

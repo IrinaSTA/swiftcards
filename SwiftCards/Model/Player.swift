@@ -11,10 +11,10 @@ import MultipeerConnectivity
 
 class Player: Equatable, Codable {
     var hand = Hand()
-    var peerID: MCPeerID
+    var displayName: String
     
     init(peerID: MCPeerID) {
-        self.peerID = peerID
+        self.displayName = peerID.displayName
     }
 
     func draw(deck: Deck) {
@@ -32,6 +32,6 @@ class Player: Equatable, Codable {
         self.hand.add(card: card)
     }
     static func == (lhs: Player, rhs: Player) -> Bool {
-        return lhs === rhs
+        return lhs.displayName == rhs.displayName
     }
 }
