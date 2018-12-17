@@ -65,10 +65,8 @@ class GameViewController: UIViewController {
         let tappedCard = getCardObject(image: tappedImage)
         if localPlayer.hand.cards.contains(tappedCard) {
             localPlayer.play(card: tappedCard, location: playarea)
-//            makeDraggable(imageView: tappedImage)
         } else {
             localPlayer.reclaim(card: tappedCard, from: playarea)
-//            removeDraggable(imageView: tappedImage)
         }
         renderHand(localPlayer.hand, location: handView)
         renderPlayarea(playarea, location: playareaView)
@@ -85,12 +83,9 @@ class GameViewController: UIViewController {
         // update model if new position is valid
         let newOrigin = CGPoint(x: newX, y: newY)
         if validPosition(newOrigin, image: touchedImage) {
+//            let touchedCard = playarea.cards.first(where: {$0.name == touchedImage.accessibilityIdentifier})!
             let touchedCard = getCardObject(image: touchedImage)
-            print("000000")
-            print(touchedCard.xPosition)
             touchedCard.setCoords(x: Float(newX), y: Float(newY))
-            print(touchedCard.xPosition)
-            print("000000")
         }
 
         // update the view from the model
@@ -101,10 +96,11 @@ class GameViewController: UIViewController {
 
         // reset translation to zero (otherwise it's cumulative)
         drag.setTranslation(.zero, in: touchedImage)
+        sendUpdateMessage()
 
         // send data when the gesture has finished
         if drag.state == UIGestureRecognizerState.ended {
-            sendUpdateMessage()
+            
         }
     }
 
@@ -185,7 +181,7 @@ class GameViewController: UIViewController {
         return imageView
     }
     func getCardObject(image: UIImageView) -> Card {
-        return Card.find(name: image.accessibilityIdentifier!)
+        return game.find(name: image.accessibilityIdentifier!)
     }
     func renderAll() {
         displayHands()

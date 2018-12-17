@@ -29,6 +29,18 @@ class Game: Equatable, Codable {
           player.hand = Hand()
         }
     }
+    func allCards() -> [Card] {
+        var allCards = self.deck.cards
+        allCards += self.playarea.cards
+        for player in self.players {
+            allCards += player.hand.cards
+        }
+        return allCards
+    }
+    func find(name: String) -> Card {
+        return self.allCards().first(where: {$0.name == name})!
+    }
+    
     static func == (lhs: Game, rhs: Game) -> Bool {
         return (lhs.deck == rhs.deck) && (lhs.playarea == rhs.playarea) && (lhs.players == rhs.players)
     }

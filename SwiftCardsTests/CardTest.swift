@@ -18,11 +18,6 @@ class CardTest: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    override func tearDown() {
-        super.tearDown()
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testAttributes() {
         XCTAssertEqual(card.value, "1")
         XCTAssertEqual(card.suit, "hearts")
@@ -33,13 +28,6 @@ class CardTest: XCTestCase {
         card.setCoords(x: 20, y: 50)
         XCTAssertEqual(card.xPosition, 20)
         XCTAssertEqual(card.yPosition, 50)
-    }
-    func testAll() {
-        XCTAssertEqual(Card.all(), [card, card2])
-    }
-    func testFind() {
-        let foundCard = Card.find(name: "1H")
-        XCTAssertEqual(foundCard, card)
     }
     func testCodable() {
         var data: Data!

@@ -22,13 +22,7 @@ class GameTest: XCTestCase {
         player1 = Player(peerID: peerID1)
         player2 = Player(peerID: peerID2)
         game = Game(handSize: 5, players: [player1, player2])
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testGameProperties() {
         XCTAssert(game.players.contains(player1))
         XCTAssert(game.players.contains(player2))
@@ -43,20 +37,20 @@ class GameTest: XCTestCase {
         XCTAssertEqual(game.deck.cards.count, 42)
     }
     func testGameReset() {
-        let playerArray = [player1!]
-        let game = Game(handSize: 2, players: playerArray)
         game.deal()
         game.reset()
         XCTAssertEqual(player1.hand.cards.count, 0)
         XCTAssertEqual(game.deck.cards.count, 52)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testAllCards() {
+        game.deal()
+        XCTAssertEqual(game.allCards().count, 52)
     }
+    func testFind() {
+        let card = game.deck.cards[10]
+        XCTAssertEqual(game.find(name: card.name), card)
+    }
+
     func testCodable() {
         var data: Data!
         var decodedGame: Game!
