@@ -13,15 +13,11 @@ class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
-    //delete this
-    
     @IBOutlet weak var textField: UITextField!
-    
     var handSize: Int = 5
     var session: MCSession!
     var peerID: MCPeerID!
     var localPlayer: Player!
-    var player: Player!
     var game: Game!
     var playarea: Playarea!
     var deck: Deck!
@@ -29,16 +25,13 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // game setup
+        // game setup - make this conditional on being the host
         setupGame()
-        
         // convenience variables
         playarea = game.playarea
         deck = game.deck
         players = game.players
-        localPlayer = players.first(where: { $0.peerID == self.peerID })!
-        print(localPlayer)
+        localPlayer = players.first(where: { $0.peerID == self.peerID })
         // render hand
         renderHand(localPlayer.hand, location: handView)
     }
@@ -58,15 +51,11 @@ class GameViewController: UIViewController {
         players.append(localPlayer)
         return players
     }
-    
-    
-    
-    
     @IBAction func deckTapped(_ sender: Any) {
-        if player.hand.cards.count < 10 {
-            player.draw(deck: game.deck)
+        if localPlayer.hand.cards.count < 10 {
+            localPlayer.draw(deck: game.deck)
         }
-        renderHand(player.hand, location: handView)
+        renderHand(localPlayer.hand, location: handView)
         
         // TODO: delete this code
         
@@ -84,14 +73,14 @@ class GameViewController: UIViewController {
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
         let tappedCard = getCardObject(image: tappedImage)
-        if player.hand.cards.contains(tappedCard) {
-            player.play(card: tappedCard, location: playarea)
+        if localPlayer.hand.cards.contains(tappedCard) {
+            localPlayer.play(card: tappedCard, location: playarea)
             makeDraggable(imageView: tappedImage)
         } else {
-            player.reclaim(card: tappedCard, from: playarea)
+            localPlayer.reclaim(card: tappedCard, from: playarea)
             removeDraggable(imageView: tappedImage)
         }
-        renderHand(player.hand, location: handView)
+        renderHand(localPlayer.hand, location: handView)
         renderPlayarea(playarea, location: playareaView)
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
@@ -212,7 +201,4 @@ extension GameViewController: MCSessionDelegate {
     }
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
     }
-//    func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Void) {
-//        certificateHandler(true)
-//    }
 }
