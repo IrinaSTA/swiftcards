@@ -9,7 +9,7 @@
 import Foundation
 import MultipeerConnectivity
 
-class Player: Equatable {
+class Player: Equatable, Codable {
     var hand = Hand()
     var peerID: MCPeerID
     

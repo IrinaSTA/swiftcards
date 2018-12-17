@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Game {
+class Game: Equatable {
     var players: [Player]
     var deck: Deck = Deck()
     var playarea: Playarea = Playarea()
@@ -28,5 +28,8 @@ class Game {
         for player in self.players {
           player.hand = Hand()
         }
+    }
+    static func == (lhs: Game, rhs: Game) -> Bool {
+        return (lhs.deck == rhs.deck) && (lhs.playarea == rhs.playarea) && (lhs.players == rhs.players)
     }
 }

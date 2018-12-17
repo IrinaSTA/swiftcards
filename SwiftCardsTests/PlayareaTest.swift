@@ -30,4 +30,19 @@ class PlayareaTest: XCTestCase {
         XCTAssertEqual(playarea.cards.count, 0)
         XCTAssertEqual(removedCard, card)
     }
+    func testCodable() {
+        var data: Data!
+        var decodedPlayarea: Playarea!
+        do {
+            data = try JSONEncoder().encode(playarea)
+        } catch {
+            print("Oops!")
+        }
+        do {
+            decodedPlayarea = try JSONDecoder().decode(Playarea.self, from: data)
+        } catch {
+            print("Oops!")
+        }
+        XCTAssertEqual(playarea, decodedPlayarea)
+    }
 }
