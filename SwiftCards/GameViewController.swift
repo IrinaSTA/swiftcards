@@ -24,6 +24,7 @@ class GameViewController: UIViewController {
     var playarea: Playarea!
     var deck: Deck!
     var players: [Player] = []
+    var otherPlayer: Player!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class GameViewController: UIViewController {
         playarea = game.playarea
         deck = game.deck
         players = game.players
+        otherPlayer = players.first(where: {$0.displayName != self.peerID.displayName})!
         
         // TODO: delete this
         for player in players {
@@ -43,7 +45,7 @@ class GameViewController: UIViewController {
     
     func displayHands() {
         if players.count != 1 {
-            renderHand(localPlayer.hand, location: opponentHandView)
+            renderHand(otherPlayer.hand, location: opponentHandView)
         }
         renderHand(localPlayer.hand, location: handView)
     }
@@ -143,18 +145,18 @@ class GameViewController: UIViewController {
     }
     func render(_ card: Card, location: UIView) {
         var cardView = UIImageView()
-        if location == opponentHandView {
-            cardView = makeOpponentView(card)
-        } else {
-            cardView = makeImageView(card)
-        }
+//        if location == opponentHandView {
+//            cardView = makeOpponentView(card)
+//        } else {
+        cardView = makeImageView(card)
+//        }
         location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
     }
     func makeImageView(_ card: Card) -> UIImageView {
-        let allViews = playareaView.subviews + handView.subviews
+        let allViews = playareaView.subviews + handView.subviews + opponentHandView.subviews
         if let existingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
             return existingView as! UIImageView
         } else {
@@ -208,6 +210,7 @@ extension GameViewController: MCSessionDelegate {
                 self.deck = self.game.deck
                 self.players = self.game.players
                 self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
+                self.otherPlayer = self.players.first(where: {$0.displayName != self.peerID.displayName})!
                 if decodedMessage.action == "setupGame" {
                     self.homeViewController.present(self, animated: true, completion: nil)
                 } else if decodedMessage.action == "updateGame" {
