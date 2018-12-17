@@ -180,10 +180,18 @@ extension GameViewController: MCSessionDelegate {
         }
     }
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        let string = String(decoding: data, as: UTF8.self)
-        DispatchQueue.main.async {
-            self.textField.text = string
+        print("OOOOOOOO")
+        do {
+            let decodedMessage = try JSONDecoder().decode(Message<Game>.self, from: data)
+            print(decodedMessage)
+        } catch {
+            print("Failed to decode message!")
         }
+        print("OOOOOOOO")
+//        let string = String(decoding: data, as: UTF8.self)
+//        DispatchQueue.main.async {
+//            self.textField.text = string
+//        }
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
     }
