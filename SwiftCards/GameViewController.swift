@@ -11,7 +11,7 @@ import MultipeerConnectivity
 
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
-    @IBOutlet weak var handView: UIView!
+    @IBOutlet weak var handView: UIScrollView!
     @IBOutlet weak var playareaView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var opponentHandView: UIView!
@@ -31,16 +31,16 @@ class GameViewController: UIViewController {
         playarea = game.playarea
         deck = game.deck
         players = game.players
-        
+
         // TODO: delete this
         for player in players {
             print(player.displayName)
         }
-        
+
         // render hand
         displayHands()
     }
-    
+
     func displayHands() {
         if players.count != 1 {
             renderHand(localPlayer.hand, location: opponentHandView)
@@ -51,7 +51,7 @@ class GameViewController: UIViewController {
         game.reset()
     }
     @IBAction func deckTapped(_ sender: Any) {
-        if localPlayer.hand.cards.count < 10 {
+        if localPlayer.hand.cards.count < 50 {
             localPlayer.draw(deck: game.deck)
         }
         displayHands()
