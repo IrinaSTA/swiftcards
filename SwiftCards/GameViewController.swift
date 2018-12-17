@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var playareaView: UIView!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var opponentHandView: UIView!
     var handSize: Int = 5
     var session: MCSession!
     var peerID: MCPeerID!
@@ -34,6 +35,7 @@ class GameViewController: UIViewController {
         localPlayer = players.first(where: { $0.peerID == self.peerID })
         // render hand
         renderHand(localPlayer.hand, location: handView)
+        renderHand(player.hand, location: opponentHandView)
     }
 
     func setupGame() {
@@ -51,9 +53,9 @@ class GameViewController: UIViewController {
         players.append(localPlayer)
         return players
     }
-    @IBAction func newGame(_ sender: Any) {
-        game.reset()
-    }
+//    @IBAction func newGame(_ sender: Any) {
+//        game.reset()
+//    }
     @IBAction func deckTapped(_ sender: Any) {
         if localPlayer.hand.cards.count < 10 {
             localPlayer.draw(deck: game.deck)
