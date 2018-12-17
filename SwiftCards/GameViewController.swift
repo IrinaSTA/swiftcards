@@ -13,14 +13,14 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cards.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCollectionViewCell", for: indexPath) as! CardCollectionViewCell
-        
+
         cell.handCard.image = cards[indexPath.row]
         return cell
     }
-    
+
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UICollectionView!
     @IBOutlet weak var playareaView: UIView!
@@ -43,16 +43,16 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
         playarea = game.playarea
         deck = game.deck
         players = game.players
-        
+
         // TODO: delete this
         for player in players {
             print(player.displayName)
         }
-        
+
         // render hand
         displayHands()
     }
-    
+
     func displayHands() {
         if players.count != 1 {
             renderHand(localPlayer.hand, location: opponentHandView)
