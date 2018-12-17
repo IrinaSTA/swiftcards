@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -95,10 +94,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMe-8X-oN2">
-                                <rect key="frame" x="16" y="551" width="343" height="101"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
                                 <rect key="frame" x="0.0" y="177" width="375" height="374"/>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPv-d2-LIq">
@@ -136,28 +132,57 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SDD-Be-uNZ">
+                                <rect key="frame" x="0.0" y="549" width="375" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yLX-Dq-Ahz">
+                                    <size key="itemSize" width="90" height="118"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCollectionViewCell" id="N84-47-jyC" customClass="CardCollectionViewCell" customModule="SwiftCards" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="118"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Slf-y4-Q8r">
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="118"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="handCard" destination="Slf-y4-Q8r" id="5QX-PM-n9R"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="zIf-sn-4P2" id="nje-bn-IHS"/>
+                                    <outlet property="delegate" destination="zIf-sn-4P2" id="8b7-Mb-Gje"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="20" id="42a-lA-NAA"/>
                             <constraint firstAttribute="trailing" secondItem="Grj-lq-kvx" secondAttribute="trailing" id="ATe-bk-8wo"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="Grj-lq-kvx" secondAttribute="bottom" id="C6T-w6-Zt1"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="177" id="WZ7-vi-eYi"/>
-                            <constraint firstItem="Grj-lq-kvx" firstAttribute="centerX" secondItem="lMe-8X-oN2" secondAttribute="centerX" id="aOq-3l-Xyj"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leading" id="aeb-mb-aeB"/>
                             <constraint firstItem="vPv-d2-LIq" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" constant="10" id="gdu-gA-VQT"/>
-                            <constraint firstItem="lg9-gD-gkI" firstAttribute="bottom" secondItem="lMe-8X-oN2" secondAttribute="bottom" constant="15" id="iLZ-D3-FtZ"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="XJt-Tz-83C" secondAttribute="bottom" constant="14" id="od2-at-pC0"/>
                             <constraint firstItem="XJt-Tz-83C" firstAttribute="leading" secondItem="vPv-d2-LIq" secondAttribute="trailing" constant="15" id="xGW-Nb-pcN"/>
                             <constraint firstItem="vPv-d2-LIq" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="topMargin" constant="-69" id="ykh-Lj-4Tp"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="551" id="zec-o5-bel"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leadingMargin" id="zxA-F7-mGg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lg9-gD-gkI"/>
                     </view>
                     <connections>
                         <outlet property="deckImage" destination="XJt-Tz-83C" id="81p-6Z-wxf"/>
-                        <outlet property="handView" destination="lMe-8X-oN2" id="7U0-1E-MPd"/>
+                        <outlet property="handView" destination="SDD-Be-uNZ" id="dJR-N5-P5x"/>
                         <outlet property="opponentHandView" destination="vPv-d2-LIq" id="o6H-WK-3zG"/>
                         <outlet property="playareaView" destination="Grj-lq-kvx" id="Tle-R5-qyG"/>
                         <outlet property="textField" destination="7xR-Cq-ETS" id="SRy-QG-uPa"/>
@@ -174,6 +199,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backOfCard" width="345" height="528"/>
+        <image name="backOfCard" width="165.83999633789062" height="253.44000244140625"/>
     </resources>
 </document>

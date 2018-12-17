@@ -9,9 +9,20 @@
 import UIKit
 import MultipeerConnectivity
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return cards.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCollectionViewCell", for: indexPath) as! CardCollectionViewCell
+        
+        cell.handCard.image = cards[indexPath.row]
+        return cell
+    }
+    
     @IBOutlet weak var deckImage: UIImageView!
-    @IBOutlet weak var handView: UIView!
+    @IBOutlet weak var handView: UICollectionView!
     @IBOutlet weak var playareaView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var opponentHandView: UIView!
@@ -24,6 +35,7 @@ class GameViewController: UIViewController {
     var playarea: Playarea!
     var deck: Deck!
     var players: [Player] = []
+    var cards: [UIImage] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,7 +168,7 @@ class GameViewController: UIViewController {
         } else {
             cardView = makeImageView(card)
         }
-        location.addSubview(cardView)
+//        location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
@@ -167,6 +179,7 @@ class GameViewController: UIViewController {
             return existingView as! UIImageView
         } else {
             let image = UIImage(named: card.name + ".png")
+            cards.append(image!)
             let imageView = UIImageView(image: image!)
             imageView.isAccessibilityElement = true
             imageView.accessibilityIdentifier = card.name
