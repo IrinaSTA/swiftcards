@@ -25,6 +25,9 @@ class GameViewController: UIViewController {
         game.deal()
         renderHand(player.hand, location: handView)
     }
+    @IBAction func newGame(_ sender: Any) {
+        game.reset()
+    }
     @IBAction func deckTapped(_ sender: Any) {
         if player.hand.cards.count < 10 {
             player.draw(deck: game.deck)
@@ -46,12 +49,12 @@ class GameViewController: UIViewController {
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
-        
+
         // get new origin
         let translation = drag.translation(in: touchedImage)
         let newX = touchedImage.frame.origin.x + translation.x
         let newY = touchedImage.frame.origin.y + translation.y
-        
+
         // update model if new position is valid
         let newOrigin = CGPoint(x: newX, y: newY)
         if validPosition(newOrigin, image: touchedImage) {

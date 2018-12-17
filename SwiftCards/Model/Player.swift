@@ -12,8 +12,10 @@ class Player: Equatable {
     var hand = Hand()
 
     func draw(deck: Deck) {
-        let card = deck.removeTopCard()
-        self.hand.add(card: card)
+        if deck.cards.count > 0 {
+            let card = deck.removeTopCard()
+            self.hand.add(card: card)
+        }
     }
     func play(card: Card, location: Playarea) {
         let card = self.hand.remove(card: card)

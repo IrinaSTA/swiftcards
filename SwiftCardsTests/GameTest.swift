@@ -39,6 +39,15 @@ class GameTest: XCTestCase {
         XCTAssertEqual(player2.hand.cards.count, 5)
         XCTAssertEqual(game.deck.cards.count, 42)
     }
+    func testGameReset() {
+        let player = Player()
+        let playerArray = [player]
+        let game = Game(handSize: 2, players: playerArray)
+        game.deal()
+        game.reset()
+        XCTAssertEqual(player.hand.cards.count, 0)
+        XCTAssertEqual(game.deck.cards.count, 52)
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
