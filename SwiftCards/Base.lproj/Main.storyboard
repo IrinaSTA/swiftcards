@@ -93,13 +93,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMe-8X-oN2">
-                                <rect key="frame" x="16" y="551" width="343" height="85"/>
+                                <rect key="frame" x="16" y="551" width="343" height="101"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
-                                <rect key="frame" x="0.0" y="160" width="375" height="383"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
+                                <rect key="frame" x="0.0" y="177" width="375" height="374"/>
                             </view>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
-                                <rect key="frame" x="256" y="20" width="90" height="132"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPv-d2-LIq">
+                                <rect key="frame" x="10" y="-49" width="240" height="144"/>
+                            </view>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
+                                <rect key="frame" x="265" y="31" width="90" height="132"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Deck">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -133,17 +136,19 @@
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="SKm-RG-rzA"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="Grj-lq-kvx" secondAttribute="bottom" id="VLI-Xd-as0"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="trailing" secondItem="f7g-0N-Dqs" secondAttribute="trailingMargin" id="XWu-85-Kzg"/>
-                            <constraint firstItem="Grj-lq-kvx" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" id="bGZ-yY-eMD"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leadingMargin" id="e2i-ea-Wvb"/>
-                            <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="70" id="gtN-dg-x3h"/>
-                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="551" id="lrE-yT-Q1f"/>
-                            <constraint firstItem="lg9-gD-gkI" firstAttribute="bottom" secondItem="lMe-8X-oN2" secondAttribute="bottom" constant="31" id="ncw-hu-irG"/>
-                            <constraint firstItem="XJt-Tz-83C" firstAttribute="top" secondItem="lg9-gD-gkI" secondAttribute="top" constant="20" id="peR-MZ-SlU"/>
-                            <constraint firstItem="Grj-lq-kvx" firstAttribute="trailing" secondItem="lg9-gD-gkI" secondAttribute="trailing" id="tlc-QD-1Lv"/>
-                            <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="XJt-Tz-83C" secondAttribute="bottom" constant="1" id="vVC-ye-0hf"/>
+                            <constraint firstItem="lg9-gD-gkI" firstAttribute="trailing" secondItem="XJt-Tz-83C" secondAttribute="trailing" constant="20" id="42a-lA-NAA"/>
+                            <constraint firstAttribute="trailing" secondItem="Grj-lq-kvx" secondAttribute="trailing" id="ATe-bk-8wo"/>
+                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="Grj-lq-kvx" secondAttribute="bottom" id="C6T-w6-Zt1"/>
+                            <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="177" id="WZ7-vi-eYi"/>
+                            <constraint firstItem="Grj-lq-kvx" firstAttribute="centerX" secondItem="lMe-8X-oN2" secondAttribute="centerX" id="aOq-3l-Xyj"/>
+                            <constraint firstItem="Grj-lq-kvx" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leading" id="aeb-mb-aeB"/>
+                            <constraint firstItem="vPv-d2-LIq" firstAttribute="leading" secondItem="lg9-gD-gkI" secondAttribute="leading" constant="10" id="gdu-gA-VQT"/>
+                            <constraint firstItem="lg9-gD-gkI" firstAttribute="bottom" secondItem="lMe-8X-oN2" secondAttribute="bottom" constant="15" id="iLZ-D3-FtZ"/>
+                            <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="XJt-Tz-83C" secondAttribute="bottom" constant="14" id="od2-at-pC0"/>
+                            <constraint firstItem="XJt-Tz-83C" firstAttribute="leading" secondItem="vPv-d2-LIq" secondAttribute="trailing" constant="15" id="xGW-Nb-pcN"/>
+                            <constraint firstItem="vPv-d2-LIq" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="topMargin" constant="-69" id="ykh-Lj-4Tp"/>
+                            <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="f7g-0N-Dqs" secondAttribute="top" constant="551" id="zec-o5-bel"/>
+                            <constraint firstItem="lMe-8X-oN2" firstAttribute="leading" secondItem="f7g-0N-Dqs" secondAttribute="leadingMargin" id="zxA-F7-mGg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lg9-gD-gkI"/>
                     </view>
