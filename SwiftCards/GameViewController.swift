@@ -53,9 +53,9 @@ class GameViewController: UIViewController {
         players.append(localPlayer)
         return players
     }
-//    @IBAction func newGame(_ sender: Any) {
-//        game.reset()
-//    }
+    @IBAction func newGame(_ sender: Any) {
+        game.reset()
+    }
     @IBAction func deckTapped(_ sender: Any) {
         if localPlayer.hand.cards.count < 10 {
             localPlayer.draw(deck: game.deck)
@@ -161,7 +161,7 @@ class GameViewController: UIViewController {
     func render(_ card: Card, location: UIView) {
         var cardView = UIImageView()
         if location == opponentHandView {
-           cardView = makeOpponentView(card)
+            cardView = makeOpponentView(card)
         } else {
             cardView = makeImageView(card)
         }
