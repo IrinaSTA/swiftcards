@@ -8,7 +8,6 @@ class GameViewController: UIViewController {
     @IBOutlet weak var playareaView: UIView!
 
     var homeViewController: ViewController!
-//    var session: MCSession!
     var peerID: MCPeerID!
     var game: Game!
     var playarea: Playarea!
@@ -118,8 +117,9 @@ class GameViewController: UIViewController {
     func makeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
         imageView.isUserInteractionEnabled = true
-        if imageView.gestureRecognizers!.contains(drag) == false {
+        if !(imageView.gestureRecognizers!.contains {$0 is UIPanGestureRecognizer}) {
             imageView.addGestureRecognizer(drag)
+            print("adding a drag recognizer")
         }
     }
 
