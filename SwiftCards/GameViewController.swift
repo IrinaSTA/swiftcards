@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         displayHands()
     }
-    
+
     func setupVariables(game: Game) {
         self.game = game
         self.playarea = self.game.playarea
@@ -32,7 +32,6 @@ class GameViewController: UIViewController {
              self.otherPlayer = self.players.first(where: {$0.displayName != self.peerID.displayName})!
         }
     }
-    
     func displayHands() {
         if players.count != 1 {
             renderHand(otherPlayer.hand, location: opponentHandView)
@@ -128,16 +127,30 @@ class GameViewController: UIViewController {
             let leftPosition = Float(hand.cards.index(of: card)! * 30)
             card.setCoords(x: leftPosition, y: 0.0)
             render(card, location: location)
+            if location == handView {
+                showFront(imageView(card))
+            } else {
+                showBack(imageView(card))
+            }
         }
     }
+    func showFront(_ cardView: UIImageView) {
+        cardView.image = UIImage(named: cardView.accessibilityIdentifier! + ".png")
+    }
+    func showBack(_ cardView: UIImageView) {
+        cardView.image = UIImage(named: "backOfCard.png")
+    }
+    
+    
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
             render(card, location: playareaView)
+            showFront(imageView(card))
         }
     }
     func render(_ card: Card, location: UIView) {
         var cardView = UIImageView()
-        cardView = makeImageView(card)
+        cardView = imageView(card)
         location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
@@ -148,7 +161,7 @@ class GameViewController: UIViewController {
             removeDraggable(imageView: cardView)
         }
     }
-    func makeImageView(_ card: Card) -> UIImageView {
+    func imageView(_ card: Card) -> UIImageView {
         let allViews = playareaView.subviews + handView.subviews + opponentHandView.subviews
         if let existingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
             return existingView as! UIImageView
