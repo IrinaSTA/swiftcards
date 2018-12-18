@@ -87,7 +87,6 @@ class GameViewController: UIViewController {
 
         // send data when the gesture has finished
         if drag.state == UIGestureRecognizerState.ended {
-            
         }
     }
 
@@ -140,8 +139,6 @@ class GameViewController: UIViewController {
     func showBack(_ cardView: UIImageView) {
         cardView.image = UIImage(named: "backOfCard.png")
     }
-    
-    
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
             render(card, location: playareaView)

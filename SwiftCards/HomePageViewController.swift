@@ -1,11 +1,3 @@
-//
-//  HomePageViewController.swift
-//  SwiftCards
-//
-//  Created by Caitlin Cooling on 18/12/2018.
-//  Copyright © 2018 Player$. All rights reserved.
-//
-
 import UIKit
 import MultipeerConnectivity
 
@@ -14,7 +6,6 @@ class HomePageViewController: UIViewController {
     var session: MCSession!
     var peerID: MCPeerID!
     var viewController: ViewController!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         peerID = MCPeerID(displayName: UIDevice.current.name)
@@ -25,7 +16,6 @@ class HomePageViewController: UIViewController {
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: "Swiftcards", message: "Do you want to Host or Join this session?", preferredStyle: .actionSheet)
-        
         actionSheet.addAction(UIAlertAction(title: "Join a session", style: .default, handler: { (action:UIAlertAction) in
             self.advertiserAssistant = MCAdvertiserAssistant(serviceType: "SwiftCards", discoveryInfo: nil, session: self.session)
             self.advertiserAssistant.start()
@@ -33,7 +23,7 @@ class HomePageViewController: UIViewController {
 
         actionSheet.addAction(UIAlertAction(title: "Host a session", style: .default, handler: { (action: UIAlertAction) in
             let browser = MCBrowserViewController(serviceType: "SwiftCards", session: self.session)
-            browser.delegate = self as? MCBrowserViewControllerDelegate
+            browser.delegate = self
             self.present(browser, animated: true, completion: nil)
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

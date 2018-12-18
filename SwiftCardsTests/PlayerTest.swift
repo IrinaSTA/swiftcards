@@ -11,12 +11,10 @@ import MultipeerConnectivity
 @testable import SwiftCards
 
 class PlayerTest: XCTestCase {
-    
     var peerID: MCPeerID!
     var player: Player!
     var deck: Deck!
     var playarea: Playarea!
-    
     override func setUp() {
         super.setUp()
         deck = Deck()

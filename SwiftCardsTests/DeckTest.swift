@@ -14,7 +14,6 @@ class DeckTest: XCTestCase {
     var deck: Deck!
     var suits: [String]!
     var values: [String]!
-    
     override func setUp() {
         deck = Deck()
         suits = ["hearts", "spades", "clubs", "diamonds"]

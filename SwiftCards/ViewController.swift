@@ -25,8 +25,8 @@ class ViewController: UIViewController {
 
     @IBAction func play(_ sender: UIButton) {
         setupGame()
-        var gameMessage = Message(action: "setupGame", game: gameViewController.game)
-        var data = encodeMessage(gameMessage)
+        let gameMessage = Message(action: "setupGame", game: gameViewController.game)
+        let data = encodeMessage(gameMessage)
         sendMessage(data: data)
         self.present(gameViewController, animated: true, completion: nil)
     }
