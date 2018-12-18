@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  SwiftCards
-//
-//  Created by Chris Cooksley on 10/12/2018.
-//  Copyright © 2018 Player$. All rights reserved.
-//
-
 import UIKit
 import MultipeerConnectivity
 
@@ -24,7 +16,7 @@ class ViewController: UIViewController {
 
         peerID = MCPeerID(displayName: UIDevice.current.name)
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
-        gameViewController.session = self.session
+//        gameViewController.session = self.session
         gameViewController.peerID = self.peerID
         gameViewController.homeViewController = self
         session.delegate = gameViewController
@@ -35,7 +27,7 @@ class ViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func showConnectionOptions(_ sender: UIButton) {
-        let actionSheet = UIAlertController(title: "Connection Test", message: "Do you want to Host or Join this session?", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Swiftcards", message: "Do you want to Host or Join this session?", preferredStyle: .actionSheet)
 
         actionSheet.addAction(UIAlertAction(title: "Join a session", style: .default, handler: { (action:UIAlertAction) in
             self.advertiserAssistant = MCAdvertiserAssistant(serviceType: "SwiftCards", discoveryInfo: nil, session: self.session)
@@ -52,22 +44,23 @@ class ViewController: UIViewController {
     }
     @IBAction func play(_ sender: UIButton) {
         setupGame()
-        var gameMessage = Message<Game>(action: "setupGame", object: gameViewController.game)
-        var data = encodeObject(gameMessage)
+        var gameMessage = Message(action: "setupGame", game: gameViewController.game)
+        var data = encodeMessage(gameMessage)
         sendMessage(data: data)
         self.present(gameViewController, animated: true, completion: nil)
+    }
+    func setupGame() {
+        let newGame = Game(handSize: enteredHandSize(), players: getPlayers(session: self.session))
+        newGame.deck.shuffle()
+        newGame.deal()
+        gameViewController.setupVariables(game: newGame)
     }
     // Methods or functions
     func enteredHandSize() -> Int {
         let total = Int(handSizeText.text!) ?? 7
         return total
     }
-    func setupGame() {
-        gameViewController.game = Game(handSize: 5, players: getPlayers(session: self.session))
-        gameViewController.game.handSize = enteredHandSize()
-//        gameViewController.game.deck.shuffle()
-        gameViewController.game.deal()
-    }
+
     func getPlayers(session: MCSession) -> [Player] {
         var players: [Player] = []
         for peerID in session.connectedPeers {
@@ -77,19 +70,15 @@ class ViewController: UIViewController {
         players.append(gameViewController.localPlayer)
         return players
     }
-    func encodeObject<T : Encodable>(_ object: T) -> Data {
+    func encodeMessage(_ message: Message) -> Data {
         var data: Data!
         do {
-            data = try JSONEncoder().encode(object)
+            data = try JSONEncoder().encode(message)
         } catch {
             print("Object could not be encoded!")
         }
         return data
     }
-//    func setupGameDictionary<T : Encodable>() -> Dictionary<String, T> {
-//        return ["action": "setupGame",
-//                "game": self.gameViewController.game]
-//    }
     func sendMessage(data: Data) {
         if session.connectedPeers.count > 0 {
             do {
@@ -101,9 +90,9 @@ class ViewController: UIViewController {
     }
 }
 
-struct Message<T: Codable>: Codable {
+struct Message: Codable {
     var action: String
-    var object: T
+    var game: Game
 }
 
 extension ViewController: MCBrowserViewControllerDelegate {

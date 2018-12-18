@@ -1,49 +1,41 @@
-//
-//  GameViewController.swift
-//  SwiftCards
-//
-//  Created by Chris Cooksley on 12/12/2018.
-//  Copyright © 2018 Player$. All rights reserved.
-//
-
 import UIKit
 import MultipeerConnectivity
 
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
-    @IBOutlet weak var playareaView: UIView!
-    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var opponentHandView: UIView!
+    @IBOutlet weak var playareaView: UIView!
+
     var homeViewController: ViewController!
-    var handSize: Int = 5
-    var session: MCSession!
+//    var session: MCSession!
     var peerID: MCPeerID!
-    var localPlayer: Player!
     var game: Game!
     var playarea: Playarea!
     var deck: Deck!
     var players: [Player] = []
+    var localPlayer: Player!
+    var otherPlayer: Player!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // convenience variables
-        playarea = game.playarea
-        deck = game.deck
-        players = game.players
-        
-        // TODO: delete this
-        for player in players {
-            print(player.displayName)
-        }
-        
-        // render hand
         displayHands()
+    }
+    
+    func setupVariables(game: Game) {
+        self.game = game
+        self.playarea = self.game.playarea
+        self.deck = self.game.deck
+        self.players = self.game.players
+        self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
+        if self.players.count > 1 {
+             self.otherPlayer = self.players.first(where: {$0.displayName != self.peerID.displayName})!
+        }
     }
     
     func displayHands() {
         if players.count != 1 {
-            renderHand(localPlayer.hand, location: opponentHandView)
+            renderHand(otherPlayer.hand, location: opponentHandView)
         }
         renderHand(localPlayer.hand, location: handView)
     }
@@ -55,30 +47,19 @@ class GameViewController: UIViewController {
             localPlayer.draw(deck: game.deck)
         }
         displayHands()
-        // TODO: delete this code
-
-        let string = "HELLO"
-        let data = string.data(using: .utf8)
-        if session.connectedPeers.count > 0 {
-            do {
-                try session.send(data!, toPeers: session.connectedPeers, with: .reliable)
-            } catch let error as NSError {
-                print(error)
-            }
-        }
+        sendUpdateMessage()
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
         let tappedImage = tap.view as! UIImageView
         let tappedCard = getCardObject(image: tappedImage)
         if localPlayer.hand.cards.contains(tappedCard) {
             localPlayer.play(card: tappedCard, location: playarea)
-            makeDraggable(imageView: tappedImage)
         } else {
             localPlayer.reclaim(card: tappedCard, from: playarea)
-            removeDraggable(imageView: tappedImage)
         }
         renderHand(localPlayer.hand, location: handView)
         renderPlayarea(playarea, location: playareaView)
+        sendUpdateMessage()
     }
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
@@ -103,10 +84,11 @@ class GameViewController: UIViewController {
 
         // reset translation to zero (otherwise it's cumulative)
         drag.setTranslation(.zero, in: touchedImage)
+        sendUpdateMessage()
 
         // send data when the gesture has finished
         if drag.state == UIGestureRecognizerState.ended {
-            // TODO: send data
+            
         }
     }
 
@@ -119,12 +101,16 @@ class GameViewController: UIViewController {
     func makeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(drag)
+        if imageView.gestureRecognizers!.contains(drag) == false {
+            imageView.addGestureRecognizer(drag)
+        }
     }
 
     func removeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
-        imageView.removeGestureRecognizer(drag)
+        if imageView.gestureRecognizers!.contains(drag) {
+            imageView.removeGestureRecognizer(drag)
+        }
     }
 
     func validPosition(_ position: CGPoint, image: UIImageView) -> Bool {
@@ -151,18 +137,19 @@ class GameViewController: UIViewController {
     }
     func render(_ card: Card, location: UIView) {
         var cardView = UIImageView()
-        if location == opponentHandView {
-            cardView = makeOpponentView(card)
-        } else {
-            cardView = makeImageView(card)
-        }
+        cardView = makeImageView(card)
         location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
+        if location == playareaView {
+            makeDraggable(imageView: cardView)
+        } else {
+            removeDraggable(imageView: cardView)
+        }
     }
     func makeImageView(_ card: Card) -> UIImageView {
-        let allViews = playareaView.subviews + handView.subviews
+        let allViews = playareaView.subviews + handView.subviews + opponentHandView.subviews
         if let existingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
             return existingView as! UIImageView
         } else {
@@ -182,7 +169,16 @@ class GameViewController: UIViewController {
         return imageView
     }
     func getCardObject(image: UIImageView) -> Card {
-        return Card.find(name: image.accessibilityIdentifier!)
+        return game.find(name: image.accessibilityIdentifier!)
+    }
+    func renderAll() {
+        displayHands()
+        renderPlayarea(playarea, location: playareaView)
+    }
+    func sendUpdateMessage() {
+        let gameMessage = Message(action: "updateGame", game: self.game)
+        let data = homeViewController.encodeMessage(gameMessage)
+        homeViewController.sendMessage(data: data)
     }
 }
 
@@ -198,21 +194,20 @@ extension GameViewController: MCSessionDelegate {
         }
     }
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("OOOOOOOO")
-        do {
-            let decodedMessage = try JSONDecoder().decode(Message<Game>.self, from: data)
-            let decodedGame = decodedMessage.object
-            self.game = decodedGame
-            self.localPlayer = game.players.first(where: {$0.displayName == self.peerID.displayName})!
-            homeViewController.present(self, animated: true, completion: nil)
-        } catch {
-            print("Failed to decode message!")
+        DispatchQueue.main.async {
+            do {
+                let decodedMessage = try JSONDecoder().decode(Message.self, from: data)
+                let decodedGame = decodedMessage.game
+                self.setupVariables(game: decodedGame)
+                if decodedMessage.action == "setupGame" {
+                    self.homeViewController.present(self, animated: true, completion: nil)
+                } else if decodedMessage.action == "updateGame" {
+                    self.renderAll()
+                }
+            } catch {
+                print("Failed to decode message!")
+            }
         }
-        print("OOOOOOOO")
-//        let string = String(decoding: data, as: UTF8.self)
-//        DispatchQueue.main.async {
-//            self.textField.text = string
-//        }
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
     }
