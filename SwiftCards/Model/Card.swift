@@ -12,6 +12,7 @@ class Card: Equatable, Codable {
     var value: String
     var suit: String
     var name: String
+    var display: String = "front"
     var xPosition: Float = 0.0
     var yPosition: Float = 0.0
     init(value: String, suit: String) {
@@ -22,6 +23,12 @@ class Card: Equatable, Codable {
     func setCoords(x: Float, y: Float) {
         self.xPosition = x
         self.yPosition = y
+    }
+    func faceDown() {
+        self.display = "back"
+    }
+    func faceUp() {
+        self.display = "front"
     }
 
     static func == (lhs: Card, rhs: Card) -> Bool {

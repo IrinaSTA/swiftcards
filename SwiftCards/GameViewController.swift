@@ -60,6 +60,26 @@ class GameViewController: UIViewController {
         renderPlayarea(playarea, location: playareaView)
         sendUpdateMessage()
     }
+    @objc func imagePressed(press: UILongPressGestureRecognizer) {
+        let pressedImage = press.view as! UIImageView
+        let pressedCard = getCardObject(image: pressedImage)
+        if press.state == UIGestureRecognizerState.began {
+            if localPlayer.hand.cards.contains(pressedCard) || playarea.cards.contains(pressedCard) {
+                flip(pressedCard)
+            }
+            renderHand(localPlayer.hand, location: handView)
+            renderPlayarea(playarea, location: playareaView)
+            sendUpdateMessage()
+        }
+    }
+    
+    func flip(_ card: Card) {
+        if card.display == "front" {
+            card.faceDown()
+        } else {
+            card.faceUp()
+        }
+    }
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
 
@@ -70,36 +90,36 @@ class GameViewController: UIViewController {
 
         // update model if new position is valid
         let newOrigin = CGPoint(x: newX, y: newY)
-        if validPosition(newOrigin, image: touchedImage) {
-            let touchedCard = getCardObject(image: touchedImage)
-            touchedCard.setCoords(x: Float(newX), y: Float(newY))
+        guard validPosition(newOrigin, image: touchedImage) else {
+            return
         }
-
-        // update the view from the model
+        
+        let touchedCard = getCardObject(image: touchedImage)
+        touchedCard.setCoords(x: Float(newX), y: Float(newY))
+        playarea.bringCardToFront(touchedCard)
         renderPlayarea(playarea, location: playareaView)
-
-        // bring card to front
-        playareaView.bringSubview(toFront: touchedImage)
-
-        // reset translation to zero (otherwise it's cumulative)
+//        playareaView.bringSubview(toFront: touchedImage)
         drag.setTranslation(.zero, in: touchedImage)
         sendUpdateMessage()
-
-        // send data when the gesture has finished
-        if drag.state == UIGestureRecognizerState.ended {
-        }
     }
 
-    func makeTappable(imageView: UIImageView) {
+    func makeSingleTappable(imageView: UIImageView) {
         let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
+    }
+    
+    func makePressable(imageView: UIImageView) {
+        let press = UILongPressGestureRecognizer(target: self, action: #selector(imagePressed(press:)))
+        imageView.isUserInteractionEnabled = true
+        press.minimumPressDuration = 0.5
+        imageView.addGestureRecognizer(press)
     }
 
     func makeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(pan))
         imageView.isUserInteractionEnabled = true
-        if imageView.gestureRecognizers!.contains(drag) == false {
+        if !(imageView.gestureRecognizers!.contains {$0 is UIPanGestureRecognizer}) {
             imageView.addGestureRecognizer(drag)
         }
     }
@@ -126,9 +146,7 @@ class GameViewController: UIViewController {
             let leftPosition = Float(hand.cards.index(of: card)! * 30)
             card.setCoords(x: leftPosition, y: 0.0)
             render(card, location: location)
-            if location == handView {
-                showFront(imageView(card))
-            } else {
+            if location == opponentHandView {
                 showBack(imageView(card))
             }
         }
@@ -142,12 +160,16 @@ class GameViewController: UIViewController {
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
             render(card, location: playareaView)
-            showFront(imageView(card))
         }
     }
     func render(_ card: Card, location: UIView) {
         var cardView = UIImageView()
         cardView = imageView(card)
+        if card.display == "front" {
+            showFront(cardView)
+        } else if card.display == "back" {
+            showBack(cardView)
+        }
         location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
@@ -168,7 +190,8 @@ class GameViewController: UIViewController {
             imageView.isAccessibilityElement = true
             imageView.accessibilityIdentifier = card.name
             imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
-            makeTappable(imageView: imageView)
+            makeSingleTappable(imageView: imageView)
+            makePressable(imageView: imageView)
             return imageView
         }
     }
