@@ -40,7 +40,6 @@ class Game: Equatable, Codable {
     func find(name: String) -> Card {
         return self.allCards().first(where: {$0.name == name})!
     }
-    
     static func == (lhs: Game, rhs: Game) -> Bool {
         return (lhs.deck == rhs.deck) && (lhs.playarea == rhs.playarea) && (lhs.players == rhs.players)
     }

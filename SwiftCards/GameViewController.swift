@@ -8,6 +8,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var playareaView: UIView!
 
     var homeViewController: ViewController!
+    var homePageViewController: HomePageViewController!
     var peerID: MCPeerID!
     var game: Game!
     var playarea: Playarea!
@@ -156,8 +157,6 @@ class GameViewController: UIViewController {
     func showBack(_ cardView: UIImageView) {
         cardView.image = UIImage(named: "backOfCard.png")
     }
-    
-    
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
             render(card, location: playareaView)
@@ -234,7 +233,7 @@ extension GameViewController: MCSessionDelegate {
                 let decodedGame = decodedMessage.game
                 self.setupVariables(game: decodedGame)
                 if decodedMessage.action == "setupGame" {
-                    self.homeViewController.present(self, animated: true, completion: nil)
+                    self.homePageViewController.present(self, animated: true, completion: nil)
                 } else if decodedMessage.action == "updateGame" {
                     self.renderAll()
                 }
