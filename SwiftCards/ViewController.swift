@@ -9,12 +9,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController
 
-        peerID = MCPeerID(displayName: UIDevice.current.name)
-        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
+//        peerID = MCPeerID(displayName: UIDevice.current.name)
+//        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
 //        gameViewController.session = self.session
         gameViewController.peerID = self.peerID
         gameViewController.homeViewController = self
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
 
     @IBOutlet weak var handSizeText: UITextField!
-   
+
     @IBAction func play(_ sender: UIButton) {
         setupGame()
         var gameMessage = Message(action: "setupGame", game: gameViewController.game)
@@ -74,5 +74,3 @@ struct Message: Codable {
     var action: String
     var game: Game
 }
-
-
