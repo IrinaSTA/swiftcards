@@ -12,6 +12,8 @@ class HomePageViewController: UIViewController {
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         viewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
+        viewController.session = self.session
+        viewController.peerID = self.peerID
     }
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {
