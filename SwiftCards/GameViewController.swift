@@ -95,8 +95,9 @@ class GameViewController: UIViewController {
         
         let touchedCard = getCardObject(image: touchedImage)
         touchedCard.setCoords(x: Float(newX), y: Float(newY))
+        playarea.bringCardToFront(touchedCard)
         renderPlayarea(playarea, location: playareaView)
-        playareaView.bringSubview(toFront: touchedImage)
+//        playareaView.bringSubview(toFront: touchedImage)
         drag.setTranslation(.zero, in: touchedImage)
         sendUpdateMessage()
     }
