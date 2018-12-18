@@ -9,7 +9,6 @@ class GameViewController: UIViewController {
 
     var homeViewController: ViewController!
     var homePageViewController: HomePageViewController!
-//    var session: MCSession!
     var peerID: MCPeerID!
     var game: Game!
     var playarea: Playarea!
@@ -28,12 +27,6 @@ class GameViewController: UIViewController {
         self.playarea = self.game.playarea
         self.deck = self.game.deck
         self.players = self.game.players
-        print("In GVC, self.peerID is")
-        print(self.peerID)
-        print("In GVC, self.peerID.displayName is")
-        print(self.peerID.displayName)
-        print("In GVC, players are")
-        print(self.players)
         self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
         if self.players.count > 1 {
              self.otherPlayer = self.players.first(where: {$0.displayName != self.peerID.displayName})!
@@ -213,10 +206,7 @@ extension GameViewController: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async {
             do {
-                print("Received message")
                 let decodedMessage = try JSONDecoder().decode(Message.self, from: data)
-                print("Decoded message contains:")
-                print(decodedMessage)
                 let decodedGame = decodedMessage.game
                 self.setupVariables(game: decodedGame)
                 if decodedMessage.action == "setupGame" {
