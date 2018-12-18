@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftCards/GameViewController.swift"
-            timestampString = "566777022.502461"
+            timestampString = "566822399.238017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "pan(drag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftCards/GameViewController.swift"
-            timestampString = "566777022.504238"
+            timestampString = "566822399.238804"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "pan(drag:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftCards/GameViewController.swift"
-            timestampString = "566777022.504859"
+            timestampString = "566822399.239375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "pan(drag:)"
             landmarkType = "7">
          </BreakpointContent>

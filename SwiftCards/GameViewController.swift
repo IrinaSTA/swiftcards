@@ -1,46 +1,36 @@
-//
-//  GameViewController.swift
-//  SwiftCards
-//
-//  Created by Chris Cooksley on 12/12/2018.
-//  Copyright © 2018 Player$. All rights reserved.
-//
-
 import UIKit
 import MultipeerConnectivity
 
 class GameViewController: UIViewController {
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var handView: UIView!
-    @IBOutlet weak var playareaView: UIView!
-    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var opponentHandView: UIView!
+    @IBOutlet weak var playareaView: UIView!
+
     var homeViewController: ViewController!
-    var handSize: Int = 5
-    var session: MCSession!
+//    var session: MCSession!
     var peerID: MCPeerID!
-    var localPlayer: Player!
     var game: Game!
     var playarea: Playarea!
     var deck: Deck!
     var players: [Player] = []
+    var localPlayer: Player!
     var otherPlayer: Player!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // convenience variables
-        playarea = game.playarea
-        deck = game.deck
-        players = game.players
-        otherPlayer = players.first(where: {$0.displayName != self.peerID.displayName})!
-        
-        // TODO: delete this
-        for player in players {
-            print(player.displayName)
-        }
-        
-        // render hand
         displayHands()
+    }
+    
+    func setupVariables(game: Game) {
+        self.game = game
+        self.playarea = self.game.playarea
+        self.deck = self.game.deck
+        self.players = self.game.players
+        self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
+        if self.players.count > 1 {
+             self.otherPlayer = self.players.first(where: {$0.displayName != self.peerID.displayName})!
+        }
     }
     
     func displayHands() {
@@ -57,7 +47,6 @@ class GameViewController: UIViewController {
             localPlayer.draw(deck: game.deck)
         }
         displayHands()
-        // TODO: delete this code
         sendUpdateMessage()
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
@@ -83,7 +72,6 @@ class GameViewController: UIViewController {
         // update model if new position is valid
         let newOrigin = CGPoint(x: newX, y: newY)
         if validPosition(newOrigin, image: touchedImage) {
-//            let touchedCard = playarea.cards.first(where: {$0.name == touchedImage.accessibilityIdentifier})!
             let touchedCard = getCardObject(image: touchedImage)
             touchedCard.setCoords(x: Float(newX), y: Float(newY))
         }
@@ -188,8 +176,8 @@ class GameViewController: UIViewController {
         renderPlayarea(playarea, location: playareaView)
     }
     func sendUpdateMessage() {
-        var gameMessage = Message<Game>(action: "updateGame", object: self.game)
-        var data = homeViewController.encodeObject(gameMessage)
+        let gameMessage = Message(action: "updateGame", game: self.game)
+        let data = homeViewController.encodeMessage(gameMessage)
         homeViewController.sendMessage(data: data)
     }
 }
@@ -208,14 +196,9 @@ extension GameViewController: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async {
             do {
-                let decodedMessage = try JSONDecoder().decode(Message<Game>.self, from: data)
-                let decodedGame = decodedMessage.object
-                self.game = decodedGame
-                self.playarea = self.game.playarea
-                self.deck = self.game.deck
-                self.players = self.game.players
-                self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
-                self.otherPlayer = self.players.first(where: {$0.displayName != self.peerID.displayName})!
+                let decodedMessage = try JSONDecoder().decode(Message.self, from: data)
+                let decodedGame = decodedMessage.game
+                self.setupVariables(game: decodedGame)
                 if decodedMessage.action == "setupGame" {
                     self.homeViewController.present(self, animated: true, completion: nil)
                 } else if decodedMessage.action == "updateGame" {
