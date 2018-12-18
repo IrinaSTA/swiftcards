@@ -5,21 +5,23 @@ class HomePageViewController: UIViewController {
     var advertiserAssistant: MCAdvertiserAssistant!
     var session: MCSession!
     var peerID: MCPeerID!
-    var viewController: ViewController!
+    var setupViewController: SetupViewController!
     var gameViewController: GameViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         peerID = MCPeerID(displayName: UIDevice.current.name)
         self.session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        viewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
-        viewController.session = self.session
-        viewController.peerID = peerID
+        setupViewController = storyBoard.instantiateViewController(withIdentifier: "SetupViewController") as? SetupViewController
+        setupViewController.session = self.session
+        setupViewController.peerID = peerID
         gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController
         gameViewController.homePageViewController = self
         gameViewController.peerID = peerID
         session.delegate = gameViewController
-        gameViewController.homeViewController = viewController
+        gameViewController.setupViewController = setupViewController
+        setupViewController.gameViewController = gameViewController
     }
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {
@@ -37,16 +39,16 @@ class HomePageViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
+
     @IBAction func setupSinglePlayerGame(_ sender: UIButton) {
-        self.present(viewController, animated: true, completion: nil)
+        self.present(setupViewController, animated: true, completion: nil)
     }
 }
 
 extension HomePageViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true, completion: nil)
-        self.present(viewController, animated: true, completion: nil)
+        self.present(setupViewController, animated: true, completion: nil)
     }
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true, completion: nil)
