@@ -60,6 +60,24 @@ class GameViewController: UIViewController {
         renderPlayarea(playarea, location: playareaView)
         sendUpdateMessage()
     }
+    @objc func imageDoubleTapped(tap: UITapGestureRecognizer) {
+        let tappedImage = tap.view as! UIImageView
+        let tappedCard = getCardObject(image: tappedImage)
+        if localPlayer.hand.cards.contains(tappedCard) || playarea.cards.contains(tappedCard) {
+            flip(tappedCard)
+        }
+        renderHand(localPlayer.hand, location: handView)
+        renderPlayarea(playarea, location: playareaView)
+        sendUpdateMessage()
+    }
+    
+    func flip(_ card: Card) {
+        if card.display == "front" {
+            card.faceDown()
+        } else {
+            card.faceUp()
+        }
+    }
     @objc func pan(drag: UIPanGestureRecognizer) {
         let touchedImage = drag.view as! UIImageView
 
@@ -91,10 +109,17 @@ class GameViewController: UIViewController {
         }
     }
 
-    func makeTappable(imageView: UIImageView) {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
+    func makeSingleTappable(imageView: UIImageView) {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
+//        imageView.isUserInteractionEnabled = true
+//        imageView.addGestureRecognizer(tap)
+    }
+    
+    func makeDoubleTappable(imageView: UIImageView) {
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTapped(tap:)))
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tap)
+        doubleTap.numberOfTapsRequired = 2
+        imageView.addGestureRecognizer(doubleTap)
     }
 
     func makeDraggable(imageView: UIImageView) {
@@ -127,9 +152,7 @@ class GameViewController: UIViewController {
             let leftPosition = Float(hand.cards.index(of: card)! * 30)
             card.setCoords(x: leftPosition, y: 0.0)
             render(card, location: location)
-            if location == handView {
-                showFront(imageView(card))
-            } else {
+            if location == opponentHandView {
                 showBack(imageView(card))
             }
         }
@@ -151,6 +174,11 @@ class GameViewController: UIViewController {
     func render(_ card: Card, location: UIView) {
         var cardView = UIImageView()
         cardView = imageView(card)
+        if card.display == "front" {
+            showFront(cardView)
+        } else if card.display == "back" {
+            showBack(cardView)
+        }
         location.addSubview(cardView)
         let xPosition = CGFloat(card.xPosition)
         let yPosition = CGFloat(card.yPosition)
@@ -171,7 +199,8 @@ class GameViewController: UIViewController {
             imageView.isAccessibilityElement = true
             imageView.accessibilityIdentifier = card.name
             imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
-            makeTappable(imageView: imageView)
+            makeSingleTappable(imageView: imageView)
+            makeDoubleTappable(imageView: imageView)
             return imageView
         }
     }
