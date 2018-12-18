@@ -36,7 +36,6 @@ class HomePageViewController: UIViewController {
 extension HomePageViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true, completion: nil)
-        print(viewController)
         self.present(viewController, animated: true, completion: nil)
     }
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
