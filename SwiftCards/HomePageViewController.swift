@@ -6,6 +6,7 @@ class HomePageViewController: UIViewController {
     var session: MCSession!
     var peerID: MCPeerID!
     var viewController: ViewController!
+    var gameViewController: GameViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
         peerID = MCPeerID(displayName: UIDevice.current.name)
@@ -14,6 +15,7 @@ class HomePageViewController: UIViewController {
         viewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
         viewController.session = self.session
         viewController.peerID = self.peerID
+        gameViewController.homePageViewController = self
     }
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {
