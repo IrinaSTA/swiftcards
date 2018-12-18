@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         setupGame()
         let gameMessage = Message(action: "setupGame", game: gameViewController.game)
         let data = encodeMessage(gameMessage)
+        print(session.connectedPeers)
         sendMessage(data: data)
         self.present(gameViewController, animated: true, completion: nil)
     }
