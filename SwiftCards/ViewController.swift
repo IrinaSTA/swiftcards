@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 //        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
 //        gameViewController.session = self.session
 //        session = homePageViewController.session
-//        gameViewController.peerID = self.peerID
+        gameViewController.peerID = self.peerID
         gameViewController.homeViewController = self
         session.delegate = gameViewController
     }
