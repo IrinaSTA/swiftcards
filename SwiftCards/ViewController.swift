@@ -24,7 +24,8 @@ class ViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var handSizeText: UITextField!
-
+    @IBOutlet weak var toggleFaceDownSwitch: UISwitch!
+    
     // MARK: Actions
     @IBAction func showConnectionOptions(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: "Swiftcards", message: "Do you want to Host or Join this session?", preferredStyle: .actionSheet)
@@ -49,9 +50,15 @@ class ViewController: UIViewController {
         sendMessage(data: data)
         self.present(gameViewController, animated: true, completion: nil)
     }
+  
     func setupGame() {
         let newGame = Game(handSize: enteredHandSize(), players: getPlayers(session: self.session))
         newGame.deck.shuffle()
+        if toggleFaceDownSwitch.isOn {
+            for card in newGame.deck.cards {
+                card.faceDown()
+            }
+        }
         newGame.deal()
         gameViewController.setupVariables(game: newGame)
     }
