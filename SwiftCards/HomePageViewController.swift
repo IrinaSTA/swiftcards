@@ -10,13 +10,21 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         peerID = MCPeerID(displayName: UIDevice.current.name)
+        print("peerID in HPVC is:")
+        print(peerID)
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         viewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
         viewController.session = self.session
-        viewController.peerID = self.peerID
+        viewController.peerID = peerID
+        print("viewController peerID has been set to, in HPVC:")
+        print(viewController.peerID)
         gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController
         gameViewController.homePageViewController = self
+        gameViewController.peerID = peerID
+        print("gameViewController peerID has been set to, in HPVC:")
+        print(gameViewController.peerID)
+        session.delegate = gameViewController
     }
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {

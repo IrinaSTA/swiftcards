@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 //        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
 //        gameViewController.session = self.session
 //        session = homePageViewController.session
-        gameViewController.peerID = self.peerID
+//        gameViewController.peerID = self.peerID
         gameViewController.homeViewController = self
         session.delegate = gameViewController
     }
@@ -28,7 +28,6 @@ class ViewController: UIViewController {
         setupGame()
         let gameMessage = Message(action: "setupGame", game: gameViewController.game)
         let data = encodeMessage(gameMessage)
-        print(session.connectedPeers)
         sendMessage(data: data)
         self.present(gameViewController, animated: true, completion: nil)
     }
@@ -64,8 +63,11 @@ class ViewController: UIViewController {
     func sendMessage(data: Data) {
         if session.connectedPeers.count > 0 {
             do {
+                print("Trying to send message to:")
+                print(session.connectedPeers)
                 try session.send(data, toPeers: session.connectedPeers, with: .reliable)
             } catch let error as NSError {
+                print("Failed to send message")
                 print(error)
             }
         }
