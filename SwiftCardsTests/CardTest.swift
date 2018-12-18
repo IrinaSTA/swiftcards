@@ -44,4 +44,14 @@ class CardTest: XCTestCase {
         }
         XCTAssertEqual(card, decodedCard)
     }
+    func testFaceDown() {
+        XCTAssertEqual(card.display, "front")
+        card.faceDown()
+        XCTAssertEqual(card.display, "back")
+    }
+    func testFaceUp() {
+        card.faceDown()
+        card.faceUp()
+        XCTAssertEqual(card.display, "front")
+    }
 }
