@@ -119,7 +119,6 @@ class GameViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         if !(imageView.gestureRecognizers!.contains {$0 is UIPanGestureRecognizer}) {
             imageView.addGestureRecognizer(drag)
-            print("adding a drag recognizer")
         }
     }
 
