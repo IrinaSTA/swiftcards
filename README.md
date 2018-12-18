@@ -20,4 +20,6 @@ Tests are written using Xcode's testing suite XCTest and need to be run in Xcode
 Tests are all currently passing and test coverage is 91.2%.
 
 ## Linting
-Linting is built in to Xcode, once you have built the app 
+Linting is built in to Xcode, once you have built the app click the `issue navigator` icon to see any linting errors, these shows as yellow warnings like this
+
+Please note that the app has been built using Swift version 4 due to device combatability issues. If you are running Xcode 10 you will get a linting error letting you know that you can upgrade. 
