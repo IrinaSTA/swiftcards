@@ -15,6 +15,7 @@ class HomePageViewController: UIViewController {
         viewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
         viewController.session = self.session
         viewController.peerID = self.peerID
+        gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController
         gameViewController.homePageViewController = self
     }
 
