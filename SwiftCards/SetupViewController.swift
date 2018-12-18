@@ -1,7 +1,7 @@
 import UIKit
 import MultipeerConnectivity
 
-class ViewController: UIViewController {
+class SetupViewController: UIViewController {
     var homePageViewController: HomePageViewController!
     var gameViewController: GameViewController!
     var peerID: MCPeerID!
@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController
         gameViewController.peerID = self.peerID
-        gameViewController.homeViewController = self
+        gameViewController.setupViewController = self
         session.delegate = gameViewController
     }
 
