@@ -81,10 +81,12 @@ class ViewController: UIViewController {
     }
     func sendMessage(data: Data) {
         if session.connectedPeers.count > 0 {
-            do {
-                try session.send(data, toPeers: session.connectedPeers, with: .reliable)
-            } catch let error as NSError {
-                print(error)
+             DispatchQueue.main.async {
+                do {
+                    try self.session.send(data, toPeers: self.session.connectedPeers, with: .reliable)
+                } catch let error as NSError {
+                    print(error)
+                }
             }
         }
     }
