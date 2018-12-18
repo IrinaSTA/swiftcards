@@ -10,7 +10,7 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         peerID = MCPeerID(displayName: UIDevice.current.name)
-        session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
+        self.session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         viewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
         viewController.session = self.session
@@ -36,6 +36,10 @@ class HomePageViewController: UIViewController {
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @IBAction func setupSinglePlayerGame(_ sender: UIButton) {
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 
