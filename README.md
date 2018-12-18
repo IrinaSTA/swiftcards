@@ -20,7 +20,7 @@ Tests are written using Xcode's testing suite XCTest and need to be run in Xcode
 Tests are all currently passing and test coverage is 91.2%.
 
 ## Linting
-Linting is built in to Xcode, once you have built the app click the `issue navigator` icon to see any linting errors, these shows as yellow warnings like this:
+Linting is done via SwiftLint, and is triggered automatically on building. Once you have installed dependencies and built the app click the `issue navigator` icon to see any linting errors, these shows as yellow warnings like this:
 
 ![alt text](./Cards.xcassets/linting.png)
 
