@@ -60,15 +60,17 @@ class GameViewController: UIViewController {
         renderPlayarea(playarea, location: playareaView)
         sendUpdateMessage()
     }
-    @objc func imageDoubleTapped(tap: UITapGestureRecognizer) {
-        let tappedImage = tap.view as! UIImageView
-        let tappedCard = getCardObject(image: tappedImage)
-        if localPlayer.hand.cards.contains(tappedCard) || playarea.cards.contains(tappedCard) {
-            flip(tappedCard)
+    @objc func imagePressed(press: UILongPressGestureRecognizer) {
+        let pressedImage = press.view as! UIImageView
+        let pressedCard = getCardObject(image: pressedImage)
+        if press.state == UIGestureRecognizerState.began {
+            if localPlayer.hand.cards.contains(pressedCard) || playarea.cards.contains(pressedCard) {
+                flip(pressedCard)
+            }
+            renderHand(localPlayer.hand, location: handView)
+            renderPlayarea(playarea, location: playareaView)
+            sendUpdateMessage()
         }
-        renderHand(localPlayer.hand, location: handView)
-        renderPlayarea(playarea, location: playareaView)
-        sendUpdateMessage()
     }
     
     func flip(_ card: Card) {
@@ -88,38 +90,29 @@ class GameViewController: UIViewController {
 
         // update model if new position is valid
         let newOrigin = CGPoint(x: newX, y: newY)
-        if validPosition(newOrigin, image: touchedImage) {
-            let touchedCard = getCardObject(image: touchedImage)
-            touchedCard.setCoords(x: Float(newX), y: Float(newY))
+        guard validPosition(newOrigin, image: touchedImage) else {
+            return
         }
-
-        // update the view from the model
+        
+        let touchedCard = getCardObject(image: touchedImage)
+        touchedCard.setCoords(x: Float(newX), y: Float(newY))
         renderPlayarea(playarea, location: playareaView)
-
-        // bring card to front
         playareaView.bringSubview(toFront: touchedImage)
-
-        // reset translation to zero (otherwise it's cumulative)
         drag.setTranslation(.zero, in: touchedImage)
         sendUpdateMessage()
-
-        // send data when the gesture has finished
-        if drag.state == UIGestureRecognizerState.ended {
-            
-        }
     }
 
     func makeSingleTappable(imageView: UIImageView) {
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
-//        imageView.isUserInteractionEnabled = true
-//        imageView.addGestureRecognizer(tap)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tap:)))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
     }
     
-    func makeDoubleTappable(imageView: UIImageView) {
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(imageDoubleTapped(tap:)))
+    func makePressable(imageView: UIImageView) {
+        let press = UILongPressGestureRecognizer(target: self, action: #selector(imagePressed(press:)))
         imageView.isUserInteractionEnabled = true
-        doubleTap.numberOfTapsRequired = 2
-        imageView.addGestureRecognizer(doubleTap)
+        press.minimumPressDuration = 0.5
+        imageView.addGestureRecognizer(press)
     }
 
     func makeDraggable(imageView: UIImageView) {
@@ -168,7 +161,6 @@ class GameViewController: UIViewController {
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
             render(card, location: playareaView)
-            showFront(imageView(card))
         }
     }
     func render(_ card: Card, location: UIView) {
@@ -200,7 +192,7 @@ class GameViewController: UIViewController {
             imageView.accessibilityIdentifier = card.name
             imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
             makeSingleTappable(imageView: imageView)
-            makeDoubleTappable(imageView: imageView)
+            makePressable(imageView: imageView)
             return imageView
         }
     }
