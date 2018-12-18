@@ -15,36 +15,33 @@ class GameViewController: UIViewController {
     var players: [Player] = []
     var localPlayer: Player!
     var otherPlayer: Player!
+    let HAND_MAXIMUM = 10
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayHands()
+        renderAll()
     }
 
     func setupVariables(game: Game) {
         self.game = game
-        self.playarea = self.game.playarea
-        self.deck = self.game.deck
-        self.players = self.game.players
-        self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
-        if self.players.count > 1 {
-             self.otherPlayer = self.players.first(where: {$0.displayName != self.peerID.displayName})!
+        playarea = game.playarea
+        deck = game.deck
+        players = game.players
+        localPlayer = players.first(where: {$0.displayName == peerID.displayName})!
+        if players.count > 1 {
+             otherPlayer = players.first(where: {$0.displayName != peerID.displayName})!
         }
     }
-    func displayHands() {
-        if players.count != 1 {
-            renderHand(otherPlayer.hand, location: opponentHandView)
-        }
-        renderHand(localPlayer.hand, location: handView)
-    }
+
     @IBAction func newGame(_ sender: Any) {
         game.reset()
     }
     @IBAction func deckTapped(_ sender: Any) {
-        if localPlayer.hand.cards.count < 10 {
-            localPlayer.draw(deck: game.deck)
+        if localPlayer.hand.cards.count >= HAND_MAXIMUM {
+            return
         }
-        displayHands()
+        localPlayer.draw(deck: game.deck)
+        renderAll()
         sendUpdateMessage()
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
@@ -52,22 +49,23 @@ class GameViewController: UIViewController {
         let tappedCard = getCardObject(image: tappedImage)
         if localPlayer.hand.cards.contains(tappedCard) {
             localPlayer.play(card: tappedCard, location: playarea)
+            makeDraggable(imageView: tappedImage)
         } else {
             localPlayer.reclaim(card: tappedCard, from: playarea)
+            removeDraggable(imageView: tappedImage)
         }
-        renderHand(localPlayer.hand, location: handView)
-        renderPlayarea(playarea, location: playareaView)
+        renderAll()
         sendUpdateMessage()
     }
     @objc func imagePressed(press: UILongPressGestureRecognizer) {
         let pressedImage = press.view as! UIImageView
         let pressedCard = getCardObject(image: pressedImage)
-        if press.state == UIGestureRecognizerState.began {
-            if localPlayer.hand.cards.contains(pressedCard) || playarea.cards.contains(pressedCard) {
-                flip(pressedCard)
-            }
-            renderHand(localPlayer.hand, location: handView)
-            renderPlayarea(playarea, location: playareaView)
+        if press.state != UIGestureRecognizerState.began {
+            return
+        }
+        if localPlayer.hand.cards.contains(pressedCard) || playarea.cards.contains(pressedCard) {
+            flip(pressedCard)
+            renderAll()
             sendUpdateMessage()
         }
     }
@@ -96,8 +94,7 @@ class GameViewController: UIViewController {
         let touchedCard = getCardObject(image: touchedImage)
         touchedCard.setCoords(x: Float(newX), y: Float(newY))
         playarea.bringCardToFront(touchedCard)
-        renderPlayarea(playarea, location: playareaView)
-//        playareaView.bringSubview(toFront: touchedImage)
+        renderPlayarea(playarea)
         drag.setTranslation(.zero, in: touchedImage)
         sendUpdateMessage()
     }
@@ -140,14 +137,39 @@ class GameViewController: UIViewController {
             return false
         }
     }
-    func renderHand(_ hand: Hand, location: UIView) {
-        for card in hand.cards {
-            let leftPosition = Float(hand.cards.index(of: card)! * 30)
-            card.setCoords(x: leftPosition, y: 0.0)
-            render(card, location: location)
-            if location == opponentHandView {
-                showBack(imageView(card))
-            }
+    // MARK: render methods
+    func render(_ card: Card, location: UIView) {
+        let cardView = imageView(card)
+        showDisplay(cardView)
+        location.addSubview(cardView)
+        let xPosition = CGFloat(card.xPosition)
+        let yPosition = CGFloat(card.yPosition)
+        cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
+    }
+    func imageView(_ card: Card) -> UIImageView {
+        let allViews = playareaView.subviews + handView.subviews + opponentHandView.subviews
+        if let preexistingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
+            return preexistingView as! UIImageView
+        } else {
+            return makeNewImageView(card)
+        }
+    }
+    func makeNewImageView(_ card: Card) -> UIImageView {
+        let image = UIImage(named: card.name + ".png")
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityIdentifier = card.name
+        makeSingleTappable(imageView: imageView)
+        makePressable(imageView: imageView)
+        return imageView
+    }
+    func showDisplay(_ cardView: UIImageView) {
+        let card = getCardObject(image: cardView)
+        if card.display == "front" {
+            showFront(cardView)
+        } else if card.display == "back" {
+            showBack(cardView)
         }
     }
     func showFront(_ cardView: UIImageView) {
@@ -156,59 +178,37 @@ class GameViewController: UIViewController {
     func showBack(_ cardView: UIImageView) {
         cardView.image = UIImage(named: "backOfCard.png")
     }
-    
-    
-    func renderPlayarea(_ playarea: Playarea, location: UIView) {
+    func renderHand(_ hand: Hand, location: UIView) {
+        positionHand(hand)
+        for card in hand.cards {
+            render(card, location: location)
+            if location == opponentHandView {
+                showBack(imageView(card))
+            }
+        }
+    }
+    func positionHand(_ hand: Hand) {
+        for card in hand.cards {
+            let leftPosition = Float(hand.cards.index(of: card)! * 30)
+            card.setCoords(x: leftPosition, y: 0.0)
+        }
+    }
+    func renderPlayarea(_ playarea: Playarea) {
         for card in playarea.cards {
             render(card, location: playareaView)
         }
     }
-    func render(_ card: Card, location: UIView) {
-        var cardView = UIImageView()
-        cardView = imageView(card)
-        if card.display == "front" {
-            showFront(cardView)
-        } else if card.display == "back" {
-            showBack(cardView)
+    func renderAll() {
+        if players.count > 1 {
+            renderHand(otherPlayer.hand, location: opponentHandView)
         }
-        location.addSubview(cardView)
-        let xPosition = CGFloat(card.xPosition)
-        let yPosition = CGFloat(card.yPosition)
-        cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
-        if location == playareaView {
-            makeDraggable(imageView: cardView)
-        } else {
-            removeDraggable(imageView: cardView)
-        }
-    }
-    func imageView(_ card: Card) -> UIImageView {
-        let allViews = playareaView.subviews + handView.subviews + opponentHandView.subviews
-        if let existingView = allViews.first(where: {$0.accessibilityIdentifier == card.name}) {
-            return existingView as! UIImageView
-        } else {
-            let image = UIImage(named: card.name + ".png")
-            let imageView = UIImageView(image: image!)
-            imageView.isAccessibilityElement = true
-            imageView.accessibilityIdentifier = card.name
-            imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
-            makeSingleTappable(imageView: imageView)
-            makePressable(imageView: imageView)
-            return imageView
-        }
-    }
-    func makeOpponentView(_ card: Card) -> UIImageView {
-        let image = UIImage(named: "backOfCard.png")
-        let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
-        return imageView
+        renderHand(localPlayer.hand, location: handView)
+        renderPlayarea(playarea)
     }
     func getCardObject(image: UIImageView) -> Card {
         return game.find(name: image.accessibilityIdentifier!)
     }
-    func renderAll() {
-        displayHands()
-        renderPlayarea(playarea, location: playareaView)
-    }
+    // MARK: send messages
     func sendUpdateMessage() {
         let gameMessage = Message(action: "updateGame", game: self.game)
         let data = homeViewController.encodeMessage(gameMessage)

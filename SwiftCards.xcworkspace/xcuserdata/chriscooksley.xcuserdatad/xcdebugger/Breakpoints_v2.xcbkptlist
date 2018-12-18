@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftCards/GameViewController.swift"
-            timestampString = "566836488.431301"
+            timestampString = "566844409.339215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "pan(drag:)"
             landmarkType = "7">
          </BreakpointContent>

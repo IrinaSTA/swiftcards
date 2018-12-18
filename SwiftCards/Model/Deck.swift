@@ -19,6 +19,7 @@ class Deck: Equatable, Codable {
                 self.cards.append(card)
             }
         }
+        self.shuffle()
     }
     func shuffle() {
         var newCards: [Card] = []
