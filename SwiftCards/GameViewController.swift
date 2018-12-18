@@ -39,7 +39,9 @@ class GameViewController: UIViewController {
         renderHand(localPlayer.hand, location: handView)
     }
     @IBAction func newGame(_ sender: Any) {
-        game.reset()
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        homePageViewController = storyBoard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController
+        self.present(homePageViewController, animated: true, completion: nil)
     }
     @IBAction func deckTapped(_ sender: Any) {
         if localPlayer.hand.cards.count < 10 {

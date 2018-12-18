@@ -21,6 +21,7 @@ class HomePageViewController: UIViewController {
         gameViewController.peerID = peerID
         session.delegate = gameViewController
         gameViewController.setupViewController = setupViewController
+        setupViewController.gameViewController = gameViewController
     }
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {

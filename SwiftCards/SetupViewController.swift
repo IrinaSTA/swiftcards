@@ -11,7 +11,6 @@ class SetupViewController: UIViewController {
         super.viewDidLoad()
 
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        gameViewController = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController
         gameViewController.peerID = self.peerID
         gameViewController.setupViewController = self
         session.delegate = gameViewController

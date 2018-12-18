@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -169,7 +168,6 @@
                                 </state>
                                 <connections>
                                     <action selector="newGame:" destination="zIf-sn-4P2" eventType="touchUpInside" id="h5b-th-S0s"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="7Yy-Et-fOx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -209,7 +207,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="aces" width="1225" height="732"/>
-        <image name="backOfCard" width="345" height="528"/>
+        <image name="aces" width="588.239990234375" height="351.60000610351562"/>
+        <image name="backOfCard" width="165.83999633789062" height="253.44000244140625"/>
     </resources>
 </document>
