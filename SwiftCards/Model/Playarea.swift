@@ -19,6 +19,10 @@ class Playarea: Equatable, Codable {
         }
         return card
     }
+    func bringCardToFront(_ card: Card) {
+        let removedCard = self.remove(card: card)
+        add(card: removedCard)
+    }
     static func == (lhs: Playarea, rhs: Playarea) -> Bool {
         return lhs.cards == rhs.cards
     }

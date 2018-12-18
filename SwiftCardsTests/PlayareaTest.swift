@@ -12,9 +12,11 @@ import XCTest
 class PlayareaTest: XCTestCase {
 
     var card: Card!
+    var card2: Card!
     var playarea: Playarea!
     override func setUp() {
         card = Card(value: "2", suit: "hearts")
+        card2 = Card(value: "3", suit: "hearts")
         playarea = Playarea()
     }
     func testAttributes() {
@@ -44,5 +46,11 @@ class PlayareaTest: XCTestCase {
             print("Oops!")
         }
         XCTAssertEqual(playarea, decodedPlayarea)
+    }
+    func testBringCardToFront() {
+        playarea.add(card: card)
+        playarea.add(card: card2)
+        playarea.bringCardToFront(card)
+        XCTAssertEqual(playarea.cards.last, card)
     }
 }
