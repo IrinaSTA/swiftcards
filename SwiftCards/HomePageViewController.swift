@@ -24,6 +24,7 @@ class HomePageViewController: UIViewController {
         gameViewController.setupViewController = setupViewController
         setupViewController.gameViewController = gameViewController
         joinerViewController = storyBoard.instantiateViewController(withIdentifier: "JoinerViewController") as? JoinerViewController
+        gameViewController.joinerViewController = joinerViewController
     }
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {
