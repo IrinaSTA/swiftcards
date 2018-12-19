@@ -39,6 +39,14 @@ class GameViewController: UIViewController {
         }
         renderHand(localPlayer.hand, location: handView)
     }
+    @IBAction func restackDeck(_ sender: Any) {
+        for card in playarea.cards {
+            let removedCard = playarea.remove(card: card)
+            deck.cards.append(removedCard)
+        }
+        deck.shuffle()
+        removeCardViewsFromPlayarea()
+    }
     @IBAction func newGame(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         homePageViewController = storyBoard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController
@@ -229,6 +237,11 @@ class GameViewController: UIViewController {
         let data = setupViewController.encodeMessage(gameMessage)
         setupViewController.sendMessage(data: data)
     }
+    func removeCardViewsFromPlayarea() {
+        for view in playareaView.subviews {
+            view.removeFromSuperview()
+        }
+    }
     func percentage(_ coordinate: CGFloat, container: UIView, dimension: String) -> Float {
         var max: CGFloat
         if dimension == "width" {
@@ -246,6 +259,7 @@ class GameViewController: UIViewController {
             max = Float(container.bounds.height)
         }
         return CGFloat((coordinate / 100) * max)
+
     }
 }
 
