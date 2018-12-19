@@ -54,4 +54,11 @@ class CardTest: XCTestCase {
         card.faceUp()
         XCTAssertEqual(card.display, "front")
     }
+    func testFlip() {
+        card.faceUp()
+        card.flip()
+        XCTAssertEqual(card.display, "back")
+        card.flip()
+        XCTAssertEqual(card.display, "front")
+    }
 }
