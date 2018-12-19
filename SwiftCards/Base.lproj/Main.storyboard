@@ -260,15 +260,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztN-d8-9Mc" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="20" width="414" height="28.666666666666671"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pN8-FZ-tzA">
-                                        <rect key="frame" x="84" y="-2" width="104" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pN8-FZ-tzA">
+                                        <rect key="frame" x="86" y="-2" width="102" height="23.666666666666668"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="D3b-1c-9es"/>
+                                            <constraint firstAttribute="width" constant="102" id="dWM-mu-K9a"/>
+                                        </constraints>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="New Game">
                                                     <attributes>
                                                         <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="17" name=".SFNSText"/>
+                                                        <font key="NSFont" size="14" name=".SFNSText"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -281,18 +285,15 @@
                                             <action selector="newGame:" destination="zIf-sn-4P2" eventType="touchUpInside" id="h5b-th-S0s"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yTS-cw-e0V">
-                                        <rect key="frame" x="222" y="-2" width="126" height="32.666666666666664"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yTS-cw-e0V">
+                                        <rect key="frame" x="203" y="-2" width="123" height="24"/>
                                         <color key="backgroundColor" red="0.94212492240000001" green="0.95383111720000002" blue="0.93932977660000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="126" id="0FN-kg-c1T"/>
-                                        </constraints>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Restack Deck">
                                                     <attributes>
                                                         <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
+                                                        <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -307,13 +308,13 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="top" secondItem="ztN-d8-9Mc" secondAttribute="top" constant="-2" id="3Bq-wq-Nes"/>
-                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="bottom" secondItem="yTS-cw-e0V" secondAttribute="bottom" id="6p1-hw-Xbe"/>
-                                    <constraint firstAttribute="trailing" secondItem="yTS-cw-e0V" secondAttribute="trailing" constant="66" id="SEg-RI-XNs"/>
-                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="centerY" secondItem="ztN-d8-9Mc" secondAttribute="centerY" id="Utz-js-uBn"/>
-                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="top" secondItem="yTS-cw-e0V" secondAttribute="top" id="WBv-kZ-P4M"/>
-                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="leading" secondItem="pN8-FZ-tzA" secondAttribute="trailing" constant="34" id="Y1b-HL-l03"/>
-                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="leading" secondItem="ztN-d8-9Mc" secondAttribute="leading" constant="84" id="rFP-CL-FiA"/>
+                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="leading" secondItem="pN8-FZ-tzA" secondAttribute="trailing" constant="15" id="5gB-UF-n26"/>
+                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="bottom" secondItem="pN8-FZ-tzA" secondAttribute="bottom" id="CAb-wm-oPC"/>
+                                    <constraint firstAttribute="bottom" secondItem="pN8-FZ-tzA" secondAttribute="bottom" constant="7" id="MQd-iw-iRf"/>
+                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="top" secondItem="pN8-FZ-tzA" secondAttribute="top" id="NzM-P7-KoD"/>
+                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="leading" secondItem="ztN-d8-9Mc" secondAttribute="leading" constant="86" id="PSp-Z8-LZ7"/>
+                                    <constraint firstAttribute="trailing" secondItem="yTS-cw-e0V" secondAttribute="trailing" constant="88" id="pDp-hv-Yu5"/>
+                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="top" secondItem="ztN-d8-9Mc" secondAttribute="top" constant="-2" id="pdD-FA-jbQ"/>
                                 </constraints>
                             </view>
                         </subviews>
