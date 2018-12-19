@@ -196,10 +196,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztN-d8-9Mc" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="20" width="375" height="26"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pN8-FZ-tzA">
-                                        <rect key="frame" x="150" y="-2" width="75" height="30"/>
-                                        <state key="normal" title="New Game">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pN8-FZ-tzA">
+                                        <rect key="frame" x="145" y="-4" width="85" height="32"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="New Game">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.16259369300000001" green="0.3183843999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="17" name=".SFNSText"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                         </state>
                                         <connections>
                                             <action selector="newGame:" destination="zIf-sn-4P2" eventType="touchUpInside" id="h5b-th-S0s"/>
@@ -219,7 +226,6 @@
                             <constraint firstItem="9to-dJ-6ue" firstAttribute="height" secondItem="vPv-d2-LIq" secondAttribute="height" id="50O-lO-Bfp"/>
                             <constraint firstItem="lMe-8X-oN2" firstAttribute="height" secondItem="lg9-gD-gkI" secondAttribute="height" multiplier="0.18" id="52g-dN-PxF"/>
                             <constraint firstItem="lMe-8X-oN2" firstAttribute="top" secondItem="Grj-lq-kvx" secondAttribute="bottom" id="8ez-mp-vKO"/>
-                            <constraint firstItem="9to-dJ-6ue" firstAttribute="centerX" secondItem="f7g-0N-Dqs" secondAttribute="centerX" id="Abc-jY-Btt"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="top" secondItem="vPv-d2-LIq" secondAttribute="bottom" id="BX2-wy-2Y5"/>
                             <constraint firstItem="Grj-lq-kvx" firstAttribute="leading" secondItem="lMe-8X-oN2" secondAttribute="leading" priority="750" id="E3x-bt-ApC"/>
                             <constraint firstItem="ztN-d8-9Mc" firstAttribute="width" secondItem="lg9-gD-gkI" secondAttribute="width" id="Gwb-ci-Yyt"/>

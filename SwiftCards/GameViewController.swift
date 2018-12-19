@@ -20,10 +20,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayHands()
-        print(handView.frame.width)
-        print(playareaView.frame.width)
-        print(opponentHandView.frame.width)
-        print(handView.superview!.frame.width)
     }
 
     func setupVariables(game: Game) {
@@ -38,7 +34,7 @@ class GameViewController: UIViewController {
     }
     func displayHands() {
         if players.count != 1 {
-            renderHand(otherPlayer.hand, location: opponentHandView)
+            renderOpponentHand(otherPlayer.hand, location: opponentHandView)
         }
         renderHand(localPlayer.hand, location: handView)
     }
@@ -48,18 +44,13 @@ class GameViewController: UIViewController {
         self.present(homePageViewController, animated: true, completion: nil)
     }
     @IBAction func deckTapped(_ sender: Any) {
-        print(handView.frame.width)
-        print(playareaView.frame.width)
-        print(opponentHandView.frame.width)
-        print(handView.superview!.frame.width)
-        if localPlayer.hand.cards.count < 10 {
+        if localPlayer.hand.cards.count < 13 {
             localPlayer.draw(deck: game.deck)
         }
         displayHands()
         sendUpdateMessage()
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
-        print(handView.frame.width)
         let tappedImage = tap.view as! UIImageView
         let tappedCard = getCardObject(image: tappedImage)
         if localPlayer.hand.cards.contains(tappedCard) {
@@ -68,7 +59,6 @@ class GameViewController: UIViewController {
             localPlayer.reclaim(card: tappedCard, from: playarea)
         }
         renderHand(localPlayer.hand, location: handView)
-        
         renderPlayarea(playarea, location: playareaView)
         sendUpdateMessage()
     }
@@ -108,8 +98,6 @@ class GameViewController: UIViewController {
         let touchedCard = getCardObject(image: touchedImage)
         let percentageX = percentage(newX, container: playareaView, dimension: "width")
         let percentageY = percentage(newY, container: playareaView, dimension: "height")
-        print(percentageX)
-        print(percentageY)
         touchedCard.setCoords(x: percentageX, y: percentageY)
         playarea.bringCardToFront(touchedCard)
         renderPlayarea(playarea, location: playareaView)
@@ -165,6 +153,14 @@ class GameViewController: UIViewController {
             }
         }
     }
+    func renderOpponentHand(_ hand: Hand, location: UIView) {
+        for card in hand.cards {
+            let leftPosition = Float(hand.cards.index(of: card)!) * 4.5
+            card.setCoords(x: leftPosition, y: 0.0)
+            render(card, location: location)
+            showOpponent(imageView(card))
+        }
+    }
     func showFront(_ cardView: UIImageView) {
         cardView.image = UIImage(named: cardView.accessibilityIdentifier! + ".png")
     }
@@ -206,7 +202,7 @@ class GameViewController: UIViewController {
             let imageView = UIImageView(image: image!)
             imageView.isAccessibilityElement = true
             imageView.accessibilityIdentifier = card.name
-            let cardWidth = absolute(20.0, container: handView.superview!, dimension: "width")
+            let cardWidth = absolute(20.0, container: handView.superview!, dimension: "width") // uses superview width because handView and playareaView widths are unreliable for some reason
             let cardHeight = cardWidth * 1.4
             imageView.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
             makeSingleTappable(imageView: imageView)
