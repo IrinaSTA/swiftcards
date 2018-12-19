@@ -108,6 +108,8 @@ class GameViewController: UIViewController {
         let touchedCard = getCardObject(image: touchedImage)
         let percentageX = percentage(newX, container: playareaView, dimension: "width")
         let percentageY = percentage(newY, container: playareaView, dimension: "height")
+        print(percentageX)
+        print(percentageY)
         touchedCard.setCoords(x: percentageX, y: percentageY)
         playarea.bringCardToFront(touchedCard)
         renderPlayarea(playarea, location: playareaView)
@@ -159,7 +161,7 @@ class GameViewController: UIViewController {
             card.setCoords(x: leftPosition, y: 0.0)
             render(card, location: location)
             if location == opponentHandView {
-                showBack(imageView(card))
+                showOpponent(imageView(card))
             }
         }
     }
@@ -168,6 +170,9 @@ class GameViewController: UIViewController {
     }
     func showBack(_ cardView: UIImageView) {
         cardView.image = UIImage(named: "backOfCard.png")
+    }
+    func showOpponent(_ cardView: UIImageView) {
+        cardView.image = UIImage(named: "otherPlayerCard.png")
     }
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
@@ -183,7 +188,7 @@ class GameViewController: UIViewController {
             showBack(cardView)
         }
         location.addSubview(cardView)
-        let xPosition = absolute(card.xPosition, container: location, dimension: "width")
+        let xPosition = absolute(card.xPosition, container: location.superview!, dimension: "width")
         let yPosition = absolute(card.yPosition, container: location, dimension: "height")
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
         if location == playareaView {
