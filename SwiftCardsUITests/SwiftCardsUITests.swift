@@ -27,9 +27,17 @@ class SwiftCardsUITests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testHomePage() {
         app.launch()
+        let singlePlayerButton = app.buttons["Single Player"]
+        let multiplayerButton = app.buttons["Multiplayer"]
+        XCTAssert(singlePlayerButton.exists)
+        XCTAssert(multiplayerButton.exists)
+    }
+    func testSetUpPage() {
+        app.launch()
+        app.buttons["Single Player"].tap()
         let enterHandSizeText = app.staticTexts["Please enter the number of cards per hand:"]
         XCTAssert(enterHandSizeText.exists)
 
@@ -41,6 +49,7 @@ class SwiftCardsUITests: XCTestCase {
     }
     func testDeckDraw() {
         app.launch()
+        app.buttons["Single Player"].tap()
         let handSizeField = app.textFields["handSizeText"]
         handSizeField.tap()
         handSizeField.typeText("6")

@@ -1,7 +1,7 @@
 import UIKit
 import MultipeerConnectivity
 
-class SetupViewController: UIViewController {
+class SetupViewController: UIViewController, UITextFieldDelegate {
     var homePageViewController: HomePageViewController!
     var gameViewController: GameViewController!
     var peerID: MCPeerID!
@@ -14,10 +14,14 @@ class SetupViewController: UIViewController {
         gameViewController.peerID = self.peerID
         gameViewController.setupViewController = self
         session.delegate = gameViewController
+        handSizeText.delegate = self
+//        textFieldShouldReturn(handSizeText)
     }
 
     @IBOutlet weak var handSizeText: UITextField!
-
+    @IBOutlet weak var toggleFaceDownSwitch: UISwitch!
+    
+    
     @IBAction func play(_ sender: UIButton) {
         setupGame()
         let gameMessage = Message(action: "setupGame", game: gameViewController.game)
@@ -28,6 +32,11 @@ class SetupViewController: UIViewController {
     func setupGame() {
         let newGame = Game(handSize: enteredHandSize(), players: getPlayers(session: self.session))
         newGame.deck.shuffle()
+        if toggleFaceDownSwitch.isOn {
+            for card in newGame.deck.cards {
+                card.faceDown()
+            }
+        }
         newGame.deal()
         gameViewController.setupVariables(game: newGame)
     }
@@ -64,6 +73,10 @@ class SetupViewController: UIViewController {
                 }
             }
         }
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        handSizeText.resignFirstResponder()
+        return true
     }
 }
 
