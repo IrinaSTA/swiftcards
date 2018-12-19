@@ -96,6 +96,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buN-sc-6wU">
                                 <rect key="frame" x="150.5" y="374" width="74.5" height="30"/>
+
                                 <accessibility key="accessibilityConfiguration" identifier="handSizeText">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -125,6 +126,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the number of cards per hand:" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-J1-yQB">
                                 <rect key="frame" x="15" y="324" width="345" height="21"/>
+
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -141,11 +143,13 @@
                             <constraint firstItem="NCu-J1-yQB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="ole-tg-RXD"/>
                             <constraint firstItem="85Y-la-wLY" firstAttribute="centerX" secondItem="buN-sc-6wU" secondAttribute="centerX" id="tPo-5G-6g1"/>
                             <constraint firstItem="85Y-la-wLY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="165" id="xK0-K6-ymJ"/>
+
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="handSizeText" destination="buN-sc-6wU" id="38L-Jb-CYO"/>
+                        <outlet property="toggleFaceDownSwitch" destination="4gK-Nz-sYE" id="af5-7l-Xad"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
