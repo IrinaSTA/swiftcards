@@ -38,6 +38,14 @@ class GameViewController: UIViewController {
         }
         renderHand(localPlayer.hand, location: handView)
     }
+    @IBAction func restackDeck(_ sender: Any) {
+        for card in playarea.cards {
+            let removedCard = playarea.remove(card: card)
+            deck.cards.append(removedCard)
+        }
+        deck.shuffle()
+        removeCardViewsFromPlayarea()
+    }
     @IBAction func newGame(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         homePageViewController = storyBoard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController
@@ -99,7 +107,7 @@ class GameViewController: UIViewController {
         touchedCard.setCoords(x: Float(newX), y: Float(newY))
         playarea.bringCardToFront(touchedCard)
         renderPlayarea(playarea, location: playareaView)
-//        playareaView.bringSubview(toFront: touchedImage)
+        // playareaView.bringSubview(toFront: touchedImage)
         drag.setTranslation(.zero, in: touchedImage)
         sendUpdateMessage()
     }
@@ -213,6 +221,11 @@ class GameViewController: UIViewController {
         let gameMessage = Message(action: "updateGame", game: self.game)
         let data = setupViewController.encodeMessage(gameMessage)
         setupViewController.sendMessage(data: data)
+    }
+    func removeCardViewsFromPlayarea() {
+        for view in playareaView.subviews {
+            view.removeFromSuperview()
+        }
     }
 }
 
