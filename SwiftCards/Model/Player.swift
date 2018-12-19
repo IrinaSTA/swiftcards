@@ -12,6 +12,7 @@ import MultipeerConnectivity
 class Player: Equatable, Codable {
     var hand = Hand()
     var displayName: String
+    
     init(peerID: MCPeerID) {
         self.displayName = peerID.displayName
     }
