@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
-    <device id="retina5_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,11 +16,22 @@
             <objects>
                 <viewController storyboardIdentifier="HomePageViewController" id="390-eA-dPq" customClass="HomePageViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Ny-4T-2CN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z53-GK-iWb">
-                                <rect key="frame" x="169" y="252" width="76" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsa-S7-BO0">
+                                <rect key="frame" x="143" y="358" width="89" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Single Player">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="setupSinglePlayerGame:" destination="390-eA-dPq" eventType="touchUpInside" id="rMW-8z-wRa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z53-GK-iWb">
+                                <rect key="frame" x="149.5" y="252" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Multiplayer">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -29,40 +40,21 @@
                                     <action selector="showConnectionOptions:" destination="yQD-j5-IVk" eventType="touchUpInside" id="sde-OI-Dgt"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="aces" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-VN-dGb">
+                                <rect key="frame" x="67" y="461" width="240" height="145"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwiftC♠️rds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4J-3P-gfi">
-                                <rect key="frame" x="132" y="120" width="150" height="26"/>
+                                <rect key="frame" x="112.5" y="120" width="150" height="26"/>
                                 <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsa-S7-BO0">
-                                <rect key="frame" x="162.66666666666666" y="312" width="89" height="30"/>
-                                <state key="normal" title="Single Player">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="setupSinglePlayerGame:" destination="390-eA-dPq" eventType="touchUpInside" id="rMW-8z-wRa"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aces" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-VN-dGb">
-                                <rect key="frame" x="59.666666666666657" y="466" width="295" height="170"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="170" id="GvP-cT-qcZ"/>
-                                    <constraint firstAttribute="width" constant="295" id="eRA-Ue-VS0"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.089771158993244171" green="0.58093947172164917" blue="0.21968308091163635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Z53-GK-iWb" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="2IB-1K-G2E"/>
-                            <constraint firstItem="Qsa-S7-BO0" firstAttribute="top" secondItem="Z53-GK-iWb" secondAttribute="bottom" constant="30" id="9m2-sE-tb0"/>
-                            <constraint firstItem="kZd-VN-dGb" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="Bqc-xE-1Xb"/>
                             <constraint firstItem="R4J-3P-gfi" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="G29-d8-9s5"/>
-                            <constraint firstItem="sOn-YH-mbT" firstAttribute="bottom" secondItem="kZd-VN-dGb" secondAttribute="bottom" constant="100" id="fxB-wy-Jiv"/>
                             <constraint firstItem="R4J-3P-gfi" firstAttribute="top" secondItem="sOn-YH-mbT" secondAttribute="top" constant="100" id="iXx-S3-hKM"/>
-                            <constraint firstItem="Qsa-S7-BO0" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="lHN-wA-x1W"/>
-                            <constraint firstItem="Z53-GK-iWb" firstAttribute="top" secondItem="R4J-3P-gfi" secondAttribute="bottom" constant="106" id="r8m-dU-BJY"/>
-                            <constraint firstItem="kZd-VN-dGb" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="xQ5-ww-Fqn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sOn-YH-mbT"/>
                     </view>
@@ -70,14 +62,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jms-Cz-mrb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="yQD-j5-IVk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-60.869565217391312" y="20.380434782608699"/>
+            <point key="canvasLocation" x="-60" y="21.139430284857571"/>
         </scene>
         <!--Setup View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="SetupViewController" id="BYZ-38-t0r" customClass="SetupViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85Y-la-wLY">
@@ -166,20 +158,20 @@
             <objects>
                 <viewController storyboardIdentifier="GameViewController" id="zIf-sn-4P2" customClass="GameViewController" customModule="SwiftCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f7g-0N-Dqs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMe-8X-oN2">
-                                <rect key="frame" x="20" y="551" width="374" height="170"/>
+                                <rect key="frame" x="16" y="551" width="343" height="101"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-lq-kvx">
-                                <rect key="frame" x="0.0" y="177" width="414" height="374"/>
+                                <rect key="frame" x="0.0" y="177" width="375" height="374"/>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPv-d2-LIq">
-                                <rect key="frame" x="10" y="-49" width="279" height="144"/>
+                                <rect key="frame" x="10" y="-49" width="240" height="144"/>
                             </view>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="XJt-Tz-83C">
-                                <rect key="frame" x="304" y="31" width="90" height="132"/>
+                                <rect key="frame" x="265" y="31" width="90" height="132"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Deck">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
