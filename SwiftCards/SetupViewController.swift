@@ -17,7 +17,9 @@ class SetupViewController: UIViewController {
     }
 
     @IBOutlet weak var handSizeText: UITextField!
-
+    @IBOutlet weak var toggleFaceDownSwitch: UISwitch!
+    
+    
     @IBAction func play(_ sender: UIButton) {
         setupGame()
         let gameMessage = Message(action: "setupGame", game: gameViewController.game)
@@ -28,6 +30,11 @@ class SetupViewController: UIViewController {
     func setupGame() {
         let newGame = Game(handSize: enteredHandSize(), players: getPlayers(session: self.session))
         newGame.deck.shuffle()
+        if toggleFaceDownSwitch.isOn {
+            for card in newGame.deck.cards {
+                card.faceDown()
+            }
+        }
         newGame.deal()
         gameViewController.setupVariables(game: newGame)
     }
