@@ -7,6 +7,7 @@ class HomePageViewController: UIViewController {
     var peerID: MCPeerID!
     var setupViewController: SetupViewController!
     var gameViewController: GameViewController!
+    var joinerViewController: JoinerViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class HomePageViewController: UIViewController {
         session.delegate = gameViewController
         gameViewController.setupViewController = setupViewController
         setupViewController.gameViewController = gameViewController
+        joinerViewController = storyBoard.instantiateViewController(withIdentifier: "JoinerViewController") as? JoinerViewController
     }
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {
@@ -52,5 +54,11 @@ extension HomePageViewController: MCBrowserViewControllerDelegate {
     }
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension HomePageViewController: MCAdvertiserAssistantDelegate {
+    func advertiserAssistantDidDismissInvitation(_ advertiserAssistant: MCAdvertiserAssistant) {
+        self.present(joinerViewController, animated: true, completion: nil)
     }
 }
