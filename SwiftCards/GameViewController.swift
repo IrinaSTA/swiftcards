@@ -20,6 +20,10 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayHands()
+        print(handView.frame.width)
+        print(playareaView.frame.width)
+        print(opponentHandView.frame.width)
+        print(handView.superview!.frame.width)
     }
 
     func setupVariables(game: Game) {
@@ -44,6 +48,10 @@ class GameViewController: UIViewController {
         self.present(homePageViewController, animated: true, completion: nil)
     }
     @IBAction func deckTapped(_ sender: Any) {
+        print(handView.frame.width)
+        print(playareaView.frame.width)
+        print(opponentHandView.frame.width)
+        print(handView.superview!.frame.width)
         if localPlayer.hand.cards.count < 10 {
             localPlayer.draw(deck: game.deck)
         }
@@ -51,6 +59,7 @@ class GameViewController: UIViewController {
         sendUpdateMessage()
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
+        print(handView.frame.width)
         let tappedImage = tap.view as! UIImageView
         let tappedCard = getCardObject(image: tappedImage)
         if localPlayer.hand.cards.contains(tappedCard) {
@@ -59,6 +68,7 @@ class GameViewController: UIViewController {
             localPlayer.reclaim(card: tappedCard, from: playarea)
         }
         renderHand(localPlayer.hand, location: handView)
+        
         renderPlayarea(playarea, location: playareaView)
         sendUpdateMessage()
     }
@@ -191,8 +201,8 @@ class GameViewController: UIViewController {
             let imageView = UIImageView(image: image!)
             imageView.isAccessibilityElement = true
             imageView.accessibilityIdentifier = card.name
-            let cardWidth = absolute(20.0, container: handView, dimension: "width")
-            let cardHeight = cardWidth * 1.5
+            let cardWidth = absolute(20.0, container: handView.superview!, dimension: "width")
+            let cardHeight = cardWidth * 1.4
             imageView.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
             makeSingleTappable(imageView: imageView)
             makePressable(imageView: imageView)
