@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -245,8 +245,8 @@
                                 <rect key="frame" x="0.0" y="164.66666666666666" width="414" height="442.33333333333337"/>
                                 <color key="backgroundColor" red="0.090397991240024567" green="0.58159083127975464" blue="0.22039890289306641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" restorationIdentifier="Deck View" translatesAutoresizingMaskIntoConstraints="NO" id="9to-dJ-6ue" userLabel="Deck View">
-                                <rect key="frame" x="299" y="44" width="75" height="105"/>
+                            <view contentMode="scaleToFill" restorationIdentifier="Deck View" translatesAutoresizingMaskIntoConstraints="NO" id="9to-dJ-6ue" userLabel="Deck View">
+                                <rect key="frame" x="331.33333333333331" y="48.666666666666657" width="82.666666666666686" height="116"/>
                                 <subviews>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backOfCard" translatesAutoresizingMaskIntoConstraints="NO" id="YE1-y4-Dd4" userLabel="Deck Image 3">
                                         <rect key="frame" x="0.0" y="8" width="82.666666666666671" height="104.33333333333333"/>
@@ -279,6 +279,7 @@
                                     <constraint firstItem="XJt-Tz-83C" firstAttribute="centerX" secondItem="9to-dJ-6ue" secondAttribute="centerX" id="Avy-kw-wn5"/>
                                     <constraint firstItem="YE1-y4-Dd4" firstAttribute="top" secondItem="9to-dJ-6ue" secondAttribute="top" constant="8" id="BxA-mV-gHD"/>
                                     <constraint firstItem="YE1-y4-Dd4" firstAttribute="height" secondItem="9to-dJ-6ue" secondAttribute="height" multiplier="0.9" id="Ivy-Ol-oWR"/>
+                                    <constraint firstAttribute="bottom" secondItem="XJt-Tz-83C" secondAttribute="bottom" id="UOk-NN-aPd"/>
                                     <constraint firstItem="XJt-Tz-83C" firstAttribute="width" secondItem="9to-dJ-6ue" secondAttribute="width" id="aZh-bY-rDE"/>
                                     <constraint firstItem="7Ws-UG-hOO" firstAttribute="height" secondItem="9to-dJ-6ue" secondAttribute="height" multiplier="0.9" id="anb-rS-FYf"/>
                                     <constraint firstItem="YE1-y4-Dd4" firstAttribute="width" secondItem="9to-dJ-6ue" secondAttribute="width" id="cHr-6R-Puh"/>
@@ -296,44 +297,61 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztN-d8-9Mc" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="20" width="414" height="28.666666666666671"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pN8-FZ-tzA">
-                                        <rect key="frame" x="0.0" y="-1.6666666666666679" width="85" height="32"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pN8-FZ-tzA">
+                                        <rect key="frame" x="86" y="-2" width="102" height="23.666666666666668"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="D3b-1c-9es"/>
+                                            <constraint firstAttribute="width" constant="102" id="dWM-mu-K9a"/>
+                                        </constraints>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="New Game">
                                                     <attributes>
-                                                        <color key="NSColor" red="0.16259369300000001" green="0.3183843999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="17" name=".SFNSText"/>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="14" name=".SFNSText"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="newGame:" destination="zIf-sn-4P2" eventType="touchUpInside" id="h5b-th-S0s"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yTS-cw-e0V">
-                                        <rect key="frame" x="309" y="-2.3333333333333321" width="105" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yTS-cw-e0V">
+                                        <rect key="frame" x="203" y="-2" width="123" height="24"/>
+                                        <color key="backgroundColor" red="0.94212492240000001" green="0.95383111720000002" blue="0.93932977660000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Restack Deck">
                                                     <attributes>
-                                                        <color key="NSColor" red="0.15963715314865112" green="0.3243253231048584" blue="0.95644336938858032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="restackDeck:" destination="zIf-sn-4P2" eventType="touchUpInside" id="tbc-3q-jI8"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="yTS-cw-e0V" secondAttribute="trailing" id="GZl-xr-Pq3"/>
-                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="centerY" secondItem="ztN-d8-9Mc" secondAttribute="centerY" id="Irw-1r-fsz"/>
-                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="leading" secondItem="ztN-d8-9Mc" secondAttribute="leading" id="Lza-vx-kXM"/>
-                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="centerY" secondItem="ztN-d8-9Mc" secondAttribute="centerY" id="VBM-EE-Ola"/>
+                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="leading" secondItem="pN8-FZ-tzA" secondAttribute="trailing" constant="15" id="5gB-UF-n26"/>
+                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="bottom" secondItem="pN8-FZ-tzA" secondAttribute="bottom" id="CAb-wm-oPC"/>
+                                    <constraint firstAttribute="bottom" secondItem="pN8-FZ-tzA" secondAttribute="bottom" constant="7" id="MQd-iw-iRf"/>
+                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="top" secondItem="pN8-FZ-tzA" secondAttribute="top" id="NzM-P7-KoD"/>
+                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="leading" secondItem="ztN-d8-9Mc" secondAttribute="leading" constant="86" id="PSp-Z8-LZ7"/>
+                                    <constraint firstAttribute="trailing" secondItem="yTS-cw-e0V" secondAttribute="trailing" constant="88" id="pDp-hv-Yu5"/>
+                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="top" secondItem="ztN-d8-9Mc" secondAttribute="top" constant="-2" id="pdD-FA-jbQ"/>
                                 </constraints>
                             </view>
                         </subviews>
