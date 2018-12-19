@@ -30,6 +30,7 @@
 		93C0238621C18312005C3F00 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C0238521C18312005C3F00 /* GameViewController.swift */; };
 		B1506E6A21C0238B00384A14 /* PlayerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1506E6921C0238B00384A14 /* PlayerTest.swift */; };
 		B1506E6C21C0264100384A14 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1506E6B21C0264100384A14 /* Player.swift */; };
+		B17EEE6421CA752D00204B4F /* JoinerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17EEE6321CA752D00204B4F /* JoinerViewController.swift */; };
 		B340F27C27461E2DCEB52FA0 /* Pods_SwiftCardsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAC06CCEB8996C0CA37382C /* Pods_SwiftCardsTests.framework */; };
 		DECFD28D161B5DE440F80CB0 /* Pods_SwiftCardsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341627FA14E7D57B6A18182E /* Pods_SwiftCardsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		9608568DA8DDB8FEAC9B2CE0 /* Pods-SwiftCardsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsUITests/Pods-SwiftCardsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1506E6921C0238B00384A14 /* PlayerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTest.swift; sourceTree = "<group>"; };
 		B1506E6B21C0264100384A14 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B17EEE6321CA752D00204B4F /* JoinerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinerViewController.swift; sourceTree = "<group>"; };
 		C69B45FE0855E0141BA45517 /* Pods-SwiftCardsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsTests/Pods-SwiftCardsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49BCFC94EAB4CD38FF8A1B7 /* Pods-SwiftCardsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCardsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCardsTests/Pods-SwiftCardsTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +175,7 @@
 				9364C2AA21BFCB1800FE4B28 /* Model */,
 				933F24D221BEC16700C2162E /* AppDelegate.swift */,
 				63F0896021C9188E007BE265 /* HomePageViewController.swift */,
+				B17EEE6321CA752D00204B4F /* JoinerViewController.swift */,
 				933F24D421BEC16700C2162E /* SetupViewController.swift */,
 				93C0238521C18312005C3F00 /* GameViewController.swift */,
 				933F24D621BEC16700C2162E /* Main.storyboard */,
@@ -428,6 +431,7 @@
 			files = (
 				63318C3F21C11D66001ADE2F /* Playarea.swift in Sources */,
 				93BC2FB721BFE34000938FF4 /* Hand.swift in Sources */,
+				B17EEE6421CA752D00204B4F /* JoinerViewController.swift in Sources */,
 				933F24D521BEC16700C2162E /* SetupViewController.swift in Sources */,
 				93BC2FC321C10ED400938FF4 /* Game.swift in Sources */,
 				93BC2FBD21C0019F00938FF4 /* Deck.swift in Sources */,

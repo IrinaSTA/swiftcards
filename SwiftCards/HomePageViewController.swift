@@ -7,6 +7,7 @@ class HomePageViewController: UIViewController {
     var peerID: MCPeerID!
     var setupViewController: SetupViewController!
     var gameViewController: GameViewController!
+    var joinerViewController: JoinerViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class HomePageViewController: UIViewController {
         session.delegate = gameViewController
         gameViewController.setupViewController = setupViewController
         setupViewController.gameViewController = gameViewController
+        joinerViewController = storyBoard.instantiateViewController(withIdentifier: "JoinerViewController") as? JoinerViewController
+        gameViewController.joinerViewController = joinerViewController
     }
 
     @IBAction func showConnectionOptions(_ sender: UIButton) {
@@ -29,6 +32,7 @@ class HomePageViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Join a session", style: .default, handler: { (action:UIAlertAction) in
             self.advertiserAssistant = MCAdvertiserAssistant(serviceType: "SwiftCards", discoveryInfo: nil, session: self.session)
             self.advertiserAssistant.start()
+            self.present(self.joinerViewController, animated: true, completion: nil)
         }))
 
         actionSheet.addAction(UIAlertAction(title: "Host a session", style: .default, handler: { (action: UIAlertAction) in

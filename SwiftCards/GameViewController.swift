@@ -9,6 +9,7 @@ class GameViewController: UIViewController {
 
     var setupViewController: SetupViewController!
     var homePageViewController: HomePageViewController!
+    var joinerViewController: JoinerViewController!
     var peerID: MCPeerID!
     var game: Game!
     var playarea: Playarea!
@@ -234,7 +235,7 @@ extension GameViewController: MCSessionDelegate {
                 let decodedGame = decodedMessage.game
                 self.setupVariables(game: decodedGame)
                 if decodedMessage.action == "setupGame" {
-                    self.homePageViewController.present(self, animated: true, completion: nil)
+                    self.joinerViewController.present(self, animated: true, completion: nil)
                 } else if decodedMessage.action == "updateGame" {
                     self.renderAll()
                 }
