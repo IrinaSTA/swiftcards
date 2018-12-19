@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
     }
     func displayHands() {
         if players.count != 1 {
-            renderHand(otherPlayer.hand, location: opponentHandView)
+            renderOpponentHand(otherPlayer.hand, location: opponentHandView)
         }
         renderHand(localPlayer.hand, location: handView)
     }
@@ -45,7 +45,7 @@ class GameViewController: UIViewController {
         self.present(homePageViewController, animated: true, completion: nil)
     }
     @IBAction func deckTapped(_ sender: Any) {
-        if localPlayer.hand.cards.count < 10 {
+        if localPlayer.hand.cards.count < 13 {
             localPlayer.draw(deck: game.deck)
         }
         displayHands()
@@ -97,10 +97,11 @@ class GameViewController: UIViewController {
         }
 
         let touchedCard = getCardObject(image: touchedImage)
-        touchedCard.setCoords(x: Float(newX), y: Float(newY))
+        let percentageX = percentage(newX, container: playareaView, dimension: "width")
+        let percentageY = percentage(newY, container: playareaView, dimension: "height")
+        touchedCard.setCoords(x: percentageX, y: percentageY)
         playarea.bringCardToFront(touchedCard)
         renderPlayarea(playarea, location: playareaView)
-//        playareaView.bringSubview(toFront: touchedImage)
         drag.setTranslation(.zero, in: touchedImage)
         sendUpdateMessage()
     }
@@ -145,12 +146,20 @@ class GameViewController: UIViewController {
     }
     func renderHand(_ hand: Hand, location: UIView) {
         for card in hand.cards {
-            let leftPosition = Float(hand.cards.index(of: card)! * 30)
+            let leftPosition = Float(hand.cards.index(of: card)! * 6)
             card.setCoords(x: leftPosition, y: 0.0)
             render(card, location: location)
             if location == opponentHandView {
-                showBack(imageView(card))
+                showOpponent(imageView(card))
             }
+        }
+    }
+    func renderOpponentHand(_ hand: Hand, location: UIView) {
+        for card in hand.cards {
+            let leftPosition = Float(hand.cards.index(of: card)!) * 4.5
+            card.setCoords(x: leftPosition, y: 0.0)
+            render(card, location: location)
+            showOpponent(imageView(card))
         }
     }
     func showFront(_ cardView: UIImageView) {
@@ -158,6 +167,9 @@ class GameViewController: UIViewController {
     }
     func showBack(_ cardView: UIImageView) {
         cardView.image = UIImage(named: "backOfCard.png")
+    }
+    func showOpponent(_ cardView: UIImageView) {
+        cardView.image = UIImage(named: "otherPlayerCard.png")
     }
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
@@ -173,8 +185,8 @@ class GameViewController: UIViewController {
             showBack(cardView)
         }
         location.addSubview(cardView)
-        let xPosition = CGFloat(card.xPosition)
-        let yPosition = CGFloat(card.yPosition)
+        let xPosition = absolute(card.xPosition, container: location.superview!, dimension: "width")
+        let yPosition = absolute(card.yPosition, container: location, dimension: "height")
         cardView.frame.origin = CGPoint(x: xPosition, y: yPosition)
         if location == playareaView {
             makeDraggable(imageView: cardView)
@@ -191,7 +203,9 @@ class GameViewController: UIViewController {
             let imageView = UIImageView(image: image!)
             imageView.isAccessibilityElement = true
             imageView.accessibilityIdentifier = card.name
-            imageView.frame = CGRect(x: 0, y: 0, width: 90, height: 130)
+            let cardWidth = absolute(20.0, container: handView.superview!, dimension: "width") // uses superview width because handView and playareaView widths are unreliable for some reason
+            let cardHeight = cardWidth * 1.4
+            imageView.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
             makeSingleTappable(imageView: imageView)
             makePressable(imageView: imageView)
             return imageView
@@ -214,6 +228,24 @@ class GameViewController: UIViewController {
         let gameMessage = Message(action: "updateGame", game: self.game)
         let data = setupViewController.encodeMessage(gameMessage)
         setupViewController.sendMessage(data: data)
+    }
+    func percentage(_ coordinate: CGFloat, container: UIView, dimension: String) -> Float {
+        var max: CGFloat
+        if dimension == "width" {
+            max = container.bounds.width
+        } else {
+            max = container.bounds.height
+        }
+        return Float((coordinate / max) * 100)
+    }
+    func absolute(_ coordinate: Float, container: UIView, dimension: String) -> CGFloat {
+        var max: Float
+        if dimension == "width" {
+            max = Float(container.bounds.width)
+        } else {
+            max = Float(container.bounds.height)
+        }
+        return CGFloat((coordinate / 100) * max)
     }
 }
 
