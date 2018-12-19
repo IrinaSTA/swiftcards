@@ -30,7 +30,13 @@ class Card: Equatable, Codable {
     func faceUp() {
         self.display = "front"
     }
-
+    func flip() {
+        if self.display == "back" {
+            self.faceUp()
+        } else if self.display == "front" {
+            self.faceDown()
+        }
+    }
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.name == rhs.name
     }

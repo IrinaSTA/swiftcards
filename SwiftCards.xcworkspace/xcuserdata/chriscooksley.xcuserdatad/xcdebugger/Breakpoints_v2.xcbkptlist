@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftCards/GameViewController.swift"
-            timestampString = "566928826.256711"
+            timestampString = "566930422.185753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "pan(drag:)"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "imageDragged(drag:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
