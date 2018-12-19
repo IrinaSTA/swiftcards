@@ -31,6 +31,7 @@ class HomePageViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Join a session", style: .default, handler: { (action:UIAlertAction) in
             self.advertiserAssistant = MCAdvertiserAssistant(serviceType: "SwiftCards", discoveryInfo: nil, session: self.session)
             self.advertiserAssistant.start()
+            self.present(self.joinerViewController, animated: true, completion: nil)
         }))
 
         actionSheet.addAction(UIAlertAction(title: "Host a session", style: .default, handler: { (action: UIAlertAction) in
@@ -54,11 +55,5 @@ extension HomePageViewController: MCBrowserViewControllerDelegate {
     }
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true, completion: nil)
-    }
-}
-
-extension HomePageViewController: MCAdvertiserAssistantDelegate {
-    func advertiserAssistantDidDismissInvitation(_ advertiserAssistant: MCAdvertiserAssistant) {
-        self.present(joinerViewController, animated: true, completion: nil)
     }
 }
