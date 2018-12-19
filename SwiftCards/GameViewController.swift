@@ -7,16 +7,13 @@ class GameViewController: UIViewController {
     @IBOutlet weak var opponentHandView: UIView!
     @IBOutlet weak var playareaView: UIView!
 
-    var setupViewController: SetupViewController!
-    var homePageViewController: HomePageViewController!
-    var joinerViewController: JoinerViewController!
-    var peerID: MCPeerID!
     var game: Game!
     var playarea: Playarea!
     var deck: Deck!
     var players: [Player] = []
     var localPlayer: Player!
     var otherPlayer: Player!
+    let multipeer = MultipeerManager.instance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +21,8 @@ class GameViewController: UIViewController {
     }
     @IBAction func newGame(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        homePageViewController = storyBoard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController
-        self.present(homePageViewController, animated: true, completion: nil)
+        Controllers.home = storyBoard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController
+        self.present(Controllers.home, animated: true, completion: nil)
     }
     @IBAction func restackDeck(_ sender: Any) {
         for card in playarea.cards {
@@ -109,9 +106,9 @@ class GameViewController: UIViewController {
         self.playarea = self.game.playarea
         self.deck = self.game.deck
         self.players = self.game.players
-        self.localPlayer = self.players.first(where: {$0.displayName == self.peerID.displayName})!
+        self.localPlayer = self.players.first(where: {$0.displayName == multipeer.peerID.displayName})!
         if self.players.count > 1 {
-            self.otherPlayer = self.players.first(where: {$0.displayName != self.peerID.displayName})!
+            self.otherPlayer = self.players.first(where: {$0.displayName != multipeer.peerID.displayName})!
         }
     }
     func makeSingleTappable(imageView: UIImageView) {
@@ -263,48 +260,9 @@ class GameViewController: UIViewController {
             view.removeFromSuperview()
         }
     }
-    
-    
     func sendUpdateMessage() {
         let gameMessage = Message(action: "updateGame", game: self.game)
-        let data = setupViewController.encodeMessage(gameMessage)
-        setupViewController.sendMessage(data: data)
-    }
-
-
-}
-
-extension GameViewController: MCSessionDelegate {
-    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        switch state {
-        case MCSessionState.connected:
-            print("Connected: \(peerID.displayName)")
-        case MCSessionState.connecting:
-            print("Connecting: \(peerID.displayName)")
-        case MCSessionState.notConnected:
-            print("Not Connected: \(peerID.displayName)")
-        }
-    }
-    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        DispatchQueue.main.async {
-            do {
-                let decodedMessage = try JSONDecoder().decode(Message.self, from: data)
-                let decodedGame = decodedMessage.game
-                self.setupVariables(game: decodedGame)
-                if decodedMessage.action == "setupGame" {
-                    self.joinerViewController.present(self, animated: true, completion: nil)
-                } else if decodedMessage.action == "updateGame" {
-                    self.renderAll()
-                }
-            } catch {
-                print("Failed to decode message!")
-            }
-        }
-    }
-    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-    }
-    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-    }
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        let data = multipeer.encodeMessage(gameMessage)
+        multipeer.sendMessage(data: data)
     }
 }
