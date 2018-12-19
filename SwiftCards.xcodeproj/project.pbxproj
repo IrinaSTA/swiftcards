@@ -11,8 +11,9 @@
 		63318C3D21C11CA3001ADE2F /* PlayareaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63318C3C21C11CA3001ADE2F /* PlayareaTest.swift */; };
 		63318C3F21C11D66001ADE2F /* Playarea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63318C3E21C11D66001ADE2F /* Playarea.swift */; };
 		63C605F121BFCDEC00350F42 /* Cards.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C605F021BFCDEC00350F42 /* Cards.xcassets */; };
+		63F0896121C9188E007BE265 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0896021C9188E007BE265 /* HomePageViewController.swift */; };
 		933F24D321BEC16700C2162E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933F24D221BEC16700C2162E /* AppDelegate.swift */; };
-		933F24D521BEC16700C2162E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933F24D421BEC16700C2162E /* ViewController.swift */; };
+		933F24D521BEC16700C2162E /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933F24D421BEC16700C2162E /* SetupViewController.swift */; };
 		933F24D821BEC16700C2162E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933F24D621BEC16700C2162E /* Main.storyboard */; };
 		933F24DA21BEC16800C2162E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933F24D921BEC16800C2162E /* Assets.xcassets */; };
 		933F24DD21BEC16800C2162E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933F24DB21BEC16800C2162E /* LaunchScreen.storyboard */; };
@@ -59,10 +60,11 @@
 		63318C3C21C11CA3001ADE2F /* PlayareaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayareaTest.swift; sourceTree = "<group>"; };
 		63318C3E21C11D66001ADE2F /* Playarea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playarea.swift; sourceTree = "<group>"; };
 		63C605F021BFCDEC00350F42 /* Cards.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Cards.xcassets; sourceTree = "<group>"; };
+		63F0896021C9188E007BE265 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		733E5A50BFBBEE8D7086C243 /* Pods-SwiftCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCards/Pods-SwiftCards.debug.xcconfig"; sourceTree = "<group>"; };
 		933F24CF21BEC16700C2162E /* SwiftCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		933F24D221BEC16700C2162E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		933F24D421BEC16700C2162E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		933F24D421BEC16700C2162E /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		933F24D721BEC16700C2162E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		933F24D921BEC16800C2162E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		933F24DC21BEC16800C2162E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -170,9 +172,10 @@
 			children = (
 				9364C2AA21BFCB1800FE4B28 /* Model */,
 				933F24D221BEC16700C2162E /* AppDelegate.swift */,
-				933F24D421BEC16700C2162E /* ViewController.swift */,
-				933F24D621BEC16700C2162E /* Main.storyboard */,
+				63F0896021C9188E007BE265 /* HomePageViewController.swift */,
+				933F24D421BEC16700C2162E /* SetupViewController.swift */,
 				93C0238521C18312005C3F00 /* GameViewController.swift */,
+				933F24D621BEC16700C2162E /* Main.storyboard */,
 				933F24D921BEC16800C2162E /* Assets.xcassets */,
 				933F24DB21BEC16800C2162E /* LaunchScreen.storyboard */,
 				933F24DE21BEC16800C2162E /* Info.plist */,
@@ -425,12 +428,13 @@
 			files = (
 				63318C3F21C11D66001ADE2F /* Playarea.swift in Sources */,
 				93BC2FB721BFE34000938FF4 /* Hand.swift in Sources */,
-				933F24D521BEC16700C2162E /* ViewController.swift in Sources */,
+				933F24D521BEC16700C2162E /* SetupViewController.swift in Sources */,
 				93BC2FC321C10ED400938FF4 /* Game.swift in Sources */,
 				93BC2FBD21C0019F00938FF4 /* Deck.swift in Sources */,
 				93C0238621C18312005C3F00 /* GameViewController.swift in Sources */,
 				9364C2AC21BFCB2A00FE4B28 /* Card.swift in Sources */,
 				B1506E6C21C0264100384A14 /* Player.swift in Sources */,
+				63F0896121C9188E007BE265 /* HomePageViewController.swift in Sources */,
 				933F24D321BEC16700C2162E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,7 +625,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.imogenmisso.SwiftCards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playerz123.SwiftCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -641,7 +645,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.imogenmisso.SwiftCards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.playerz123.SwiftCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

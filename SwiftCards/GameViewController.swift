@@ -7,7 +7,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var opponentHandView: UIView!
     @IBOutlet weak var playareaView: UIView!
 
-    var homeViewController: ViewController!
+    var setupViewController: SetupViewController!
+    var homePageViewController: HomePageViewController!
     var peerID: MCPeerID!
     var game: Game!
     var playarea: Playarea!
@@ -38,7 +39,9 @@ class GameViewController: UIViewController {
         renderHand(localPlayer.hand, location: handView)
     }
     @IBAction func newGame(_ sender: Any) {
-        game.reset()
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        homePageViewController = storyBoard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController
+        self.present(homePageViewController, animated: true, completion: nil)
     }
     @IBAction func deckTapped(_ sender: Any) {
         if localPlayer.hand.cards.count < 10 {
@@ -71,7 +74,6 @@ class GameViewController: UIViewController {
             sendUpdateMessage()
         }
     }
-    
     func flip(_ card: Card) {
         if card.display == "front" {
             card.faceDown()
@@ -92,7 +94,7 @@ class GameViewController: UIViewController {
         guard validPosition(newOrigin, image: touchedImage) else {
             return
         }
-        
+
         let touchedCard = getCardObject(image: touchedImage)
         touchedCard.setCoords(x: Float(newX), y: Float(newY))
         playarea.bringCardToFront(touchedCard)
@@ -107,7 +109,7 @@ class GameViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
     }
-    
+
     func makePressable(imageView: UIImageView) {
         let press = UILongPressGestureRecognizer(target: self, action: #selector(imagePressed(press:)))
         imageView.isUserInteractionEnabled = true
@@ -156,8 +158,6 @@ class GameViewController: UIViewController {
     func showBack(_ cardView: UIImageView) {
         cardView.image = UIImage(named: "backOfCard.png")
     }
-    
-    
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
             render(card, location: playareaView)
@@ -211,8 +211,8 @@ class GameViewController: UIViewController {
     }
     func sendUpdateMessage() {
         let gameMessage = Message(action: "updateGame", game: self.game)
-        let data = homeViewController.encodeMessage(gameMessage)
-        homeViewController.sendMessage(data: data)
+        let data = setupViewController.encodeMessage(gameMessage)
+        setupViewController.sendMessage(data: data)
     }
 }
 
@@ -234,7 +234,7 @@ extension GameViewController: MCSessionDelegate {
                 let decodedGame = decodedMessage.game
                 self.setupVariables(game: decodedGame)
                 if decodedMessage.action == "setupGame" {
-                    self.homeViewController.present(self, animated: true, completion: nil)
+                    self.homePageViewController.present(self, animated: true, completion: nil)
                 } else if decodedMessage.action == "updateGame" {
                     self.renderAll()
                 }
