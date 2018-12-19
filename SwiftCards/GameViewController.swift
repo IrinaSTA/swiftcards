@@ -6,8 +6,12 @@ class GameViewController: UIViewController {
     @IBOutlet weak var handView: UIView!
     @IBOutlet weak var opponentHandView: UIView!
     @IBOutlet weak var playareaView: UIView!
+<<<<<<< Updated upstream
 
     var setupViewController: SetupViewController!
+=======
+    var homeViewController: ViewController!
+>>>>>>> Stashed changes
     var homePageViewController: HomePageViewController!
     var peerID: MCPeerID!
     var game: Game!
@@ -94,7 +98,10 @@ class GameViewController: UIViewController {
         guard validPosition(newOrigin, image: touchedImage) else {
             return
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         let touchedCard = getCardObject(image: touchedImage)
         touchedCard.setCoords(x: Float(newX), y: Float(newY))
         playarea.bringCardToFront(touchedCard)
@@ -109,7 +116,10 @@ class GameViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
     }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     func makePressable(imageView: UIImageView) {
         let press = UILongPressGestureRecognizer(target: self, action: #selector(imagePressed(press:)))
         imageView.isUserInteractionEnabled = true

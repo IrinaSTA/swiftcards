@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
+<<<<<<< Updated upstream
     <device id="retina5_5" orientation="portrait">
+=======
+    <device id="retina4_7" orientation="portrait">
+>>>>>>> Stashed changes
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,11 +22,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+<<<<<<< Updated upstream
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z53-GK-iWb">
                                 <rect key="frame" x="169" y="252" width="76" height="30"/>
+=======
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsa-S7-BO0">
+                                <rect key="frame" x="140" y="358" width="95" height="36"/>
+                                <color key="backgroundColor" red="0.94212492240000001" green="0.95383111720000002" blue="0.93932977660000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
+                                <state key="normal" title="Single Player">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="setupSinglePlayerGame:" destination="390-eA-dPq" eventType="touchUpInside" id="rMW-8z-wRa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z53-GK-iWb">
+                                <rect key="frame" x="142" y="252" width="91" height="36"/>
+                                <color key="backgroundColor" red="0.94212492240000001" green="0.95383111720000002" blue="0.93932977660000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="Lte-Eu-zAf"/>
+                                    <constraint firstAttribute="height" constant="36" id="NyV-ri-aOE"/>
+                                </constraints>
+>>>>>>> Stashed changes
                                 <state key="normal" title="Multiplayer">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="showConnectionOptions:" destination="390-eA-dPq" eventType="touchUpInside" id="eUn-VS-8dK"/>
                                     <action selector="showConnectionOptions:" destination="yQD-j5-IVk" eventType="touchUpInside" id="sde-OI-Dgt"/>
@@ -57,7 +90,13 @@
                             <constraint firstItem="Qsa-S7-BO0" firstAttribute="top" secondItem="Z53-GK-iWb" secondAttribute="bottom" constant="30" id="9m2-sE-tb0"/>
                             <constraint firstItem="kZd-VN-dGb" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="Bqc-xE-1Xb"/>
                             <constraint firstItem="R4J-3P-gfi" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="G29-d8-9s5"/>
+<<<<<<< Updated upstream
                             <constraint firstItem="sOn-YH-mbT" firstAttribute="bottom" secondItem="kZd-VN-dGb" secondAttribute="bottom" constant="100" id="fxB-wy-Jiv"/>
+=======
+                            <constraint firstItem="Qsa-S7-BO0" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="Hwg-g5-ZOp"/>
+                            <constraint firstItem="Z53-GK-iWb" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="UnM-ng-HQ3"/>
+                            <constraint firstItem="Z53-GK-iWb" firstAttribute="top" secondItem="R4J-3P-gfi" secondAttribute="bottom" constant="106" id="fdF-ek-UZP"/>
+>>>>>>> Stashed changes
                             <constraint firstItem="R4J-3P-gfi" firstAttribute="top" secondItem="sOn-YH-mbT" secondAttribute="top" constant="100" id="iXx-S3-hKM"/>
                             <constraint firstItem="Qsa-S7-BO0" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="lHN-wA-x1W"/>
                             <constraint firstItem="Z53-GK-iWb" firstAttribute="top" secondItem="R4J-3P-gfi" secondAttribute="bottom" constant="106" id="r8m-dU-BJY"/>
@@ -80,7 +119,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85Y-la-wLY">
-                                <rect key="frame" x="172.5" y="417.5" width="30" height="30"/>
+                                <rect key="frame" x="173" y="418" width="50" height="37"/>
+                                <color key="backgroundColor" red="0.94212492240000001" green="0.95383111720000002" blue="0.93932977660000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="CkK-Uq-5TT"/>
                                     <constraint firstAttribute="height" constant="30" id="oOI-bs-GV9"/>
@@ -88,6 +128,10 @@
                                 <state key="normal" title="Play">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZCj-ig-2wJ"/>
                                 </connections>
@@ -135,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="666.66666666666674" y="26.086956521739133"/>
+            <point key="canvasLocation" x="666.39999999999998" y="25.637181409295355"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="0cG-SR-n2n">
@@ -169,11 +213,16 @@
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pN8-FZ-tzA">
-                                <rect key="frame" x="38" y="108" width="75" height="30"/>
+                                <rect key="frame" x="89" y="103" width="83" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.94212492236720458" green="0.95383111715316771" blue="0.93932977660823069" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="New Game">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="newGame:" destination="zIf-sn-4P2" eventType="touchUpInside" id="h5b-th-S0s"/>
                                 </connections>
