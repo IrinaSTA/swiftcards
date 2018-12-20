@@ -83,6 +83,7 @@ class Renderer {
     }
     func renderPlayarea(_ playarea: Playarea, location: UIView) {
         for card in playarea.cards {
+            makeDraggable(imageView: getImageView(card))
             render(card, location: location)
         }
     }
@@ -102,6 +103,7 @@ class Renderer {
         positionHand(hand, spacing: OPPONENT_HAND_SPACING)
         for card in hand.cards {
             render(card, location: location)
+            removeDraggable(imageView: getImageView(card))
             showOpponent(getImageView(card))
         }
     }
@@ -188,10 +190,8 @@ class Renderer {
         let localHand = viewController.localPlayer.hand.cards
         if localHand.contains(tappedCard) {
             viewController.localPlayer.play(card: tappedCard, location: viewController.playarea)
-            makeDraggable(imageView: tappedImage)
         } else {
             viewController.localPlayer.reclaim(card: tappedCard, from: viewController.playarea)
-            removeDraggable(imageView: tappedImage)
         }
         renderAll()
         viewController.multipeer.sendUpdateMessage()
