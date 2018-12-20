@@ -14,14 +14,12 @@ class Renderer {
     let CARD_WIDTH_PERCENTAGE: Float
     let LOCAL_HAND_SPACING: Float
     let OPPONENT_HAND_SPACING: Float
-    let MAX_CARDS_IN_HAND: Int
     let viewController: GameViewController!
     init(viewController: GameViewController) {
         CARD_ASPECT_RATIO = Float(1.4)
         CARD_WIDTH_PERCENTAGE = Float(20)
         LOCAL_HAND_SPACING = CARD_WIDTH_PERCENTAGE / 3
         OPPONENT_HAND_SPACING = CARD_WIDTH_PERCENTAGE / 4
-        MAX_CARDS_IN_HAND = 13
         self.viewController = viewController
     }
     func render(_ card: Card, location: UIView) {
@@ -192,10 +190,8 @@ class Renderer {
         let localHand = viewController.localPlayer.hand.cards
         if localHand.contains(tappedCard) {
             viewController.localPlayer.play(card: tappedCard, location: viewController.playarea)
-        } else if localHand.count < MAX_CARDS_IN_HAND {
-            viewController.localPlayer.reclaim(card: tappedCard, from: viewController.playarea)
         } else {
-            return
+            viewController.localPlayer.reclaim(card: tappedCard, from: viewController.playarea)
         }
         renderAll()
         viewController.multipeer.sendUpdateMessage()

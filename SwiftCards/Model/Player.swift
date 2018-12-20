@@ -12,12 +12,14 @@ import MultipeerConnectivity
 class Player: Equatable, Codable {
     var hand = Hand()
     var displayName: String
+    var MAX_HAND_SIZE: Int
     init(peerID: MCPeerID) {
         self.displayName = peerID.displayName
+        self.MAX_HAND_SIZE = 13
     }
 
     func draw(deck: Deck) {
-        if deck.cards.count > 0 {
+        if deck.cards.count > 0 && hand.cards.count < MAX_HAND_SIZE {
             let card = deck.removeTopCard()
             self.hand.add(card: card)
         }
@@ -27,8 +29,10 @@ class Player: Equatable, Codable {
         location.add(card: card)
     }
     func reclaim(card: Card, from playarea: Playarea) {
-        let card = playarea.remove(card: card)
-        self.hand.add(card: card)
+        if hand.cards.count < MAX_HAND_SIZE {
+            let card = playarea.remove(card: card)
+            self.hand.add(card: card)
+        }
     }
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.displayName == rhs.displayName
