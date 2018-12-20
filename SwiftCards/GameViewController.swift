@@ -22,8 +22,7 @@ class GameViewController: UIViewController {
         renderer.renderAll()
     }
     @IBAction func newGame(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        Controllers.home = storyBoard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController
+        Controllers.recreateViewControllers()
         self.present(Controllers.home, animated: true, completion: nil)
     }
     @IBAction func restackDeck(_ sender: Any) {

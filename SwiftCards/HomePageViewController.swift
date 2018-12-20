@@ -8,6 +8,7 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         Controllers.home = self
         multipeer = MultipeerManager.instance
+        multipeer.resetConnectivity()
         multipeer.session.delegate = multipeer
     }
     @IBAction func showConnectionOptions(_ sender: UIButton) {

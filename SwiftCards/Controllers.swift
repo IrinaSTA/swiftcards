@@ -10,9 +10,16 @@ import Foundation
 import UIKit
 
 class Controllers {
-    static var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    static let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     static var home: HomePageViewController!
     static var joiner = storyBoard.instantiateViewController(withIdentifier: "JoinerViewController") as! JoinerViewController
     static var setup = storyBoard.instantiateViewController(withIdentifier: "SetupViewController") as! SetupViewController
     static var game = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
+    static func recreateViewControllers() {
+        home = storyBoard.instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController
+        joiner = storyBoard.instantiateViewController(withIdentifier: "JoinerViewController") as! JoinerViewController
+        setup = storyBoard.instantiateViewController(withIdentifier: "SetupViewController") as! SetupViewController
+        setup = storyBoard.instantiateViewController(withIdentifier: "SetupViewController") as! SetupViewController
+        game = storyBoard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
+    }
 }

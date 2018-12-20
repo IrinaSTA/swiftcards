@@ -17,10 +17,14 @@ class MultipeerManager: NSObject, MCSessionDelegate {
     var advertiserAssistant: MCAdvertiserAssistant!
     var browser: MCBrowserViewController!
     override init() {
+        super.init()
+        resetConnectivity()
+    }
+    func resetConnectivity() {
         peerID = MCPeerID(displayName: UIDevice.current.name)
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         advertiserAssistant = MCAdvertiserAssistant(serviceType: "SwiftCards", discoveryInfo: nil, session: session)
-        browser = MCBrowserViewController(serviceType: "SwiftCards", session: self.session)
+        browser = MCBrowserViewController(serviceType: "SwiftCards", session: session)
     }
     func encodeMessage(_ message: Message) -> Data {
         var data: Data!
