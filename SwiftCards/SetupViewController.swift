@@ -2,77 +2,45 @@ import UIKit
 import MultipeerConnectivity
 
 class SetupViewController: UIViewController, UITextFieldDelegate {
-    var homePageViewController: HomePageViewController!
-    var gameViewController: GameViewController!
-    var peerID: MCPeerID!
-    var session: MCSession!
+    let multipeer = MultipeerManager.instance
+    let DEFAULT_HAND_SIZE = 7
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        gameViewController.peerID = self.peerID
-        gameViewController.setupViewController = self
-        session.delegate = gameViewController
         handSizeText.delegate = self
-//        textFieldShouldReturn(handSizeText)
     }
-
     @IBOutlet weak var handSizeText: UITextField!
     @IBOutlet weak var toggleFaceDownSwitch: UISwitch!
-    
-    
     @IBAction func play(_ sender: UIButton) {
         setupGame()
-        let gameMessage = Message(action: "setupGame", game: gameViewController.game)
-        let data = encodeMessage(gameMessage)
-        sendMessage(data: data)
-        self.present(gameViewController, animated: true, completion: nil)
+        self.present(Controllers.game, animated: true, completion: nil)
+        multipeer.sendSetupMessage()
     }
+
     func setupGame() {
-        let newGame = Game(handSize: enteredHandSize(), players: getPlayers(session: self.session))
-        newGame.deck.shuffle()
+        let newGame = Game(handSize: enteredHandSize(), players: getPlayers(session: multipeer.session))
         if toggleFaceDownSwitch.isOn {
-            for card in newGame.deck.cards {
-                card.faceDown()
-            }
+            faceDownDeck(newGame.deck)
         }
+        newGame.deck.shuffle()
         newGame.deal()
-        gameViewController.setupVariables(game: newGame)
+        Controllers.game.setupVariables(game: newGame)
+    }
+    func faceDownDeck(_ deck: Deck) {
+        for card in deck.cards {
+            card.faceDown()
+        }
     }
     func getPlayers(session: MCSession) -> [Player] {
         var players: [Player] = []
         for peerID in session.connectedPeers {
             players.append(Player(peerID: peerID))
         }
-        gameViewController.localPlayer = Player(peerID: self.peerID)
-        players.append(gameViewController.localPlayer)
+        players.append(Player(peerID: multipeer.peerID))
         return players
     }
     func enteredHandSize() -> Int {
-        let total = Int(handSizeText.text!) ?? 7
-        return total
-    }
-
-    func encodeMessage(_ message: Message) -> Data {
-        var data: Data!
-        do {
-            data = try JSONEncoder().encode(message)
-        } catch {
-            print("Object could not be encoded!")
-        }
-        return data
-    }
-    func sendMessage(data: Data) {
-        if session.connectedPeers.count > 0 {
-             DispatchQueue.main.async {
-                do {
-                    try self.session.send(data, toPeers: self.session.connectedPeers, with: .reliable)
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }
+        return Int(handSizeText.text!) ?? DEFAULT_HAND_SIZE
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         handSizeText.resignFirstResponder()
