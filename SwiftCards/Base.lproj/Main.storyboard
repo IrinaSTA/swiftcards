@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="390-eA-dPq">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,7 +39,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z53-GK-iWb">
-                                        <rect key="frame" x="160.66666666666666" y="49" width="92" height="30"/>
+                                        <rect key="frame" x="161" y="49" width="92" height="30"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="92" id="6JJ-fl-52d"/>
@@ -59,7 +57,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aces" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-VN-dGb">
-                                        <rect key="frame" x="57" y="220" width="299" height="152"/>
+                                        <rect key="frame" x="57" y="220" width="300" height="152"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="152" id="eAs-aJ-cbI"/>
                                         </constraints>
@@ -76,7 +74,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwiftC♠️rds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4J-3P-gfi">
-                                <rect key="frame" x="83" y="102" width="249" height="50"/>
+                                <rect key="frame" x="83" y="102" width="248" height="50"/>
                                 <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -137,8 +135,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfr-g3-AIG">
                                 <rect key="frame" x="0.0" y="239" width="414" height="122"/>
                                 <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g5j-HT-n8b">
-                                        <rect key="frame" x="345" y="26" width="51" height="31"/>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g5j-HT-n8b">
+                                        <rect key="frame" x="347" y="26" width="51" height="31"/>
                                         <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards dealt face down:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpr-U2-7td">
@@ -147,8 +145,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buN-sc-6wU">
-                                        <rect key="frame" x="316" y="84" width="78" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buN-sc-6wU">
+                                        <rect key="frame" x="313.33333333333326" y="84.666666666666686" width="82.666666666666686" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="handSizeText">
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
@@ -159,8 +157,8 @@
                                             <action selector="returnKeyPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="mo7-84-5o7"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the number of cards per hand:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-J1-yQB">
-                                        <rect key="frame" x="20" y="89" width="277" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of cards per hand:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-J1-yQB">
+                                        <rect key="frame" x="20" y="89" width="205.66666666666666" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -170,7 +168,7 @@
                                     <constraint firstItem="NCu-J1-yQB" firstAttribute="centerY" secondItem="buN-sc-6wU" secondAttribute="centerY" id="3RD-d6-f4t"/>
                                     <constraint firstItem="Tpr-U2-7td" firstAttribute="bottom" secondItem="g5j-HT-n8b" secondAttribute="bottom" id="DSL-5Z-rZD"/>
                                     <constraint firstItem="Tpr-U2-7td" firstAttribute="top" secondItem="g5j-HT-n8b" secondAttribute="top" id="LgV-h1-joa"/>
-                                    <constraint firstItem="buN-sc-6wU" firstAttribute="leading" secondItem="NCu-J1-yQB" secondAttribute="trailing" constant="19" id="Qga-S7-Kjs"/>
+                                    <constraint firstItem="buN-sc-6wU" firstAttribute="width" secondItem="Mfr-g3-AIG" secondAttribute="width" multiplier="0.2" id="RjT-In-ybB"/>
                                     <constraint firstItem="NCu-J1-yQB" firstAttribute="leading" secondItem="Tpr-U2-7td" secondAttribute="leading" id="S13-zs-3QV"/>
                                     <constraint firstItem="Tpr-U2-7td" firstAttribute="top" secondItem="Mfr-g3-AIG" secondAttribute="top" constant="26" id="U8g-Jx-krF"/>
                                     <constraint firstAttribute="trailing" secondItem="g5j-HT-n8b" secondAttribute="trailing" constant="20" id="ZLR-aC-RHR"/>
@@ -300,7 +298,7 @@
                                 <rect key="frame" x="0.0" y="20" width="414" height="28.666666666666671"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pN8-FZ-tzA">
-                                        <rect key="frame" x="86" y="-2" width="102" height="23.666666666666668"/>
+                                        <rect key="frame" x="50" y="-2" width="116" height="24"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="D3b-1c-9es"/>
@@ -325,8 +323,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yTS-cw-e0V">
-                                        <rect key="frame" x="203" y="-2" width="123" height="24"/>
-                                        <color key="backgroundColor" red="0.94212492240000001" green="0.95383111720000002" blue="0.93932977660000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="248" y="-2" width="116" height="24"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Restack Deck">
@@ -347,12 +345,13 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="leading" secondItem="pN8-FZ-tzA" secondAttribute="trailing" constant="15" id="5gB-UF-n26"/>
+                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="width" secondItem="ztN-d8-9Mc" secondAttribute="width" multiplier="0.28" id="2tt-4E-Duk"/>
                                     <constraint firstItem="yTS-cw-e0V" firstAttribute="bottom" secondItem="pN8-FZ-tzA" secondAttribute="bottom" id="CAb-wm-oPC"/>
+                                    <constraint firstItem="yTS-cw-e0V" firstAttribute="width" secondItem="ztN-d8-9Mc" secondAttribute="width" multiplier="0.28" id="G0V-6e-rOU"/>
                                     <constraint firstAttribute="bottom" secondItem="pN8-FZ-tzA" secondAttribute="bottom" constant="7" id="MQd-iw-iRf"/>
+                                    <constraint firstAttribute="trailing" secondItem="yTS-cw-e0V" secondAttribute="trailing" constant="50" id="NN2-zR-GaD"/>
                                     <constraint firstItem="yTS-cw-e0V" firstAttribute="top" secondItem="pN8-FZ-tzA" secondAttribute="top" id="NzM-P7-KoD"/>
-                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="leading" secondItem="ztN-d8-9Mc" secondAttribute="leading" constant="86" id="PSp-Z8-LZ7"/>
-                                    <constraint firstAttribute="trailing" secondItem="yTS-cw-e0V" secondAttribute="trailing" constant="88" id="pDp-hv-Yu5"/>
+                                    <constraint firstItem="pN8-FZ-tzA" firstAttribute="leading" secondItem="ztN-d8-9Mc" secondAttribute="leading" constant="50" id="PSp-Z8-LZ7"/>
                                     <constraint firstItem="pN8-FZ-tzA" firstAttribute="top" secondItem="ztN-d8-9Mc" secondAttribute="top" constant="-2" id="pdD-FA-jbQ"/>
                                 </constraints>
                             </view>
@@ -401,7 +400,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="aces" width="1225" height="732"/>
-        <image name="backOfCard" width="345" height="528"/>
+        <image name="aces" width="588.239990234375" height="351.60000610351562"/>
+        <image name="backOfCard" width="165.83999633789062" height="253.44000244140625"/>
     </resources>
 </document>
