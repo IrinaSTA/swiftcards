@@ -39,8 +39,14 @@ class MultipeerManager: NSObject, MCSessionDelegate {
     }
     func sendUpdateMessage() {
         let game = Controllers.game.game!
-        let gameMessage = Message(action: "updateGame", game: game)
-        let data = encodeMessage(gameMessage)
+        let message = Message(action: "updateGame", game: game)
+        let data = encodeMessage(message)
+        send(data: data)
+    }
+    func sendRestackDeckMessage() {
+        let game = Controllers.game.game!
+        let message = Message(action: "restackDeck", game: game)
+        let data = encodeMessage(message)
         send(data: data)
     }
     func send(data: Data) {
@@ -63,6 +69,8 @@ class MultipeerManager: NSObject, MCSessionDelegate {
                 Controllers.joiner.present(Controllers.game, animated: true, completion: nil)
             } else if decodedMessage.action == "updateGame" {
                 Controllers.game.renderer.renderAll()
+            } else if decodedMessage.action == "restackDeck" {
+                Controllers.game.renderer.removeCardViewsFromPlayarea()
             }
         } catch {
             print("Failed to decode message!")

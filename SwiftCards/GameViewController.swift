@@ -33,6 +33,7 @@ class GameViewController: UIViewController {
         }
         deck.shuffle()
         renderer.removeCardViewsFromPlayarea()
+        multipeer.sendRestackDeckMessage()
     }
     @IBAction func deckTapped(_ sender: Any) {
         if localPlayer.hand.cards.count < 13 {
