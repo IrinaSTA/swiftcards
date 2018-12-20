@@ -3,7 +3,6 @@ import MultipeerConnectivity
 
 class HomePageViewController: UIViewController {
     var multipeer: MultipeerManager!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         Controllers.home = self
