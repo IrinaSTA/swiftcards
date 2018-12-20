@@ -34,6 +34,7 @@ class GameViewController: UIViewController {
         }
         deck.shuffle()
         removeCardViewsFromPlayarea()
+        sendRestackDeckMessage()
     }
     @IBAction func deckTapped(_ sender: Any) {
         if localPlayer.hand.cards.count < 13 {
@@ -102,7 +103,6 @@ class GameViewController: UIViewController {
         let percentageX = percentage(point.x, container: location, dimension: "width")
         let percentageY = percentage(point.y, container: location, dimension: "height")
         card.setCoords(x: percentageX, y: percentageY)
-        
     }
     func setupVariables(game: Game) {
         self.game = game
@@ -126,7 +126,6 @@ class GameViewController: UIViewController {
         press.minimumPressDuration = 0.5
         imageView.addGestureRecognizer(press)
     }
-
     func makeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(imageDragged))
         imageView.isUserInteractionEnabled = true
@@ -134,19 +133,12 @@ class GameViewController: UIViewController {
             imageView.addGestureRecognizer(drag)
         }
     }
-
     func removeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(imageDragged))
         if imageView.gestureRecognizers!.contains(drag) {
             imageView.removeGestureRecognizer(drag)
         }
     }
-
-
-    
-    
-    
-    
     func render(_ card: Card, location: UIView) {
         let cardView = imageView(card)
         showCorrectSide(cardView)
@@ -234,7 +226,6 @@ class GameViewController: UIViewController {
         }
         renderPlayarea(playarea, location: playareaView)
     }
-    
     func percentage(_ coordinate: CGFloat, container: UIView, dimension: String) -> Float {
         var max: CGFloat
         if dimension == "width" {
@@ -253,8 +244,6 @@ class GameViewController: UIViewController {
         }
         return CGFloat((coordinate / 100) * max)
     }
-    
-    
     func getCardObject(image: UIImageView) -> Card {
         return game.find(name: image.accessibilityIdentifier!)
     }
@@ -263,15 +252,16 @@ class GameViewController: UIViewController {
             view.removeFromSuperview()
         }
     }
-    
-    
     func sendUpdateMessage() {
         let gameMessage = Message(action: "updateGame", game: self.game)
         let data = setupViewController.encodeMessage(gameMessage)
         setupViewController.sendMessage(data: data)
     }
-
-
+    func sendRestackDeckMessage() {
+        let gameMessage = Message(action: "restackDeck", game: self.game)
+        let data = setupViewController.encodeMessage(gameMessage)
+        setupViewController.sendMessage(data: data)
+    }
 }
 
 extension GameViewController: MCSessionDelegate {
@@ -295,6 +285,8 @@ extension GameViewController: MCSessionDelegate {
                     self.joinerViewController.present(self, animated: true, completion: nil)
                 } else if decodedMessage.action == "updateGame" {
                     self.renderAll()
+                } else if decodedMessage.action == "restackDeck" {
+                    self.removeCardViewsFromPlayarea()
                 }
             } catch {
                 print("Failed to decode message!")
