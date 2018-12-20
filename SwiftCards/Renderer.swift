@@ -109,7 +109,7 @@ class Renderer {
     }
     func renderAll() {
         renderHand(viewController.localPlayer.hand, location: viewController.handView)
-        if viewController.players.count != 1 {
+        if viewController.players.count >= 1 {
             renderOpponentHand(viewController.otherPlayer.hand, location: viewController.opponentHandView)
         }
         renderPlayarea(viewController.playarea, location: viewController.playareaView)
