@@ -12,12 +12,12 @@ class HomePageViewController: UIViewController {
     }
     @IBAction func showConnectionOptions(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: "Swiftcards", message: "Do you want to Host or Join this session?", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Join a session", style: .default, handler: { (action: UIAlertAction) in
+        actionSheet.addAction(UIAlertAction(title: "Join a session", style: .default, handler: { (_: UIAlertAction) in
             self.multipeer.advertiserAssistant.start()
             self.present(Controllers.joiner, animated: true, completion: nil)
         }))
 
-        actionSheet.addAction(UIAlertAction(title: "Host a session", style: .default, handler: { (action: UIAlertAction) in
+        actionSheet.addAction(UIAlertAction(title: "Host a session", style: .default, handler: { (_: UIAlertAction) in
             let browser = self.multipeer.browser!
             browser.delegate = self
             self.present(browser, animated: true, completion: nil)

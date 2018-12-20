@@ -67,7 +67,6 @@
                         <constraints>
                             <constraint firstItem="R4J-3P-gfi" firstAttribute="centerX" secondItem="9Ny-4T-2CN" secondAttribute="centerX" id="0p3-Lj-tDa"/>
                             <constraint firstItem="Z53-GK-iWb" firstAttribute="trailing" secondItem="Qsa-S7-BO0" secondAttribute="trailing" id="GMY-8Z-ww7"/>
-                            <constraint firstItem="sOn-YH-mbT" firstAttribute="bottom" secondItem="kZd-VN-dGb" secondAttribute="bottom" constant="80" id="MMC-D9-dEK"/>
                             <constraint firstItem="kZd-VN-dGb" firstAttribute="centerX" secondItem="R4J-3P-gfi" secondAttribute="centerX" id="R1Z-UC-9bH"/>
                             <constraint firstItem="kZd-VN-dGb" firstAttribute="top" secondItem="Qsa-S7-BO0" secondAttribute="bottom" constant="61" id="RN6-V5-RcT"/>
                             <constraint firstItem="Z53-GK-iWb" firstAttribute="leading" secondItem="Qsa-S7-BO0" secondAttribute="leading" id="TFs-YA-kPz"/>

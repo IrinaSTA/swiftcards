@@ -4,7 +4,6 @@ class JoinerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupActivityIndicator()
-        
     }
     func setupActivityIndicator() {
         let activityIndicator = UIActivityIndicatorView()

@@ -15,7 +15,6 @@ class Renderer {
     let LOCAL_HAND_SPACING: Float
     let OPPONENT_HAND_SPACING: Float
     let viewController: GameViewController!
-    
     init(viewController: GameViewController) {
         CARD_ASPECT_RATIO = Float(1.4)
         CARD_WIDTH_PERCENTAGE = Float(20)
@@ -136,14 +135,12 @@ class Renderer {
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
     }
-    
     func makePressable(imageView: UIImageView) {
         let press = UILongPressGestureRecognizer(target: self, action: #selector(imagePressed(press:)))
         imageView.isUserInteractionEnabled = true
         press.minimumPressDuration = 0.5
         imageView.addGestureRecognizer(press)
     }
-    
     func makeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(imageDragged))
         imageView.isUserInteractionEnabled = true
@@ -151,7 +148,6 @@ class Renderer {
             imageView.addGestureRecognizer(drag)
         }
     }
-    
     func removeDraggable(imageView: UIImageView) {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(imageDragged))
         if imageView.gestureRecognizers!.contains(drag) {
@@ -164,6 +160,26 @@ class Renderer {
     func removeCardViewsFromPlayarea() {
         for view in viewController.playareaView.subviews {
             view.removeFromSuperview()
+        }
+    }
+    func newPosition(cardView: UIImageView, translation: CGPoint) -> CGPoint {
+        let newX = cardView.frame.origin.x + translation.x
+        let newY = cardView.frame.origin.y + translation.y
+        let candidatePosition = CGPoint(x: newX, y: newY)
+        if isValidPosition(candidatePosition, image: cardView) {
+            return candidatePosition
+        } else {
+            return cardView.frame.origin
+        }
+    }
+    func isValidPosition(_ position: CGPoint, image: UIImageView) -> Bool {
+        let absolutePosition = viewController.playareaView.convert(position, to: nil)
+        var candidateFrame = image.frame
+        candidateFrame.origin = absolutePosition
+        if viewController.playareaView.frame.contains(candidateFrame) {
+            return true
+        } else {
+            return false
         }
     }
     @objc func imageTapped(tap: UITapGestureRecognizer) {
@@ -204,25 +220,4 @@ class Renderer {
         renderPlayarea(viewController.playarea, location: viewController.playareaView)
         viewController.multipeer.sendUpdateMessage()
     }
-    func newPosition(cardView: UIImageView, translation: CGPoint) -> CGPoint {
-        let newX = cardView.frame.origin.x + translation.x
-        let newY = cardView.frame.origin.y + translation.y
-        let candidatePosition = CGPoint(x: newX, y: newY)
-        if isValidPosition(candidatePosition, image: cardView) {
-            return candidatePosition
-        } else {
-            return cardView.frame.origin
-        }
-    }
-    func isValidPosition(_ position: CGPoint, image: UIImageView) -> Bool {
-        let absolutePosition = viewController.playareaView.convert(position, to: nil)
-        var candidateFrame = image.frame
-        candidateFrame.origin = absolutePosition
-        if viewController.playareaView.frame.contains(candidateFrame) {
-            return true
-        } else {
-            return false
-        }
-    }
-
 }
