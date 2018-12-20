@@ -35,9 +35,7 @@ class GameViewController: UIViewController {
         multipeer.sendRestackDeckMessage()
     }
     @IBAction func deckTapped(_ sender: Any) {
-        if localPlayer.hand.cards.count < 13 {
-            localPlayer.draw(deck: game.deck)
-        }
+        localPlayer.draw(deck: game.deck)
         renderer.renderAll()
         multipeer.sendUpdateMessage()
     }

@@ -21,7 +21,6 @@ class HandTest: XCTestCase {
     func testAttributes() {
         XCTAssertEqual(hand.cards.count, 0)
     }
-
     func testAdd() {
         hand.add(card: card1)
         XCTAssert(hand.cards[0] === card1)

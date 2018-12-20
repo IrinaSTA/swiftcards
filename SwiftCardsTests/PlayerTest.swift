@@ -36,6 +36,9 @@ class PlayerTest: XCTestCase {
         player.draw(deck: deck)
         XCTAssertEqual(player.hand.cards.count, 1)
     }
+    func testPlayerHasMaxHandSize() {
+        XCTAssertEqual(player.MAX_HAND_SIZE, 13)
+    }
     func testPlayerCanPlay() {
         player.draw(deck: deck)
         let card = player.hand.cards[0]
@@ -50,6 +53,22 @@ class PlayerTest: XCTestCase {
         player.reclaim(card: card, from: playarea)
         XCTAssertEqual(player.hand.cards[0], card)
         XCTAssertEqual(playarea.cards.count, 0)
+    }
+    func testPlayerCannotDrawBeyondLimit() {
+        for _ in 0..<15 {
+            player.draw(deck: deck)
+        }
+        XCTAssertEqual(player.hand.cards.count, 13)
+    }
+    func testPlayerCannotReclaimBeyondLimit() {
+        for _ in 0..<13 {
+            player.draw(deck: deck)
+        }
+        let card = player.hand.cards[0]
+        player.play(card: card, location: playarea)
+        player.draw(deck: deck)
+        player.reclaim(card: card, from: playarea)
+        XCTAssertEqual(player.hand.cards.count, 13)
     }
     func testCodable() {
         var data: Data!
