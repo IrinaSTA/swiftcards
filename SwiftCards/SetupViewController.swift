@@ -13,12 +13,10 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var toggleFaceDownSwitch: UISwitch!
     @IBAction func play(_ sender: UIButton) {
         setupGame()
-        let gameViewController = Controllers.game
-        let gameMessage = Message(action: "setupGame", game: gameViewController.game)
-        let data = multipeer.encodeMessage(gameMessage)
-        multipeer.sendMessage(data: data)
-        self.present(gameViewController, animated: true, completion: nil)
+        self.present(Controllers.game, animated: true, completion: nil)
+        multipeer.sendSetupMessage()
     }
+
     func setupGame() {
         let newGame = Game(handSize: enteredHandSize(), players: getPlayers(session: multipeer.session))
         if toggleFaceDownSwitch.isOn {

@@ -11,21 +11,17 @@ import UIKit
 import MultipeerConnectivity
 
 class MultipeerManager: NSObject, MCSessionDelegate {
-    
     static let instance = MultipeerManager()
-    
     var peerID: MCPeerID!
     var session: MCSession!
     var advertiserAssistant: MCAdvertiserAssistant!
     var browser: MCBrowserViewController!
-    
     override init() {
         peerID = MCPeerID(displayName: UIDevice.current.name)
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         advertiserAssistant = MCAdvertiserAssistant(serviceType: "SwiftCards", discoveryInfo: nil, session: session)
         browser = MCBrowserViewController(serviceType: "SwiftCards", session: self.session)
     }
-    
     func encodeMessage(_ message: Message) -> Data {
         var data: Data!
         do {
@@ -35,7 +31,19 @@ class MultipeerManager: NSObject, MCSessionDelegate {
         }
         return data
     }
-    func sendMessage(data: Data) {
+    func sendSetupMessage() {
+        let game = Controllers.game.game!
+        let message = Message(action: "setupGame", game: game)
+        let data = encodeMessage(message)
+        send(data: data)
+    }
+    func sendUpdateMessage() {
+        let game = Controllers.game.game!
+        let gameMessage = Message(action: "updateGame", game: game)
+        let data = encodeMessage(gameMessage)
+        send(data: data)
+    }
+    func send(data: Data) {
         if session.connectedPeers.count > 0 {
             DispatchQueue.main.async {
                 do {
@@ -54,7 +62,7 @@ class MultipeerManager: NSObject, MCSessionDelegate {
             if decodedMessage.action == "setupGame" {
                 Controllers.joiner.present(Controllers.game, animated: true, completion: nil)
             } else if decodedMessage.action == "updateGame" {
-                Controllers.game.renderAll()
+                Controllers.game.renderer.renderAll()
             }
         } catch {
             print("Failed to decode message!")
@@ -72,6 +80,7 @@ class MultipeerManager: NSObject, MCSessionDelegate {
     }
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async {
+            print("MESSAGE RECEIVED")
             self.processMessage(data)
         }
     }
@@ -83,5 +92,3 @@ class MultipeerManager: NSObject, MCSessionDelegate {
     }
 
 }
-
-

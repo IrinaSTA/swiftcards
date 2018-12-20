@@ -2,15 +2,17 @@ import UIKit
 import MultipeerConnectivity
 
 class HomePageViewController: UIViewController {
-    let multipeer = MultipeerManager.instance
+    var multipeer: MultipeerManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Controllers.home = self
+        multipeer = MultipeerManager.instance
+        multipeer.session.delegate = multipeer
     }
     @IBAction func showConnectionOptions(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: "Swiftcards", message: "Do you want to Host or Join this session?", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Join a session", style: .default, handler: { (action:UIAlertAction) in
+        actionSheet.addAction(UIAlertAction(title: "Join a session", style: .default, handler: { (action: UIAlertAction) in
             self.multipeer.advertiserAssistant.start()
             self.present(Controllers.joiner, animated: true, completion: nil)
         }))
@@ -21,7 +23,6 @@ class HomePageViewController: UIViewController {
             self.present(browser, animated: true, completion: nil)
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         self.present(actionSheet, animated: true, completion: nil)
     }
     @IBAction func setupSinglePlayerGame(_ sender: UIButton) {
