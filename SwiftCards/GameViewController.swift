@@ -15,11 +15,13 @@ class GameViewController: UIViewController {
     var localPlayer: Player!
     var otherPlayer: Player!
     var renderer: Renderer!
+    var MAX_CARDS_IN_HAND: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         renderer = Renderer(viewController: self)
         renderer.renderAll()
+        MAX_CARDS_IN_HAND = 13
     }
     @IBAction func newGame(_ sender: Any) {
         Controllers.recreateViewControllers()
@@ -35,7 +37,7 @@ class GameViewController: UIViewController {
         multipeer.sendRestackDeckMessage()
     }
     @IBAction func deckTapped(_ sender: Any) {
-        if localPlayer.hand.cards.count < 13 {
+        if localPlayer.hand.cards.count < MAX_CARDS_IN_HAND {
             localPlayer.draw(deck: game.deck)
         }
         renderer.renderAll()
