@@ -190,7 +190,7 @@ class Renderer {
         let localHand = viewController.localPlayer.hand.cards
         if localHand.contains(tappedCard) {
             viewController.localPlayer.play(card: tappedCard, location: viewController.playarea)
-        } else {
+        } else if viewController.playarea.cards.contains(tappedCard) {
             viewController.localPlayer.reclaim(card: tappedCard, from: viewController.playarea)
         }
         renderAll()
